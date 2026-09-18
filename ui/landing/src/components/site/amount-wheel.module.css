@@ -1,0 +1,135 @@
+/*
+ * The stake, as a picker wheel.
+ *
+ * Built on the platform's own scrolling rather than pointer arithmetic, and
+ * that is where the feel comes from: momentum, the rubber band at the ends and
+ * the settle into a snap point are all the scroller's, the same ones an iOS
+ * date wheel rides on, and they arrive for a trackpad, a mouse wheel, a finger
+ * and a keyboard at once. Hand-rolled drag maths gets none of it and has to
+ * reimplement all of it worse.
+ */
+/*
+ * The row height lives here, not on the scroller, and the wrapper is exactly
+ * three rows tall.
+ *
+ * It was on the scroller, which put the two boxes out of step: the card gives
+ * this visual 104px, the wrapper took it, and the scroller stood 132px inside
+ * it. So the scroller overflowed the slot by 28px into the caption below, and
+ * the band — centred on the 104px wrapper — sat 14px above the value centred on
+ * the 132px scroller. One measurement, two faults. Three rows of 2.1rem is
+ * 100.8px, which fits the slot it is given.
+ */
+.wrap {
+  --item: 2.1rem;
+  position: relative;
+  width: 100%;
+  max-width: 9rem;
+  height: calc(var(--item) * 3);
+  margin-inline: auto;
+}
+
+/* The band the values pass through: the pill this card already had, held still.
+   First in the DOM so it paints under the numbers — as a later sibling its
+   translucent fill would wash over them. */
+.band {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: var(--item);
+  transform: translateY(-50%);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--brand) 13%, transparent);
+  pointer-events: none;
+  transition: background-color 180ms ease;
+}
+
+.wrap:hover .band,
+.wheel:focus-visible ~ .band {
+  background: color-mix(in srgb, var(--brand) 20%, transparent);
+}
+
+.wheel {
+  position: relative;
+  height: 100%;
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+  scroll-snap-type: y mandatory;
+  cursor: ns-resize;
+  scrollbar-width: none;
+  /* Fades the values approaching the edges rather than cutting them off, which
+     is what makes three rows read as a wheel and not a list in a window. */
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0,
+    #000 32%,
+    #000 68%,
+    transparent 100%
+  );
+}
+
+.wheel::-webkit-scrollbar {
+  display: none;
+}
+
+.wheel:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 5px;
+  border-radius: 1.5rem;
+}
+
+/* One item's worth of padding at each end, so the first and last values can
+   reach the middle. With a three-item window that also makes the arithmetic
+   exact: value i is centred when scrollTop is i item-heights. */
+.track {
+  padding-block: var(--item);
+}
+
+.value {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--item);
+  scroll-snap-align: center;
+  color: var(--fg-subtle);
+  font-size: 0.9375rem;
+  font-variant-numeric: tabular-nums;
+  opacity: 0.5;
+  transition:
+    color 180ms ease,
+    opacity 180ms ease,
+    transform 180ms ease;
+}
+
+.value[data-selected] {
+  color: var(--brand);
+  font-size: 1.5rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  opacity: 1;
+}
+
+/* One off the middle: still readable, clearly not the choice. */
+.value[data-near] {
+  opacity: 0.75;
+}
+
+/* The card hands the visual 88px on a phone, so three rows of 1.8rem. */
+@media (max-width: 47.999rem) {
+  .wrap {
+    --item: 1.8rem;
+  }
+  .value {
+    font-size: 0.8125rem;
+  }
+  .value[data-selected] {
+    font-size: 1.1875rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .value,
+  .band {
+    transition: none;
+  }
+}

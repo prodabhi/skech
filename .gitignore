@@ -1,0 +1,66 @@
+# dependencies
+node_modules/
+.pnp
+.pnp.*
+
+# next.js
+.next/
+out/
+next-env.d.ts
+
+# production
+build/
+dist/
+
+# testing
+coverage/
+
+# misc
+.DS_Store
+*.pem
+# Solana keypairs: the CLI's id.json and any *-keypair.json
+*keypair*.json
+id.json
+*.tsbuildinfo
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.bun-debug.log*
+
+# Vercel's local project link, written by `vercel link`
+.vercel
+
+# env files
+.env
+.env*.local
+# The box's own keys, kept apart from the ones this machine develops against
+# and passed to infra/deploy.sh as SKECH_ENV_FILE. Real production keys: the
+# pattern above does not catch this name.
+.server.env
+*.server.env
+
+# vercel
+.vercel/
+
+# editors
+.idea/
+.vscode/*
+!.vscode/extensions.json
+
+# agent skills (reinstall with `npx skills add`)
+.agents/
+.claude/
+skills-lock.json
+.gstack/
+
+# relayer
+.relayer-state*.json
+.relayer-activity*.json
+# a save cut short, and a file that could not be read, moved aside
+.relayer-*.tmp
+.relayer-*.unreadable-*
+
+# infra: the box's address, IDs and to-dos stay off the public repo
+*.local.md

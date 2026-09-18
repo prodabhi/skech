@@ -1,0 +1,458 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+/* coss/ui style preset, verbatim. https://coss.com/ui */
+:root {
+  --accent: --alpha(var(--color-black) / 4%);
+  --accent-foreground: var(--color-neutral-800);
+  --background: var(--color-white);
+  --border: --alpha(var(--color-black) / 8%);
+  --card: var(--color-white);
+  --card-foreground: var(--color-neutral-800);
+  --destructive: var(--color-red-500);
+  --destructive-foreground: var(--color-red-700);
+  --foreground: var(--color-neutral-800);
+  --info: var(--color-blue-500);
+  --info-foreground: var(--color-blue-700);
+  --input: --alpha(var(--color-black) / 10%);
+  --muted: --alpha(var(--color-black) / 4%);
+  --muted-foreground: color-mix(in srgb, var(--color-neutral-500) 90%, var(--color-black));
+  --popover: var(--color-white);
+  --popover-foreground: var(--color-neutral-800);
+  --primary: var(--color-neutral-800);
+  --primary-foreground: var(--color-neutral-50);
+  --ring: var(--color-neutral-400);
+  --secondary: --alpha(var(--color-black) / 4%);
+  --secondary-foreground: var(--color-neutral-800);
+  --success: var(--color-emerald-500);
+  --success-foreground: var(--color-emerald-700);
+  --warning: var(--color-amber-500);
+  --warning-foreground: var(--color-amber-700);
+  --chart-1: var(--color-orange-600);
+  --chart-2: var(--color-teal-600);
+  --chart-3: var(--color-cyan-900);
+  --chart-4: var(--color-amber-400);
+  --chart-5: var(--color-amber-500);
+  --code: var(--color-white);
+  --code-foreground: var(--foreground);
+  --code-highlight: --alpha(var(--color-black) / 4%);
+  --radius: 0.625rem;
+  --sidebar: var(--color-neutral-50);
+  --sidebar-accent: --alpha(var(--color-black) / 4%);
+  --sidebar-accent-foreground: var(--color-neutral-800);
+  --sidebar-border: --alpha(var(--color-black) / 6%);
+  --sidebar-foreground: color-mix(in srgb, var(--color-neutral-800) 64%, var(--sidebar));
+  --sidebar-primary: var(--color-neutral-800);
+  --sidebar-primary-foreground: var(--color-neutral-50);
+  --sidebar-ring: var(--color-neutral-400);
+}
+
+.dark {
+  --accent: --alpha(var(--color-white) / 4%);
+  --accent-foreground: var(--color-neutral-100);
+  --background: color-mix(in srgb, var(--color-neutral-950) 95%, var(--color-white));
+  --border: --alpha(var(--color-white) / 6%);
+  --card: color-mix(in srgb, var(--background) 98%, var(--color-white));
+  --card-foreground: var(--color-neutral-100);
+  --destructive: color-mix(in srgb, var(--color-red-500) 90%, var(--color-white));
+  --destructive-foreground: var(--color-red-400);
+  --foreground: var(--color-neutral-100);
+  --info: var(--color-blue-500);
+  --info-foreground: var(--color-blue-400);
+  --input: --alpha(var(--color-white) / 8%);
+  --muted: --alpha(var(--color-white) / 4%);
+  --muted-foreground: color-mix(in srgb, var(--color-neutral-500) 90%, var(--color-white));
+  --popover: color-mix(in srgb, var(--background) 98%, var(--color-white));
+  --popover-foreground: var(--color-neutral-100);
+  --primary: var(--color-neutral-100);
+  --primary-foreground: var(--color-neutral-800);
+  --ring: var(--color-neutral-500);
+  --secondary: --alpha(var(--color-white) / 4%);
+  --secondary-foreground: var(--color-neutral-100);
+  --success: var(--color-emerald-500);
+  --success-foreground: var(--color-emerald-400);
+  --warning: var(--color-amber-500);
+  --warning-foreground: var(--color-amber-400);
+  --chart-1: var(--color-blue-700);
+  --chart-2: var(--color-emerald-500);
+  --chart-3: var(--color-amber-500);
+  --chart-4: var(--color-purple-500);
+  --chart-5: var(--color-rose-500);
+  --code: color-mix(in srgb, var(--background) 98%, var(--color-white));
+  --code-foreground: var(--foreground);
+  --code-highlight: --alpha(var(--color-white) / 4%);
+  --sidebar: color-mix(in srgb, var(--color-neutral-950) 97%, var(--color-white));
+  --sidebar-accent: --alpha(var(--color-white) / 4%);
+  --sidebar-accent-foreground: var(--color-neutral-100);
+  --sidebar-border: --alpha(var(--color-white) / 5%);
+  --sidebar-foreground: color-mix(in srgb, var(--color-neutral-100) 64%, var(--sidebar));
+  --sidebar-primary: var(--color-neutral-100);
+  --sidebar-primary-foreground: var(--color-neutral-800);
+  --sidebar-ring: var(--color-neutral-400);
+}
+
+/* The skech app look: plain white (or black) paper, system greys, one blue
+   ink. The greys are the phone's own, so the game sits in the device like
+   one of its apps. */
+:root {
+  --background: #ffffff;
+  --foreground: #000000;
+  --card: #ffffff;
+  --card-foreground: #000000;
+  --popover: #ffffff;
+  --popover-foreground: #000000;
+  --border: #e5e5ea;
+  --input: #e5e5ea;
+  --muted: #f2f2f7;
+  --muted-foreground: #6c6c70;
+  --secondary: #f2f2f7;
+  --secondary-foreground: #000000;
+  --accent: #e9e9ee;
+  --accent-foreground: #000000;
+  --primary: #000000;
+  --primary-foreground: #ffffff;
+  --success: #34c759;
+  --success-foreground: #248a3d;
+  --destructive: #ff3b30;
+  --destructive-foreground: #d70015;
+  /* Quieter than muted text: the cents of a price, tick marks. */
+  --faint: #aeaeb2;
+  /* The dock's tray, and what floats over the chart. */
+  --dock: #f2f2f7;
+  --raised: #ffffff;
+  --raised-shadow: 0 8px 30px rgb(0 0 0 / 12%);
+}
+
+.dark {
+  --background: #000000;
+  --foreground: #ffffff;
+  --card: #1c1c1e;
+  --card-foreground: #ffffff;
+  --popover: #1c1c1e;
+  --popover-foreground: #ffffff;
+  --border: #38383a;
+  --input: #38383a;
+  --muted: #1c1c1e;
+  --muted-foreground: #98989f;
+  --secondary: #1c1c1e;
+  --secondary-foreground: #ffffff;
+  --accent: #2c2c2e;
+  --accent-foreground: #ffffff;
+  --primary: #ffffff;
+  --primary-foreground: #000000;
+  --success: #30d158;
+  --success-foreground: #30d158;
+  --destructive: #ff453a;
+  --destructive-foreground: #ff453a;
+  --faint: #636366;
+  --dock: #0e0e10;
+  --raised: #1c1c1e;
+  --raised-shadow: 0 8px 30px rgb(0 0 0 / 60%);
+}
+
+/* What a trading screen adds: two directions and one ink for the drawn line.
+   Text weights for figures, mark weights for candles. All aliases. */
+:root,
+.dark {
+  --up: var(--success-foreground);
+  --up-mark: color-mix(in srgb, var(--success) 78%, var(--background));
+  --down: var(--destructive-foreground);
+  --down-mark: color-mix(in srgb, var(--destructive) 78%, var(--background));
+  --brand: #2e5bff;
+  --grid-line: var(--border);
+}
+
+.dark {
+  --brand: #6f92ff;
+}
+
+[data-palette="colourblind"] {
+  --success: #0284c7;
+  --destructive: #ea580c;
+  --up: #0369a1;
+  --up-mark: #0284c7;
+  --down: #c2410c;
+  --down-mark: #ea580c;
+}
+
+[data-palette="colourblind"].dark {
+  --success: #38bdf8;
+  --destructive: #fb923c;
+  --up: #7dd3fc;
+  --up-mark: #38bdf8;
+  --down: #fdba74;
+  --down-mark: #fb923c;
+}
+
+@theme inline {
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-background: var(--background);
+  --color-border: var(--border);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-foreground: var(--foreground);
+  --color-info: var(--info);
+  --color-info-foreground: var(--info-foreground);
+  --color-input: var(--input);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-ring: var(--ring);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-code: var(--code);
+  --color-code-foreground: var(--code-foreground);
+  --color-code-highlight: var(--code-highlight);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-up: var(--up);
+  --color-up-mark: var(--up-mark);
+  --color-down: var(--down);
+  --color-down-mark: var(--down-mark);
+  --color-brand: var(--brand);
+  --color-faint: var(--faint);
+  --color-dock: var(--dock);
+  --color-raised: var(--raised);
+
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", var(--font-geist), "Helvetica Neue", sans-serif;
+  --font-mono: var(--font-mono);
+  --font-heading: var(--font-sans);
+
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+
+  --animate-toast-success-odd: toast-success-odd 0.32s cubic-bezier(0.5, 1, 0.89, 1);
+  --animate-toast-success-even: toast-success-even 0.32s cubic-bezier(0.5, 1, 0.89, 1);
+  --animate-toast-error-odd: toast-error-odd 0.28s cubic-bezier(0.5, 1, 0.89, 1);
+  --animate-toast-error-even: toast-error-even 0.28s cubic-bezier(0.5, 1, 0.89, 1);
+  @keyframes toast-success-odd {
+  0% {
+    scale: 1;
+    }
+  30% {
+    scale: 1.025;
+    }
+  60% {
+    scale: 0.99;
+    }
+  100% {
+    scale: 1;
+    }
+  }
+  @keyframes toast-error-odd {
+  0% {
+    translate: 0 0;
+    }
+  25% {
+    translate: -3px 0;
+    }
+  50% {
+    translate: 3px 0;
+    }
+  75% {
+    translate: -3px 0;
+    }
+  100% {
+    translate: 0 0;
+    }
+  }
+  @keyframes toast-success-even {
+  0% {
+    scale: 1;
+    }
+  30% {
+    scale: 1.025;
+    }
+  60% {
+    scale: 0.99;
+    }
+  100% {
+    scale: 1;
+    }
+  }
+  @keyframes toast-error-even {
+  0% {
+    translate: 0 0;
+    }
+  25% {
+    translate: -3px 0;
+    }
+  50% {
+    translate: 3px 0;
+    }
+  75% {
+    translate: -3px 0;
+    }
+  100% {
+    translate: 0 0;
+    }
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    color-scheme: light;
+  }
+  html.dark {
+    color-scheme: dark;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", var(--font-geist), "Helvetica Neue", sans-serif;
+  }
+  code, kbd, samp, pre {
+    font-family: var(--font-mono);
+  }
+  img, svg {
+    -webkit-user-drag: none;
+    user-select: none;
+  }
+}
+
+/* Figures: tabular, so a column of prices holds still while it ticks. */
+@utility figures {
+  font-variant-numeric: tabular-nums;
+}
+
+/* The reveal: ribbon segments fade in one after another. */
+@keyframes sk-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.sk-in {
+  animation: sk-in 240ms ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* The hint's marching dashes, as CSS rather than SMIL, so the reduced-motion
+   rule below can stop them. The market itself keeps moving: it is the product,
+   not decoration. */
+.sk-march {
+  animation: sk-march 1.4s linear infinite;
+}
+
+@keyframes sk-march {
+  to {
+    stroke-dashoffset: -22;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sk-march,
+  .sk-in {
+    animation: none;
+  }
+}
+
+/* Privy's panel, in our colours and corners.
+   Privy sets these on :root from its own light or dark palette; on body they
+   win for everything inside it, and being our variables they follow the
+   theme switch live. The shades not set here come from the theme picked in
+   `privy.tsx`. The one filled button is the ballpoint blue the line is drawn
+   in, so Privy's Submit is that blue too. */
+body {
+  --privy-color-background: var(--popover);
+  --privy-color-background-2: var(--muted);
+  --privy-color-foreground: var(--foreground);
+  --privy-color-foreground-2: var(--muted-foreground);
+  --privy-color-foreground-3: var(--muted-foreground);
+  --privy-color-foreground-accent: #ffffff;
+  --privy-color-accent: var(--brand);
+  --privy-color-accent-dark: color-mix(in srgb, var(--brand) 88%, black);
+  --privy-color-accent-darkest: color-mix(in srgb, var(--brand) 78%, black);
+  --privy-color-border-default: var(--border);
+  --privy-color-success: var(--up);
+  --privy-color-error: var(--down);
+  --privy-border-radius-sm: var(--radius-md);
+  --privy-border-radius-md: var(--radius-xl);
+  --privy-border-radius-lg: var(--radius-2xl);
+  --privy-border-radius-full: 9999px;
+}
+
+/* And our backdrop: a 32% black and a small blur, not a flat colour that
+   reads as a different app sitting on top of this one. */
+#privy-dialog-backdrop {
+  background: rgb(0 0 0 / 0.32);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+/* Line: a result or a ticket arriving at the top of the board. */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* The deposit sheet's success mark: the circle springs in, then the tick. */
+@keyframes landed-pop { 0% { opacity: 0; transform: scale(.4); } 60% { opacity: 1; transform: scale(1.12); } 100% { transform: scale(1); } }
+@keyframes landed-tick { from { opacity: 0; transform: scale(.5) rotate(-12deg); } to { opacity: 1; transform: none; } }
+@keyframes row-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+@keyframes reveal { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
+/* The deposit success scene: drawn in left to right like a pen stroke, then a slow float; sparkles pop. */
+@keyframes scene-draw { from { clip-path: inset(0 100% 0 0); opacity: .4; } 30% { opacity: 1; } to { clip-path: inset(0 0 0 0); opacity: 1; } }
+@keyframes scene-float { 50% { transform: translateY(-4px); } }
+@keyframes sparkle { 0% { opacity: 0; transform: scale(0) rotate(-40deg); } 60% { opacity: 1; transform: scale(1.3) rotate(10deg); } 100% { opacity: .85; transform: scale(1) rotate(0); } }
+@keyframes scan-line { 0%, 100% { top: 6%; } 50% { top: 92%; } }
+
+/*
+  A phone's browser zooms the page into any field whose text is under 16px
+  the moment it is focused, and leaves it zoomed: the game no longer fits and
+  has to be pinched back. Every field on a touch screen is at least 16px.
+  In the base layer, so a field sized larger on purpose keeps its size.
+*/
+@layer base {
+  @media (pointer: coarse) {
+    input,
+    textarea,
+    select {
+      font-size: max(16px, 1em);
+    }
+  }
+}

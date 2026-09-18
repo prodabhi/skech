@@ -1,0 +1,65 @@
+.section { width: min(80rem, calc(100% - 3rem)); margin: 4.5rem auto 3.5rem; scroll-margin-top: 2rem; }
+.heading { display: flex; align-items: end; justify-content: space-between; gap: 2rem; margin-bottom: 2rem; }
+.heading h2 { max-width: 16ch; font-size: clamp(2.5rem, 4vw, 3.75rem); font-weight: 600; line-height: 1.04; letter-spacing: -0.055em; text-wrap: balance; }
+.heading > p { max-width: 30ch; font-size: 1rem; line-height: 1.6; color: var(--fg-muted); }
+.grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); grid-template-areas: "funding funding funding funding funding funding funding funding leverage leverage leverage leverage" "fees fees fees fees markets markets markets markets leverage leverage leverage leverage" "redraw redraw redraw redraw redraw rewards rewards rewards rewards rewards rewards rewards"; grid-template-rows: 19rem 23rem 20rem; gap: 1rem; }
+.feature { min-width: 0; min-height: 0; display: flex; flex-direction: column; overflow: hidden; border: 1px solid rgb(52 52 51 / 9%); border-radius: 2rem; background: #fbfaf9; }
+.caption { flex-shrink: 0; color: var(--fg); position: relative; z-index: 1; padding: 1.75rem 1.75rem 0; }
+.caption h3 { max-width: 17ch; font-size: clamp(1.5rem, 2.1vw, 2rem); font-weight: 600; letter-spacing: -0.045em; line-height: 1.1; text-wrap: balance; }
+.caption p { max-width: 33ch; margin-top: 0.75rem; font-size: 0.875rem; line-height: 1.6; color: var(--fg-muted); }
+.artwork { position: relative; flex: 1; min-height: 0; min-width: 0; display: flex; align-items: center; justify-content: center; overflow: hidden; margin: 1rem; border-radius: 1.25rem; background: #edf2fd; }
+.artwork img { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: contain; }
+.funding { grid-area: funding; background: #fbfaf9; display: grid; grid-template-columns: 0.9fr 1.1fr; align-items: center; border-radius: 3.5rem 2rem 2rem 2rem; }
+.funding .caption { padding-bottom: 1.75rem; }
+.funding .artwork { height: calc(100% - 2rem); background: #f2ebe0; container-type: inline-size; }
+.leverage { grid-area: leverage; background: #fbfaf9; border-radius: 6rem 6rem 2rem 2rem; }
+.leverage .caption { padding-top: 3rem; text-align: center; }
+.leverage .caption h3, .leverage .caption p { margin-inline: auto; }
+.leverage .artwork { padding: 0; background: #f2ebe0; }
+.leverage .artwork img { object-fit: contain; }
+.markets .artwork { background: #f2ebe0; }
+.markets .artwork img { object-fit: contain; }
+.fees { grid-area: fees; }
+.markets { grid-area: markets; background: #fbfaf9; }
+.redraw { grid-area: redraw; }
+/* The deposit art is a wide PNG, so the artwork box is a strip at the tile's foot. */
+.redraw .artwork { flex: none; height: 9.5rem; margin-top: auto; background: #f2ebe0; }
+.rewards { grid-area: rewards; display: grid; grid-template-columns: 0.9fr 1.1fr; align-items: center; border-radius: 2rem 2rem 5rem 2rem; }
+.rewards .caption { padding-bottom: 1.75rem; }
+/* The card's bottom-right corner is a 5rem sweep and the tile sits 1rem
+   inside it, so the tile's own corner has to be 4rem to stay concentric.
+   At 1.25rem it cut across the curve. */
+.rewards .artwork { height: calc(100% - 2rem); background: #f2ebe0; border-bottom-right-radius: 4rem; }
+.rewards .artwork img { object-fit: contain; }
+@media (min-width: 48rem) and (max-width: 63.999rem) {
+  .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-areas: "funding funding" "leverage fees" "markets redraw" "rewards rewards"; grid-template-rows: 18rem 23rem 23rem 18rem; }
+  .leverage { border-radius: 4rem 4rem 2rem 2rem; }
+  .leverage .caption { padding-top: 2rem; }
+  .leverage .artwork { padding-bottom: 0; }
+  .leverage .artwork img { object-fit: contain; }
+}
+@media (max-width: 47.999rem) {
+  .section { width: calc(100% - 1.5rem); margin-block: 3rem; }
+  .heading { flex-direction: column; align-items: start; gap: 0.875rem; padding-inline: 0.5rem; margin-bottom: 1.5rem; }
+  .heading h2 { font-size: 2.5rem; }
+  .heading > p { font-size: 0.9375rem; }
+  .grid { grid-template-columns: 1fr; grid-template-areas: "funding" "leverage" "fees" "markets" "redraw" "rewards"; grid-template-rows: none; grid-auto-rows: auto; gap: 1rem; }
+  .feature { display: flex; flex-direction: column; align-items: stretch; border-radius: 1.75rem; }
+  .funding { border-top-left-radius: 3rem; }
+  .leverage { border-radius: 4rem 4rem 1.75rem 1.75rem; }
+  .rewards { border-bottom-right-radius: 3.5rem; }
+  .rewards .artwork { border-bottom-right-radius: 2.5rem; }
+  .caption, .leverage .caption { padding: 1.5rem 1.5rem 0; }
+  .leverage .caption { padding-top: 2rem; }
+  .caption h3 { font-size: 1.75rem; }
+  .artwork, .funding .artwork, .rewards .artwork { position: relative; flex: none; width: auto; height: auto; aspect-ratio: 4 / 3; }
+  .leverage .artwork { padding: 0; aspect-ratio: 3 / 4; }
+  .redraw .artwork { height: auto; margin-top: 0; aspect-ratio: 3 / 1; }
+}
+
+:global(.dark) .feature { background: var(--surface); border-color: var(--edge); }
+
+:global(.dark) .feature .artwork { background: #20242d; }
+.artwork .darkArt { display: none; }
+:global(.dark) .artwork .lightArt { display: none; }
+:global(.dark) .artwork .darkArt { display: block; }

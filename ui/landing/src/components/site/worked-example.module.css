@@ -1,0 +1,49 @@
+.card { --recede: 0; padding: 2.75rem 3rem 1.75rem; border: 1px solid #dce3ef; border-radius: 2.5rem; background: #edf2fd; transform: scale(calc(1 - var(--recede) * 0.045)); transform-origin: 50% 1.5rem; }
+.heading { display: flex; align-items: center; justify-content: space-between; gap: 2rem; }
+.heading h2 { max-width: 19ch; font-size: clamp(2.5rem, 4vw, 3.75rem); line-height: 1.04; letter-spacing: -0.055em; font-weight: 600; text-wrap: balance; }
+.heading p { margin-top: 1rem; color: var(--fg-muted); font-size: 1rem; line-height: 1.6; }
+.art { width: 12rem; flex-shrink: 0; }
+.demo { margin-top: 1.75rem; }
+.chart { position: relative; height: 19rem; }
+.chart svg { display: block; width: 100%; height: 100%; overflow: visible; }
+.chart path { fill: none; stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+.forecast { stroke: #2b62de; stroke-width: 3; stroke-dasharray: 5 7; opacity: 0.55; }
+.market { stroke: #343433; stroke-width: 3; }
+.start, .head { position: absolute; width: 9px; height: 9px; border-radius: 50%; transform: translate(-50%, -50%); background: #343433; pointer-events: none; }
+.start { background: #2b62de; width: 7px; height: 7px; }
+.amount { position: absolute; transform: translate(-50%, -100%); padding: 0.5rem 0.875rem; border-radius: 999px; background: #343433; color: #fff; font-size: 1.25rem; font-weight: 500; letter-spacing: -0.025em; font-variant-numeric: tabular-nums; pointer-events: none; white-space: nowrap; }
+.controls { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; margin-top: 1.25rem; padding-top: 1.25rem; border-top: 1px solid #d4deee; }
+.legend { display: flex; align-items: center; gap: 1.5rem; font-size: 0.8125rem; color: var(--fg-muted); }
+.legend span { display: inline-flex; align-items: center; gap: 0.5rem; }
+.legend i { width: 1.5rem; height: 0; border-top: 3px solid #343433; border-radius: 2px; }
+.legend .blue { border-color: #2b62de; border-top-style: dashed; }
+.button { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.625rem 1rem; min-height: 44px; border: 1px solid #d4deee; border-radius: 999px; background: #f9fbff; color: #343433; font-size: 0.8125rem; cursor: pointer; }
+.button:hover { background: #fff; }
+.button:focus-visible { outline: 2px solid #2b62de; outline-offset: 3px; }
+.button svg { width: 14px; height: 14px; }
+@media (max-width: 63.999rem) { .card { padding: 2rem; } .heading h2 { font-size: 3rem; } .art { width: 10rem; } }
+@media (max-width: 47.999rem) {
+  .card { padding: 1.5rem 1rem; border-radius: 1.75rem; }
+  .heading h2 { font-size: clamp(2.25rem, 9.5vw, 2.75rem); }
+  .heading p { font-size: 0.9375rem; }
+  .art { display: none; }
+  .demo { margin-top: 2rem; }
+  .chart { height: 14rem; }
+  .amount { font-size: 1rem; padding: 0.375rem 0.625rem; }
+  .controls { flex-wrap: nowrap; gap: 0.75rem; }
+  .legend { flex: 1; min-width: 0; flex-wrap: wrap; gap: 0.5rem 1rem; font-size: 0.75rem; }
+  .button { flex-shrink: 0; padding: 0.5rem 0.75rem; }
+}
+@media (prefers-reduced-motion: reduce) { .card { transform: none; } }
+
+:global(.dark) .card { background: #20242d; border-color: var(--edge); }
+:global(.dark) .market { stroke: var(--fg); }
+:global(.dark) .forecast { stroke: var(--brand); opacity: 0.8; }
+:global(.dark) .head { background: var(--fg); }
+:global(.dark) .start { background: var(--brand); }
+:global(.dark) .amount { background: var(--fg); color: var(--bg); }
+:global(.dark) .controls { border-color: var(--edge); }
+:global(.dark) .legend i { border-color: var(--fg); }
+:global(.dark) .legend .blue { border-color: var(--brand); }
+:global(.dark) .button { background: var(--surface-2); color: var(--fg); border-color: var(--edge); }
+:global(.dark) .button:hover { background: var(--surface-3); }

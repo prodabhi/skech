@@ -1,0 +1,941 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --background: var(--color-white);
+  --foreground: var(--color-neutral-800);
+  --destructive-foreground: var(--color-red-700);
+  --info: var(--color-blue-500);
+  --info-foreground: var(--color-blue-700);
+  --success: var(--color-emerald-500);
+  --success-foreground: var(--color-emerald-700);
+  --warning: var(--color-amber-500);
+  --warning-foreground: var(--color-amber-700);
+  --accent: --alpha(var(--color-black) / 4%);
+  --accent-foreground: var(--color-neutral-800);
+  --border: --alpha(var(--color-black) / 8%);
+  --card: var(--color-white);
+  --card-foreground: var(--color-neutral-800);
+  --destructive: var(--color-red-500);
+  --input: --alpha(var(--color-black) / 10%);
+  --muted: --alpha(var(--color-black) / 4%);
+  --muted-foreground: color-mix(in srgb, var(--color-neutral-500) 90%, var(--color-black));
+  --popover: var(--color-white);
+  --popover-foreground: var(--color-neutral-800);
+  --primary: var(--color-neutral-800);
+  --primary-foreground: var(--color-neutral-50);
+  --ring: var(--color-neutral-400);
+  --secondary: --alpha(var(--color-black) / 4%);
+  --secondary-foreground: var(--color-neutral-800);
+  --chart-1: var(--color-orange-600);
+  --chart-2: var(--color-teal-600);
+  --chart-3: var(--color-cyan-900);
+  --chart-4: var(--color-amber-400);
+  --chart-5: var(--color-amber-500);
+  --code: var(--color-white);
+  --code-foreground: var(--foreground);
+  --code-highlight: --alpha(var(--color-black) / 4%);
+  --radius: 0.625rem;
+  --sidebar: var(--color-neutral-50);
+  --sidebar-accent: --alpha(var(--color-black) / 4%);
+  --sidebar-accent-foreground: var(--color-neutral-800);
+  --sidebar-border: --alpha(var(--color-black) / 6%);
+  --sidebar-foreground: color-mix(in srgb, var(--color-neutral-800) 64%, var(--sidebar));
+  --sidebar-primary: var(--color-neutral-800);
+  --sidebar-primary-foreground: var(--color-neutral-50);
+  --sidebar-ring: var(--color-neutral-400);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-sans);
+  --animate-skeleton: skeleton 2s -1s infinite linear;
+  --animate-caret-blink: 1s ease-out infinite caret-blink;
+  --animate-toast-success-odd: toast-success-odd 0.32s cubic-bezier(0.5, 1, 0.89, 1);
+  --animate-toast-success-even: toast-success-even 0.32s cubic-bezier(0.5, 1, 0.89, 1);
+  --animate-toast-error-odd: toast-error-odd 0.28s cubic-bezier(0.5, 1, 0.89, 1);
+  --animate-toast-error-even: toast-error-even 0.28s cubic-bezier(0.5, 1, 0.89, 1);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar: var(--sidebar);
+  --color-code-highlight: var(--code-highlight);
+  --code-foreground: var(--code-foreground);
+  --color-code: var(--code);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-ring: var(--ring);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-input: var(--input);
+  --color-destructive: var(--destructive);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-border: var(--border);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-warning: var(--warning);
+  --color-success-foreground: var(--success-foreground);
+  --color-success: var(--success);
+  --color-info-foreground: var(--info-foreground);
+  --color-info: var(--info);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+  @keyframes skeleton {
+  to {
+    background-position: -200% 0;
+    }
+  }
+  @keyframes caret-blink {
+  0%, 70%, to {
+    opacity: 1;
+    }
+  20%, 50% {
+    opacity: 0;
+    }
+  }
+  @keyframes toast-success-odd {
+  0% {
+    scale: 1;
+    }
+  30% {
+    scale: 1.025;
+    }
+  60% {
+    scale: 0.99;
+    }
+  100% {
+    scale: 1;
+    }
+  }
+  @keyframes toast-error-odd {
+  0% {
+    translate: 0 0;
+    }
+  25% {
+    translate: -3px 0;
+    }
+  50% {
+    translate: 3px 0;
+    }
+  75% {
+    translate: -3px 0;
+    }
+  100% {
+    translate: 0 0;
+    }
+  }
+  @keyframes toast-success-even {
+  0% {
+    scale: 1;
+    }
+  30% {
+    scale: 1.025;
+    }
+  60% {
+    scale: 0.99;
+    }
+  100% {
+    scale: 1;
+    }
+  }
+  @keyframes toast-error-even {
+  0% {
+    translate: 0 0;
+    }
+  25% {
+    translate: -3px 0;
+    }
+  50% {
+    translate: 3px 0;
+    }
+  75% {
+    translate: -3px 0;
+    }
+  100% {
+    translate: 0 0;
+    }
+  }
+}
+
+
+/* skech.trade, light. Ported from how family.co is built: flat panels, warm
+   neutrals, one hue, 100ms interaction. No component was changed to get here. */
+:root {
+  --bg: #ffffff;
+  --surface: #fbfaf9;
+  --surface-2: #f6f4ef;
+  --surface-3: #efece6;
+  --hairline: #e9e6e1;
+
+  /* Panels are `rounded-2xl`, which coss derives as --radius * 1.8. 12px is
+     family.co's panel radius, so this is 12/1.8. */
+  --radius: 0.4167rem;
+
+  /* Warm near-black. A true grey reads blue on a warm ground. */
+  --fg: #343433;
+  --fg-muted: #5f5c59;
+  --fg-subtle: #736f6b;
+  --focus: #6e6c6a;
+
+  /* Ballpoint blue, re-pitched for paper: #5b8cff is only 3.2:1 here. 5.16:1
+     on --surface, white on it 5.38:1. --brand-soft is the old value, charts
+     only. */
+  --brand: #2b62de;
+  --brand-soft: #5b8cff;
+  --brand-deep: #1f4fb8;
+  --brand-dim: rgb(43 98 222 / 10%);
+
+  /* Two weights each: -mark for candles (3:1 as shapes), plain for figures set
+     in text (4.5:1). One value cannot do both without going olive. */
+  --up: #15803d;
+  --up-mark: #16a34a;
+  --down: #c4291d;
+  --down-mark: #e5352b;
+
+  --grid-line: #f2f0ed;
+  --grid-dot: #e9e6e1;
+
+  /* Inner rings on wells and rails. White alphas resolved to nothing here. */
+  --edge: #e9e6e1;
+  --edge-bright: #ded9d2;
+  --sheen: transparent;
+
+  /* Three shadows total, all under 12%. Panels get none. */
+  --shadow-card: 0 1px 6px rgb(0 0 0 / 4%), 0 0 24px rgb(0 0 0 / 5%);
+  --shadow-raised: var(--shadow-card);
+  --shadow-float: 0 4px 18px rgb(0 0 0 / 12%);
+  --shadow-brand: none;
+
+  /* The cursor-lit card edge. Blue is the page's own; the violet and peach
+     are here because the ring has to read as colour, and a ring of one hue
+     reads as a mistake. */
+  --ring-1: #5b8cff;
+  --ring-2: #a78bfa;
+  --ring-3: #fdba74;
+
+  --glass: rgb(255 255 255 / 80%);
+  --glass-blur: blur(20px) saturate(180%);
+
+  /* coss tokens */
+  --background: var(--bg);
+  --foreground: var(--fg);
+  --card: var(--surface);
+  --card-foreground: var(--fg);
+  --popover: var(--bg);
+  --popover-foreground: var(--fg);
+  --border: var(--hairline);
+  --input: var(--hairline);
+  --muted: var(--surface);
+  --muted-foreground: var(--fg-muted);
+  --secondary: var(--surface-2);
+  --secondary-foreground: var(--fg);
+  --accent: var(--surface-2);
+  --accent-foreground: var(--fg);
+  --primary: #171717;
+  --primary-foreground: #ffffff;
+  --ring: var(--brand);
+  --destructive: var(--down);
+  --destructive-foreground: var(--down);
+  --info: var(--brand);
+  --info-foreground: var(--brand);
+  --success: var(--up);
+  --success-foreground: var(--up);
+  --brand-foreground: #ffffff;
+  --warning: #b45309;
+  --warning-foreground: #b45309;
+  --code: var(--surface);
+  --code-foreground: var(--fg);
+  --code-highlight: var(--surface-2);
+}
+
+/*
+ * Dark. Same warm neutral family as the paper theme, one step down: the page
+ * ground is below the card fill so the dark cards still read as objects rather
+ * than merging into the background.
+ *
+ * Every value verified in scripts/check-contrast.mjs: muted ink 7.8:1 on the
+ * card, subtle 6.8:1, brand 8.1:1.
+ */
+.dark {
+  --bg: #121110;
+  --surface: #1b1a18;
+  --surface-2: #232220;
+  --surface-3: #2c2a27;
+  --hairline: rgb(255 255 255 / 10%);
+  --edge: rgb(255 255 255 / 10%);
+  --edge-bright: rgb(255 255 255 / 16%);
+
+  --fg: #fafaf9;
+  --fg-muted: #b3ada6;
+  --fg-subtle: #a8a19a;
+  --focus: #b3ada6;
+
+  --brand: #8fb0ff;
+  --brand-soft: #b3c9ff;
+  --brand-deep: #6f98ff;
+  --brand-dim: rgb(143 176 255 / 16%);
+
+  --up: #4ade80;
+  --up-mark: #4ade80;
+  --down: #fb7185;
+  --down-mark: #fb7185;
+
+  --grid-line: rgb(255 255 255 / 6%);
+  --grid-dot: rgb(255 255 255 / 10%);
+
+  /* The paper shadows are invisible here; depth comes from the ring instead. */
+  --shadow-card: 0 1px 2px rgb(0 0 0 / 40%), 0 8px 24px -12px rgb(0 0 0 / 60%);
+  --shadow-raised: var(--shadow-card);
+  --shadow-float: 0 2px 4px rgb(0 0 0 / 40%), 0 24px 64px -20px rgb(0 0 0 / 70%);
+  --shadow-brand: none;
+
+  --glass: rgb(46 42 38 / 88%);
+
+  --background: var(--bg);
+  --foreground: var(--fg);
+  --card: var(--surface);
+  --card-foreground: var(--fg);
+  --popover: var(--surface);
+  --popover-foreground: var(--fg);
+  --border: var(--hairline);
+  --input: var(--hairline);
+  --muted: var(--surface);
+  --muted-foreground: var(--fg-muted);
+  --secondary: var(--surface-2);
+  --secondary-foreground: var(--fg);
+  --accent: var(--surface-2);
+  --accent-foreground: var(--fg);
+  --primary: #fafaf9;
+  --primary-foreground: #121110;
+  --ring: var(--brand);
+  --destructive: var(--down);
+  --destructive-foreground: var(--down);
+  --info: var(--brand);
+  --info-foreground: var(--brand);
+  --success: var(--up);
+  --success-foreground: var(--up);
+  --brand-foreground: #121110;
+  --warning: #fbbf24;
+  --warning-foreground: #fbbf24;
+  --code: var(--surface);
+  --code-foreground: var(--fg);
+  --code-highlight: var(--surface-2);
+}
+
+/* Same numbers in P3. Not a conversion: a wider space saturates them, which is
+   the point. Hues only, so the greys stay where they were measured. */
+@supports (color: color(display-p3 1 1 1)) {
+  :root:not(.dark) {
+    --brand: color(display-p3 0.168627 0.384314 0.870588);
+    --brand-soft: color(display-p3 0.356863 0.54902 1);
+    --brand-deep: color(display-p3 0.121569 0.309804 0.721569);
+    --up: color(display-p3 0.0823529 0.501961 0.239216);
+    --up-mark: color(display-p3 0.0862745 0.639216 0.290196);
+    --down: color(display-p3 0.768627 0.160784 0.113725);
+    --down-mark: color(display-p3 0.898039 0.207843 0.168627);
+  }
+}
+
+@theme {
+  --color-brand: var(--brand);
+  --color-brand-soft: var(--brand-soft);
+  --color-brand-deep: var(--brand-deep);
+  --color-brand-dim: var(--brand-dim);
+  --color-up: var(--up);
+  --color-up-mark: var(--up-mark);
+  --color-down: var(--down);
+  --color-down-mark: var(--down-mark);
+  --color-fg-muted: var(--fg-muted);
+  --color-fg-subtle: var(--fg-subtle);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
+  --color-edge: var(--edge);
+  --color-hairline: var(--hairline);
+
+  --shadow-card: var(--shadow-card);
+  --shadow-raised: var(--shadow-raised);
+  --shadow-float: var(--shadow-float);
+  --shadow-brand: var(--shadow-brand);
+
+  /* The type scale. Five steps, one face, and every step carries its own
+     size, line height, tracking and weight so a call site never sets them by
+     hand. `src/components/site/type.tsx` is the component for each step; the
+     two are meant to be edited together.
+
+     family.co's ramp, an iOS one: 17/26 body, 15/22 secondary, 13/18 caption.
+     Tracking is negative and paired to the size, not set once, because a face
+     that is fitted for a paragraph is too loose at 68px and one fitted for a
+     headline is too tight at 13.
+
+     Tracking was retuned when the headings moved from Figtree to Inter. Inter
+     is a narrower, more closely fitted drawing than Figtree at the same size,
+     so the old heading value of -0.0307em, which was compensating for
+     Figtree's wider geometric bowls, closed Inter's headings into each other.
+     The ramp now runs from -0.022em at display sizes to zero at kicker: large
+     text needs the optical correction and small text needs the space.
+
+     Weights run a step heavier than family.co's 500: headings at 600 and body
+     at 440. Inter is variable, so both are real weights and not synthesised. */
+  --text-display: clamp(2.75rem, 5.6vw, 4.25rem);
+  --text-display--line-height: 1.06;
+  --text-display--letter-spacing: -0.022em;
+  --text-display--font-weight: 600;
+
+  --text-heading: clamp(2rem, 3.4vw, 2.75rem);
+  --text-heading--line-height: 1.1;
+  --text-heading--letter-spacing: -0.019em;
+  --text-heading--font-weight: 600;
+
+  --text-title: 1.1875rem;
+  --text-title--line-height: 1.42;
+  --text-title--letter-spacing: -0.012em;
+  --text-title--font-weight: 600;
+
+  --text-body: 1.0625rem;
+  --text-body--line-height: 1.529;
+  --text-body--letter-spacing: -0.009em;
+  --text-body--font-weight: 440;
+
+  /* Caption and kicker are the same size and a different job, which is why
+     both exist. Kicker is a label at 600, skimmed and not read. Caption is
+     small prose at the body weight with leading to match, for the line of
+     fine print under a form or a figure.
+
+     Caption was being used before it existed: `text-caption` appeared twice in
+     the waitlist and was defined nowhere, so it emitted no CSS, and inside
+     `cn()` tailwind-merge read the unknown `text-*` as a colour and dropped it
+     against the `text-fg-subtle` beside it. It rendered at inherited body size
+     both ways. */
+  --text-caption: 0.8125rem;
+  --text-caption--line-height: 1.6;
+  --text-caption--letter-spacing: -0.006em;
+  --text-caption--font-weight: 440;
+
+  --text-kicker: 0.8125rem;
+  --text-kicker--line-height: 1.385;
+  --text-kicker--letter-spacing: 0em;
+  --text-kicker--font-weight: 600;
+
+  /* 100ms hover and press, 220ms transforms, one curve. Was 350-400ms. */
+  --duration-stagger: 50ms;
+  --duration-micro: 100ms;
+  --duration-quick: 180ms;
+  --duration-fast: 200ms;
+  --duration-medium: 220ms;
+  --duration-slow: 260ms;
+  --duration-very-slow: 520ms;
+
+  --transition-duration-micro: var(--duration-micro);
+  --transition-duration-quick: var(--duration-quick);
+  --transition-duration-fast: var(--duration-fast);
+  --transition-duration-medium: var(--duration-medium);
+  --transition-duration-slow: var(--duration-slow);
+  --transition-duration-very-slow: var(--duration-very-slow);
+
+  --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+  --ease-smooth-out: cubic-bezier(0.19, 1, 0.22, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-bounce: cubic-bezier(0.34, 1.36, 0.64, 1);
+  --ease-bounce-strong: cubic-bezier(0.34, 1.8, 0.64, 1);
+  --animate-sheen: none;
+}
+
+/* 1024px of content in a 1072px box. */
+@utility container-x {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 67rem;
+}
+
+@utility measure {
+  max-width: 62ch;
+}
+
+@utility font-pixel {
+  font-family: var(--font-pixel);
+  font-feature-settings: "tnum" 1;
+}
+
+/*
+ * Numbers that have to hold still.
+ *
+ * This is what the monospace face was actually for. A price ticking in place
+ * reflows on every frame if its digits are proportional, and a column of
+ * figures in a rail will not line up. Inter's tabular figures are equal-width,
+ * which fixes both without a second typeface.
+ *
+ * The slashed zero comes with it. These are prices and quantities, and 0 and O
+ * are worth telling apart when the number is the content.
+ *
+ * Numeric features only, deliberately. Resetting letter-spacing here too was
+ * tempting, since the body step's negative tracking is fitted to letters and
+ * squeezes a nine-character price, but it would then be competing with every
+ * call site that sets tracking on purpose, and which of the two wins comes
+ * down to utility ordering rather than intent. Where inherited tracking is
+ * wrong on a figure, `tracking-normal` says so at the call site.
+ */
+@utility figures {
+  font-variant-numeric: tabular-nums slashed-zero;
+}
+
+@utility bg-grid {
+  background-image:
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+@utility bg-dots {
+  background-image: radial-gradient(circle at 1px 1px, var(--grid-dot) 1px, transparent 0);
+  background-size: 22px 22px;
+}
+
+/* Materials. A panel is a fill. The edge, sheen and shadow stack these used to
+   carry read as light on #09090b and as grime on paper. */
+@utility surface {
+  position: relative;
+  background: var(--surface);
+}
+
+@utility surface-raised {
+  position: relative;
+  background: var(--bg);
+  box-shadow: inset 0 0 0 1px var(--hairline);
+}
+
+/* Translucent chrome over a chart. --glass is a token rather than a literal so
+   the readout follows whichever ground it is floating on. */
+@utility glass {
+  background: var(--glass);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  box-shadow: inset 0 0 0 1px var(--hairline);
+}
+
+/* Was a top-edge highlight. Kept as a positioning context so the markup that
+   still asks for it does not have to change. */
+@utility sheen-top {
+  position: relative;
+}
+
+@utility pressable {
+  transition: transform var(--duration-micro) ease;
+  &:active {
+    transform: scale(0.98);
+  }
+}
+
+/* The hairline dissolves as the fill arrives, so a card gains weight without
+   gaining depth and nothing moves. */
+@utility liftable {
+  transition:
+    box-shadow var(--duration-micro) ease,
+    background var(--duration-micro) ease;
+  &:hover {
+    background: var(--surface);
+    box-shadow: inset 0 0 0 0 var(--surface);
+  }
+}
+
+/*
+ * The dark card, after cult-ui's feature carousel.
+ *
+ * One near-black panel on a paper page. It is warm rather than neutral (stone,
+ * not zinc) so it belongs to this ground, and it is the only dark surface on
+ * the page, which is what lets it carry the four steps on its own.
+ *
+ * The token overrides are the whole trick: every visual inside still asks for
+ * var(--brand), bg-surface-2 and so on, and picks these up without one
+ * component knowing it is on a dark ground.
+ *
+ * The --color-* half is not redundant. Tailwind's @theme declares
+ * `--color-brand: var(--brand)` on :root, and a custom property resolves
+ * against the element that *declares* it, so a utility inside this card would
+ * otherwise inherit the already-resolved paper value. Redeclaring the aliases
+ * here makes them resolve against the values above.
+ */
+.cult-card {
+  --bg: #1b1a18;
+  --surface: #232220;
+  --surface-2: #2c2a27;
+  --surface-3: #37342f;
+  --fg: #fafaf9;
+  --fg-muted: #b3ada6;
+  /* Lighter than the paper counterpart would suggest. The step pills sit on
+     white/6 over this card, and against that fill anything under #a8a19a drops
+     below 4.5:1 at 14px. Verified in scripts/check-contrast.mjs. */
+  --fg-subtle: #a8a19a;
+  --hairline: rgb(255 255 255 / 10%);
+  --edge: rgb(255 255 255 / 10%);
+  --edge-bright: rgb(255 255 255 / 16%);
+  --grid-line: rgb(255 255 255 / 6%);
+  --grid-dot: rgb(255 255 255 / 10%);
+  /* Lifted off #2b62de, which is tuned for paper and goes muddy here. */
+  --glass: rgb(46 42 38 / 88%);
+  --brand: #8fb0ff;
+  --brand-dim: rgb(143 176 255 / 16%);
+  --up: #4ade80;
+  --up-mark: #4ade80;
+  --down: #fb7185;
+  --down-mark: #fb7185;
+
+  --foreground: var(--fg);
+  --background: var(--bg);
+  --border: var(--hairline);
+  --muted-foreground: var(--fg-muted);
+  /* A filled button on this card is light-on-dark, whichever way the page is
+     set. Without this it inherits the page's near-black primary and paints
+     #171717 onto #1b1a18. */
+  --primary: #fafaf9;
+  --primary-foreground: #121110;
+
+  --color-foreground: var(--fg);
+  --color-background: var(--bg);
+  --color-fg-muted: var(--fg-muted);
+  --color-fg-subtle: var(--fg-subtle);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
+  --color-hairline: var(--hairline);
+  --color-edge: var(--edge);
+  --color-brand: var(--brand);
+  --color-brand-dim: var(--brand-dim);
+  --color-up: var(--up);
+  --color-up-mark: var(--up-mark);
+  --color-down: var(--down);
+  --color-down-mark: var(--down-mark);
+
+  background: linear-gradient(180deg, #1b1a18, #272320);
+  color: var(--fg);
+}
+
+/* The cursor-lit edge (gradient-card.tsx), after cult-ui's feature carousel.
+   The ring sits 1px outside; the child's own opaque fill hides everything but
+   that edge, so this costs no layout and no border. */
+.gcard {
+  position: relative;
+}
+
+.gcard > * {
+  position: relative;
+  border-radius: inherit;
+}
+
+.gcard::before {
+  content: "";
+  position: absolute;
+  inset: -1.5px;
+  border-radius: inherit;
+  background: radial-gradient(
+    520px circle at var(--x, 50%) var(--y, 0%),
+    var(--ring-1) 0,
+    var(--ring-2) 18%,
+    var(--ring-3) 34%,
+    var(--ring-1) 48%,
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity var(--duration-slow) ease;
+  pointer-events: none;
+}
+
+/* At rest the panel still needs an edge, or it floats. */
+.gcard::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  box-shadow: inset 0 0 0 1px var(--hairline);
+  transition: opacity var(--duration-slow) ease;
+  pointer-events: none;
+}
+
+.gcard-tracked:hover::before {
+  opacity: 1;
+}
+
+/* With no pointer there is nothing for a radial to centre on, so the always-on
+   ring is conic and lights the whole perimeter evenly instead of one edge. */
+.gcard-on::before {
+  opacity: 1;
+  background: conic-gradient(
+    from 210deg,
+    var(--ring-1),
+    var(--ring-2) 25%,
+    var(--ring-3) 50%,
+    var(--ring-2) 75%,
+    var(--ring-1)
+  );
+}
+
+.gcard-tracked:hover::after,
+.gcard-on::after {
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gcard::before,
+  .gcard::after {
+    transition: none;
+  }
+}
+
+@keyframes hero-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes hero-head-in {
+  to {
+    opacity: 1;
+  }
+}
+
+/* The wordmark in the nav, hovered: a small back-and-forth, as a sticker on a poster is nudged. */
+@keyframes logo-wiggle {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-4deg);
+  }
+  75% {
+    transform: rotate(4deg);
+  }
+}
+
+/* Opacity and 14px. The blur is gone: on white it read as text out of focus. */
+@keyframes reveal-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.hero-stroke {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: hero-draw 1.3s var(--ease-out-expo) 0.25s forwards;
+}
+
+.hero-stroke-head {
+  opacity: 0;
+  animation: hero-head-in var(--duration-very-slow) var(--ease-out-expo) 1.35s forwards;
+}
+
+.stroke-draw path {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+}
+
+[data-drawn] .stroke-draw path {
+  animation: hero-draw 1.4s var(--ease-out-expo) forwards;
+}
+
+@keyframes ticket-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.ticket-in {
+  opacity: 0;
+  animation: ticket-in var(--duration-very-slow) var(--ease-out-expo) 1.15s forwards;
+}
+
+/* Bars land in sequence so playing a line out reads as time passing. The
+   stagger rides on a property so reduced motion can flatten the delay too. */
+@keyframes dc-bar {
+  from {
+    opacity: 0;
+    transform: translateY(6px) scaleY(0.82);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.dc-bar {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: dc-bar 320ms var(--dc-d, 0ms) both var(--ease-out-expo);
+}
+
+/*
+ * The result arriving.
+ *
+ * Scale and blur together, not a plain fade: the card is a surface turning up,
+ * and a surface that only changes opacity reads as a decal. The scrim comes in
+ * on its own, slightly ahead, so the market is already going quiet by the time
+ * the figure lands.
+ */
+@keyframes dc-summary {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+    filter: blur(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: blur(0);
+  }
+}
+
+@keyframes dc-scrim {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.dc-summary {
+  animation: dc-summary var(--duration-fast) var(--ease-out-expo) both;
+}
+
+.dc-scrim {
+  animation: dc-scrim var(--duration-medium) var(--ease-out-expo) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dc-bar {
+    animation-delay: 0ms !important;
+  }
+  /* Reduced motion keeps the arrival, without the movement. */
+  .dc-summary {
+    animation: dc-scrim var(--duration-quick) both;
+  }
+}
+
+[data-reveal] {
+  opacity: 0;
+}
+
+[data-reveal][data-shown] {
+  animation: reveal-in var(--duration-very-slow) var(--ease-out-expo) forwards;
+  animation-delay: calc(var(--i, 0) * var(--duration-stagger));
+}
+
+/* Never animates: a ring that eases in lags behind the key that summoned it.
+   Grey, because a blue ring beside a blue link is two blues arguing. */
+[data-slot="button"] {
+  --tw-ring-offset-width: 2px;
+}
+
+:where(a, summary, button, [tabindex]:not([tabindex="-1"])):not([data-slot]):focus-visible {
+  transition: none;
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+  border-radius: var(--radius-md);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    color-scheme: light;
+  }
+  html.dark {
+    color-scheme: dark;
+  }
+  /* No ambient wash. A tinted white looks like a gradient left in by mistake. */
+  body {
+    background: var(--bg);
+    font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+    font-weight: var(--text-body--font-weight);
+    font-optical-sizing: auto;
+  }
+  h1,
+  h2,
+  h3 {
+    font-optical-sizing: auto;
+    text-wrap: balance;
+  }
+  img,
+  svg {
+    -webkit-user-drag: none;
+    user-select: none;
+  }
+}
+
+hr {
+  margin: 0;
+  width: 100%;
+  height: 1px;
+  border: 0;
+  background: var(--hairline);
+}
+
+::selection {
+  background-color: var(--brand-dim);
+  color: var(--brand-deep);
+}
+
+::-moz-selection {
+  background-color: var(--brand-dim);
+  color: var(--brand-deep);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  [data-reveal] {
+    opacity: 1;
+  }
+  [data-reveal][data-shown] {
+    animation: none;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .glass {
+    background: var(--bg);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+}

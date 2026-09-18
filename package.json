@@ -1,0 +1,33 @@
+{
+  "name": "skech",
+  "version": "0.0.0",
+  "private": true,
+  "workspaces": [
+    "ui/*",
+    "packages/*",
+    "!packages/solana-mobile"
+  ],
+  "packageManager": "bun@1.4.0",
+  "scripts": {
+    "dev": "bun scripts/dev.ts",
+    "dev:landing": "bun run --filter @skech/landing dev",
+    "dev:app": "bun run --filter @skech/app dev",
+    "dev:engine": "bun run --filter @skech/engine dev",
+    "build": "bun run --filter '*' build",
+    "start": "bun run --filter '*' start",
+    "lint": "bun run --filter '*' lint",
+    "typecheck": "bun run --filter '*' typecheck",
+    "clean": "rm -rf node_modules ui/*/node_modules ui/*/.next packages/engine/target packages/contracts/evm/out packages/contracts/evm/cache packages/contracts/solana/target",
+    "test": "bun run --filter '*' test",
+    "dev:relayer": "bun run --filter @skech/relayer dev",
+    "deploy:solana": "bun scripts/deploy-solana.ts"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.4.2",
+    "typescript": "^5"
+  },
+  "trustedDependencies": [
+    "sharp",
+    "unrs-resolver"
+  ]
+}

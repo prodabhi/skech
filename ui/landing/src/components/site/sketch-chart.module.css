@@ -1,0 +1,51 @@
+.panel {
+  --plot-surface: var(--bg);
+  min-width: 0;
+  padding: 1.5rem;
+  border-radius: 1.75rem;
+  color: var(--fg);
+  background: var(--plot-surface);
+  border: 1px solid var(--hairline);
+}
+
+:global(.dark) .panel { --plot-surface: #151514; border-color: #3c3a36; }
+
+.button:focus-visible, .dragHandle:focus-visible { outline: 2px solid var(--brand); outline-offset: 3px; }
+
+.marketHeader { display: flex; align-items: start; justify-content: space-between; gap: 1rem; }
+.small { color: var(--fg-muted); font-size: 0.8125rem; line-height: 1.5; }
+.price { display: block; margin-top: 0.25rem; font-size: clamp(1.5rem, 2.6vw, 2rem); font-weight: 600; letter-spacing: -0.04em; font-variant-numeric: tabular-nums; }
+.caption { min-height: 3em; margin-top: 1rem; color: var(--fg-muted); font-size: 0.875rem; line-height: 1.5; }
+.figure { margin: 1.5rem 0 0; }
+.legend { display: flex; gap: 1.25rem; color: var(--fg-muted); font-size: 0.75rem; }
+.legend > span { display: inline-flex; align-items: center; gap: 0.5rem; }
+.legend i { display: block; width: 1.25rem; height: 3px; border-radius: 9px; }
+.drawnKey { background: var(--brand); }
+.marketKey { background: var(--fg); }
+.plot { position: relative; margin-top: 0.5rem; }
+.svg { display: block; width: 100%; height: clamp(12rem, 18vw, 16rem); }
+.svg path { fill: none; stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+.drawn { stroke: var(--brand); stroke-width: 3; }
+.market { stroke: var(--fg); stroke-width: 1.75; }
+.entryDot, .marketDot, .drawnDot { position: absolute; width: 8px; height: 8px; border-radius: 50%; transform: translate(-50%, -50%); pointer-events: none; }
+.entryDot { background: var(--plot-surface); border: 2px solid var(--brand); }
+.marketDot { background: var(--fg); border: 2px solid var(--plot-surface); width: 9px; height: 9px; }
+.drawnDot { background: var(--brand); }
+
+.footer { display: flex; justify-content: space-between; align-items: center; gap: 0.75rem; margin-top: 1.25rem; }
+.footer > p { color: var(--fg-muted); font-size: 0.75rem; line-height: 1.5; }
+.button { display: inline-flex; flex-shrink: 0; align-items: center; justify-content: center; gap: 0.5rem; min-height: 2.5rem; padding: 0.5rem 0.75rem; border-radius: 999px; background: var(--surface); color: var(--fg-muted); font-size: 0.75rem; cursor: pointer; }
+.button:hover { background: var(--surface-3); color: var(--fg); }
+.button svg { width: 0.875rem; height: 0.875rem; }
+.dragHandle { position: absolute; display: grid; place-items: center; width: 44px; height: 44px; transform: translate(-50%, -50%); border-radius: 50%; cursor: grab; touch-action: none; }
+.dragHandle[data-dragging="true"] { cursor: grabbing; }
+.dragHandle > span { width: 18px; height: 18px; border: 4px solid var(--plot-surface); outline: 2px solid var(--brand); border-radius: 50%; background: var(--brand); }
+.dragHandle:hover > span, .dragHandle:focus-visible > span { outline-width: 3px; }
+
+@media (max-width: 47.999rem) {
+  .panel { padding: 1.125rem; border-radius: 1.25rem; }
+  .legend { gap: 0.875rem; }
+  .caption { font-size: 0.8125rem; }
+  .price { font-size: 1.5rem; }
+}
+

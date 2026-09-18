@@ -1,0 +1,138 @@
+.image {
+  pointer-events: none;
+  user-select: none;
+}
+
+.sectionScene {
+  display: block;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Only there to choose a file: the image inside lays out as if it were not. */
+.picture {
+  display: contents;
+}
+
+.sectionArtwork {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.sectionDark,
+:global(.dark) .sectionLight {
+  display: none;
+}
+
+:global(.dark) .sectionDark {
+  display: block;
+}
+
+:global(.dark) .image {
+  filter: url("#illustration-dark-palette");
+}
+
+/* The older scenes have shaded paper fills. A single neutral avoids amplifying
+   their small colour variations when they are shown on the dark background. */
+:global(.dark) .legacyImage {
+  filter: url("#illustration-dark-palette-flat");
+}
+
+.scene {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  user-select: none;
+}
+
+.flank {
+  position: absolute;
+  bottom: 0;
+  width: min(70vw, 19rem);
+  max-width: none;
+  height: auto;
+}
+
+.left {
+  left: 0;
+}
+
+.right {
+  right: 0;
+}
+
+@media (min-width: 48rem) {
+  .flank {
+    top: 50%;
+    bottom: auto;
+    width: 42vw;
+    transform: translateY(-50%);
+  }
+
+  .left {
+    left: -6rem;
+  }
+
+  .right {
+    right: -6rem;
+  }
+}
+
+@media (min-width: 75rem) {
+  .flank {
+    width: min(48vw, 50rem);
+  }
+
+  .left {
+    left: 0;
+  }
+
+  .right {
+    right: 0;
+  }
+}
+
+/* A few quiet shapes add density without changing the approved characters. */
+.accent { position: absolute; display: block; pointer-events: none; }
+.accentSquare { width: 5%; aspect-ratio: 1; border-radius: 24%; background: #e2d6c5; transform: rotate(-16deg); }
+.accentDot { width: 2.5%; aspect-ratio: 1; border-radius: 50%; background: #ffcf7b; }
+.accentDash { width: 5%; height: 2.5%; border-radius: 999px; background: #8ecbff; transform: rotate(-35deg); }
+.left .accentSquare { left: 45%; top: 13%; }
+.left .accentDot { left: 13%; top: 87%; }
+.left .accentDash { left: 61%; top: 44%; }
+.right .accentSquare { right: 44%; top: 24%; }
+.right .accentDot { right: 15%; top: 93%; }
+.right .accentDash { right: 31%; top: 90%; }
+:global(.dark) .accentSquare { background: #454039; }
+
+/* Only ever one of the two: the phone scene, or the pair of flanks. */
+.phoneArt { display: none; }
+
+@media (max-width: 47.999rem) {
+  .scene { position: relative; inset: auto; flex-shrink: 0; width: 100%; height: auto; }
+  .scene .left, .scene .right { display: none; }
+  /*
+     The asset carries a wide transparent margin, about a fifth of its height
+     top and bottom, so a plain `height: auto` reserves a band of empty space
+     above and below the characters. The negative block margin takes that back,
+     which is why the art can be this modest without leaving a hole under the
+     headline.
+  */
+  .phoneArt {
+    display: block;
+    width: 100%;
+    max-width: 20rem;
+    height: auto;
+    /*
+       Trimmed unevenly on purpose. The negative top reclaims the asset's blank
+       band so the art is not floating below the nav, and the bottom is left
+       shallower than the band it is cancelling: the stage only puts 0.5rem
+       between this and the headline, and trimming the full band closed that to
+       nothing — the cap-height of "Draw the chart." came up level with the
+       lowest character.
+    */
+    margin: -2.5rem auto -1.5rem;
+  }
+}
