@@ -1,0 +1,201 @@
+/* The game's screen: the market row under the bar, the chart, and the dock. */
+.surface { width: 100%; height: 100%; }
+.notice { animation: arrive 180ms ease-out both; }
+@keyframes arrive { from { opacity: .5; transform: translateY(3px); } to { opacity: 1; transform: translateY(0); } }
+@media (prefers-reduced-motion: reduce) { .notice { animation: none; } }
+.topShade { position: absolute; pointer-events: none; z-index: 10; inset: 0 0 auto; height: 128px; background: linear-gradient(var(--background) 80%, transparent); }
+
+/* The market row: the coin, its name and price on the left; the money on the right. */
+.summary { position: absolute; z-index: 20; top: 64px; left: 0; right: 0; padding: 6px 20px 10px; display: flex; align-items: center; justify-content: space-between; gap: 16px; pointer-events: none; }
+.market { display: flex; align-items: center; min-width: 0; gap: 10px; }
+.assetButton { pointer-events: auto; height: auto !important; padding: 0 !important; border: 0 !important; justify-content: flex-start; text-align: left; gap: 10px; border-radius: 12px; }
+.assetButton:hover { background: transparent !important; }
+.marketName { display: flex; flex-direction: column; align-items: flex-start; }
+.marketName > span { display: flex; align-items: center; gap: 3px; font-size: 13px; font-weight: 600; color: var(--muted-foreground); }
+.marketName strong { font-size: 24px; line-height: 1.2; font-weight: 700; letter-spacing: -.02em; color: var(--foreground); }
+.cents { color: var(--faint); }
+.accounts { display: flex; align-items: center; gap: 18px; text-align: right; }
+.balance, .pnl { position: relative; display: flex; flex-direction: column; align-items: flex-end; }
+.eyebrow { font-size: 12px; font-weight: 400; color: var(--muted-foreground); }
+.balanceValue, .pnlValue { font-size: 16px; font-weight: 600; line-height: 1.35; font-variant-numeric: tabular-nums; transition: color 240ms ease-out; }
+
+/* What floats over the chart: a pill at the top, a card over the dock. */
+.floatPill { position: absolute; z-index: 20; left: 50%; top: 128px; transform: translateX(-50%); display: flex; gap: 16px; max-width: calc(100% - 32px); padding: 8px 16px; border-radius: 999px; background: var(--raised); box-shadow: var(--raised-shadow); font-size: 14px; color: var(--muted-foreground); white-space: nowrap; pointer-events: none; }
+.floatPill strong { font-weight: 600; color: var(--foreground); font-variant-numeric: tabular-nums; }
+.floatPill .win { color: var(--brand); }
+.hintPill { position: absolute; z-index: 20; left: 50%; top: 150px; transform: translateX(-50%); padding: 10px 16px; border-radius: 999px; background: var(--raised); box-shadow: var(--raised-shadow); font-size: 15px; font-weight: 600; white-space: nowrap; pointer-events: none; }
+/* A paper run's clock, where the stroke's pill shows: quiet, and urgent in its last seconds. What would sit there moves under it. */
+.clockPill { composes: floatPill; gap: 6px; font-size: 13px; transition: color 240ms ease-out, border-color 240ms ease-out; }
+.clockPill strong { min-width: 3ch; }
+.clockUrgent { color: var(--destructive-foreground); border-color: color-mix(in oklab, var(--destructive-foreground) 35%, transparent) !important; }
+.clockUrgent strong { color: var(--destructive-foreground); animation: clock-beat 1s ease-in-out infinite; }
+@keyframes clock-beat { 50% { opacity: .55; } }
+.belowClock { margin-top: 46px; }
+@media (prefers-reduced-motion: reduce) { .clockUrgent strong { animation: none; } }
+/* Nothing to draw with: the hint itself, tappable, opening the deposit sheet. */
+.depositPill { composes: hintPill; color: var(--foreground); font: inherit; font-size: 15px; font-weight: 600; pointer-events: auto; cursor: pointer; }
+.depositPill:active { scale: .97; }
+.depositPill:focus-visible { outline: 2px solid var(--brand); outline-offset: 3px; }
+.roundCard { position: absolute; z-index: 25; left: 50%; bottom: calc(max(22px, env(safe-area-inset-bottom)) + 78px); translate: -50% 0; max-width: calc(100% - 32px); box-sizing: border-box; padding: 12px 22px; border-radius: 22px; background: var(--raised); box-shadow: var(--raised-shadow); display: flex; flex-direction: column; align-items: center; text-align: center; white-space: nowrap; pointer-events: none; }
+.roundCard > div { display: flex; flex-direction: column; align-items: center; gap: 1px; }
+.roundLabel { font-size: 13px; color: var(--muted-foreground); }
+.roundValue { font-size: 26px; line-height: 1.15; font-weight: 700; font-variant-numeric: tabular-nums; }
+.bottomPill { position: absolute; z-index: 20; left: 50%; bottom: calc(max(22px, env(safe-area-inset-bottom)) + 78px); transform: translateX(-50%); padding: 8px 16px; border-radius: 999px; background: var(--raised); box-shadow: var(--raised-shadow); font-size: 13px; color: var(--muted-foreground); white-space: nowrap; pointer-events: none; }
+
+/* The dock: a grey tray, three white pills in it. */
+.bottomShade { position: absolute; pointer-events: none; z-index: 10; inset: auto 0 0; height: 100px; background: linear-gradient(transparent, var(--background) 70%); }
+.toolbar { position: absolute; z-index: 20; bottom: max(22px, env(safe-area-inset-bottom)); left: 50%; transform: translateX(-50%); display: flex; align-items: stretch; gap: 8px; width: min(420px, calc(100% - 32px)); height: 64px; box-sizing: border-box; padding: 8px; border: .5px solid var(--border); border-radius: 32px; background: var(--dock); }
+/* Add to Home Screen: in the gap between the time axis and the dock, the dock's width. Everything stays inside it:
+   the pen waves in its own tile, like an app icon, clipped to its corners. */
+.homeBar { position: absolute; z-index: 20; left: 50%; bottom: calc(max(22px, env(safe-area-inset-bottom)) + 74px); transform: translateX(-50%); display: flex; align-items: center; gap: 12px; width: min(420px, calc(100% - 32px)); height: 56px; box-sizing: border-box; padding: 0 8px 0 7px; overflow: hidden; border: .5px solid var(--border); border-radius: 28px; background: var(--raised); box-shadow: var(--raised-shadow); animation: pill-up 320ms cubic-bezier(.2,1.3,.4,1) both; }
+/* A new build is live and ink is in play: the same bar, up under the summary, clear of the pills below. */
+.updateBar { composes: homeBar; top: 120px; bottom: auto; z-index: 30; }
+.homeTile { position: relative; flex-shrink: 0; width: 42px; height: 42px; overflow: hidden; border-radius: 21px; background: radial-gradient(circle at 30% 20%, color-mix(in oklab, var(--brand) 22%, var(--raised)), color-mix(in oklab, var(--brand) 9%, var(--raised)) 70%); box-shadow: inset 0 0 0 .5px color-mix(in oklab, var(--brand) 25%, transparent); }
+.homePen { position: absolute; left: 9px; top: 5px; width: 26px; transform-origin: 50% 95%; animation: pen-wave 2.4s ease-in-out 400ms infinite; }
+.homePen img { display: block; width: 100%; height: auto; filter: drop-shadow(0 2px 3px rgb(0 0 0 / 16%)); }
+.homeText { display: flex; min-width: 0; flex: 1; flex-direction: column; line-height: 1.2; }
+.homeText strong { overflow: hidden; font-size: 15px; font-weight: 600; text-overflow: ellipsis; white-space: nowrap; }
+.homeText span { overflow: hidden; color: var(--muted-foreground); font-size: 12.5px; text-overflow: ellipsis; white-space: nowrap; }
+.homeText b { color: var(--brand); font-weight: 700; }
+@keyframes pen-wave { 0%, 60%, 100% { rotate: 0deg; } 70% { rotate: -10deg; } 80% { rotate: 8deg; } 90% { rotate: -4deg; } }
+@media (prefers-reduced-motion: reduce) { .homeBar, .homePen { animation: none; } }
+.settingsButton { width: 48px !important; height: 48px !important; flex-shrink: 0; border: 0 !important; border-radius: 999px !important; background: var(--raised) !important; color: var(--foreground) !important; }
+.settingsButton svg { width: 22px !important; height: 22px !important; }
+.penControls { display: flex; flex: 1; min-width: 0; gap: 8px; }
+.dockButton { height: 48px !important; min-width: 0; flex: 1 1 0; gap: 8px !important; padding: 0 12px !important; border: 0 !important; border-radius: 999px !important; background: var(--raised) !important; color: var(--foreground) !important; font-size: 16px !important; font-weight: 600; }
+
+/* On a phone the round's result is a small toast bottom right, just over the price button, not a card across the chart. */
+@media (max-width: 639px) {
+ .roundCard { left: auto; right: 16px; translate: none; padding: 8px 14px; border-radius: 16px; align-items: flex-end; text-align: right; }
+ .roundCard > div { align-items: flex-end; gap: 0; }
+ .roundLabel { font-size: 12px; }
+ .roundValue { font-size: 20px; }
+ .bottomPill { left: auto; right: 16px; transform: none; font-size: 12px; padding: 6px 12px; }
+}
+@media (max-width: 359px) {
+ .summary { padding: 6px 14px 10px; gap: 8px; }
+ .marketName strong { font-size: 20px; }
+ .accounts { gap: 12px; }
+ .toolbar, .penControls { gap: 6px; }
+ .dockButton { padding: 0 9px !important; font-size: 14px !important; }
+}
+@media (min-width: 640px) {
+ .summary { padding: 10px 24px; }
+ .marketName strong { font-size: 28px; }
+ .accounts { gap: 28px; }
+ .eyebrow { font-size: 13px; }
+ .balanceValue, .pnlValue { font-size: 20px; }
+}
+
+/* Values stay opaque and tabular. No whole-number fades or count-up lag. */
+.number { display: inline-block; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.digit { display: inline-block; animation: digit-change 90ms cubic-bezier(.2,.8,.2,1) both; }
+@keyframes digit-change { from { transform: translateY(1.5px); } to { transform: translateY(0); } }
+.pnlValue { min-width: 6.5ch; }
+.balanceValue { min-width: 7ch; }
+.toolbar button { transition: background-color 160ms ease-out, color 160ms ease-out, transform 160ms cubic-bezier(.2,.8,.2,1); }
+.toolbar button:active { transform: scale(.97); }
+@media (prefers-reduced-motion: reduce) {
+ .digit { animation: none; }
+ .balanceValue, .pnlValue, .toolbar button { transition: none; }
+ .toolbar button:active { transform: none; }
+}
+
+/* ---- Feel: wins, losses, the session ---------------------------------------- */
+
+/* The session number opens the scoreboard, the balance the wallet: real controls, with room for a thumb. */
+.tappable, .pnl { pointer-events: auto; margin: -8px -10px; padding: 8px 10px; border: 0; border-radius: 14px; background: transparent; color: inherit; font: inherit; text-align: right; cursor: pointer; -webkit-tap-highlight-color: transparent; transition: background-color 160ms ease-out, transform 160ms cubic-bezier(.2,.8,.2,1); }
+.tappable:hover, .pnl:hover { background: var(--muted); }
+.tappable:active, .pnl:active { transform: scale(.96); }
+.tappable:focus-visible, .pnl:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+/* What just moved the balance, stacked under it: newest on top, older ones lighter, smaller and fading. */
+.ledger { position: absolute; right: 0; top: 100%; width: 12ch; height: 54px; pointer-events: none; }
+.ledgerRow { position: absolute; right: 0; top: 2px; font-size: 14px; font-weight: 600; line-height: 17px; white-space: nowrap; transform-origin: right top; transition: transform 320ms cubic-bezier(.2,.8,.2,1), opacity 320ms ease-out; }
+.ledgerLife { display: inline-block; animation: ledger-in 360ms cubic-bezier(.2,1.4,.4,1) both, ledger-out 900ms ease-in 3300ms both; }
+@keyframes ledger-in { from { opacity: 0; transform: translateY(-8px) scale(.85); } to { opacity: 1; transform: none; } }
+@keyframes ledger-out { to { opacity: 0; transform: translateY(4px); } }
+
+/* The round card: a win springs in, a big win harder; a loss slides in quietly, smaller. */
+.roundWin { animation: card-in 420ms cubic-bezier(.2,1.5,.4,1) both; }
+.roundBig { animation: card-big 620ms cubic-bezier(.2,1.6,.35,1) both; padding: 14px 28px; }
+.roundBig .roundValue { font-size: 34px; }
+@keyframes card-in { from { opacity: 0; transform: translateY(14px) scale(.9); } to { opacity: 1; transform: none; } }
+@keyframes card-big { 0% { opacity: 0; transform: translateY(24px) scale(.7); } 60% { opacity: 1; transform: translateY(-4px) scale(1.06); } 100% { transform: none; } }
+.roundLoss { animation: card-soft 240ms ease-out both; padding: 9px 18px; }
+.roundLoss .roundValue { font-size: 18px; font-weight: 600; }
+.roundLoss .roundDetail { display: none; }
+@keyframes card-soft { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+.roundDetail { margin-top: 2px; font-size: 12px; color: var(--muted-foreground); }
+.roundDetail:empty { display: none; }
+/* A run of profitable rounds: a badge that pops in just after the card. */
+.streak { margin-bottom: 4px; padding: 2px 10px; border-radius: 999px; background: color-mix(in oklab, var(--brand) 14%, transparent); color: var(--brand); font-size: 12px; font-weight: 700; letter-spacing: .01em; animation: streak-pop 560ms cubic-bezier(.2,1.8,.4,1) 180ms both; }
+@keyframes streak-pop { from { opacity: 0; transform: scale(.3) translateY(6px); } 60% { opacity: 1; } to { opacity: 1; transform: none; } }
+
+
+
+
+@media (prefers-reduced-motion: reduce) {
+  .ledgerLife, .roundWin, .roundBig, .roundLoss, .streak { animation-duration: 1ms; }
+  .roundWin .roundValue::before,   .ledgerRow { transition: none; }
+}
+
+/* On a phone a win takes the middle, above the pen controls, where the thumb just was. */
+@media (max-width: 639px) {
+  .roundWin, .roundBig { left: 50%; right: auto; translate: -50% 0; align-items: center; text-align: center; padding: 10px 22px; border-radius: 20px; }
+  .roundWin > div, .roundBig > div { align-items: center; }
+  .roundWin .roundValue { font-size: 26px; }
+  .roundBig .roundValue { font-size: 32px; }
+}
+
+/* ---- Motion everywhere else --------------------------------------------------- */
+
+/* Pills arrive rather than appear. */
+.floatPill { animation: pill-in 220ms cubic-bezier(.2,1.3,.4,1) both; }
+.hintPill { animation: pill-in 320ms cubic-bezier(.2,1.3,.4,1) both, hint-breathe 2.6s ease-in-out 600ms infinite; }
+.bottomPill { animation: pill-up 260ms cubic-bezier(.2,1.3,.4,1) both; }
+@keyframes pill-in { from { opacity: 0; translate: 0 -8px; scale: .94; } to { opacity: 1; translate: 0 0; scale: 1; } }
+@keyframes pill-up { from { opacity: 0; translate: 0 8px; scale: .94; } to { opacity: 1; translate: 0 0; scale: 1; } }
+@keyframes hint-breathe { 50% { scale: 1.035; } }
+
+/* The price and the header settle in once, when the game first shows. */
+.summary { animation: settle 420ms cubic-bezier(.2,.8,.2,1) both; }
+.toolbar { animation: dock-in 460ms cubic-bezier(.2,1.2,.4,1) 80ms both; }
+@keyframes settle { from { opacity: 0; translate: 0 -6px; } to { opacity: 1; translate: 0 0; } }
+@keyframes dock-in { from { opacity: 0; translate: 0 18px; } to { opacity: 1; translate: 0 0; } }
+
+/* A win's balance turns green and gives a small bounce. */
+.balanceValue { transition: color 240ms ease-out, scale 240ms cubic-bezier(.2,1.6,.4,1); transform-origin: right center; }
+.balanceValue:global(.text-success-foreground) { scale: 1.08; }
+
+@media (prefers-reduced-motion: reduce) {
+  .floatPill, .hintPill, .bottomPill, .summary, .toolbar { animation: none; }
+  .balanceValue:global(.text-success-foreground) { scale: 1; }
+}
+
+/* Floating pills and cards sit over tiles that can be as light as they are: a hairline edge and a closer,
+   firmer shadow under the soft one keep them lifted off the map in both themes. */
+.floatPill, .hintPill, .bottomPill, .roundCard {
+  border: .5px solid color-mix(in oklab, var(--foreground) 12%, transparent);
+  box-shadow: 0 1px 2px rgb(0 0 0 / 8%), 0 4px 12px rgb(0 0 0 / 8%), var(--raised-shadow);
+}
+
+/* ---- Phones: room for the header, and pills clear of the balance's changes ------------------------------ */
+@media (max-width: 429px) {
+  /* The price, the balance and Won share one line at 360-430px: the price gives a little so nothing collides. */
+  .marketName strong { font-size: 21px; }
+  .accounts { gap: 14px; }
+}
+@media (max-width: 639px) {
+  /* The changes under the balance reach to about 165px: pills over the chart start below them. */
+  .floatPill { top: 176px; }
+  .hintPill { top: 180px; }
+}
+@media (max-width: 359px) {
+  .floatPill { gap: 10px; padding: 7px 12px; font-size: 13px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .balanceValue { transition: color 240ms ease-out; }
+}
+/* The Won column. */
+.pnlColumn { position: relative; display: flex; flex-direction: column; align-items: flex-end; }
