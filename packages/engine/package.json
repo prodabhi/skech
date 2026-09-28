@@ -1,0 +1,11 @@
+{
+  "name": "@skech/engine",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "cargo run --release -- --dev",
+    "build": "cargo build --release",
+    "start": "cargo run --release",
+    "test": "cargo test"
+  }
+}
