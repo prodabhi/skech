@@ -1,0 +1,46 @@
+# TLS for both servers on one name. Caddy gets the certificate from Let's Encrypt
+# on first start, which needs ports 80 and 443 open to the box.
+# SKECH_DOMAIN comes from /etc/caddy/env, which setup.sh writes: by default the
+# box's IP as an sslip.io name (1.2.3.4 -> 1-2-3-4.sslip.io), so no DNS is needed.
+#
+#   wss://$SKECH_DOMAIN/engine/ws    -> engine  127.0.0.1:3102/ws
+#   wss://$SKECH_DOMAIN/solana/ws    -> relayer 127.0.0.1:3104/ws
+#   https://$SKECH_DOMAIN/social/*   -> the relayer's social service 127.0.0.1:3105 (profiles, follows, the
+#                                       leaderboard; wss://…/social/ws, the live feed)
+#
+# The relayer's /status is for the box only: `curl localhost:3104/status` there.
+#
+# stream_close_delay: a reload closes every socket through Caddy at once, unless told to let them be. Five minutes
+# on, they are closed anyway, so an old config does not live on; phones reconnect long before.
+{
+	# The admin API on a socket only caddy (and root) can open, not a port any process on the box can reach.
+	admin unix//run/caddy/admin.sock
+}
+
+{$SKECH_DOMAIN} {
+	# Nothing here takes a body but a profile, its avatar in it: the sockets upgrade, the rest is GET.
+	@small not path /social/*
+	request_body @small {
+		max_size 16KB
+	}
+	request_body /social/* {
+		max_size 160KB
+	}
+	handle_path /engine/* {
+		reverse_proxy 127.0.0.1:3102 {
+			stream_close_delay 5m
+		}
+	}
+	handle_path /solana/* {
+		respond /status 404
+		reverse_proxy 127.0.0.1:3104 {
+			stream_close_delay 5m
+		}
+	}
+	handle_path /social/* {
+		reverse_proxy 127.0.0.1:3105 {
+			stream_close_delay 5m
+		}
+	}
+	respond 404
+}

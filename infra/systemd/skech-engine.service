@@ -1,0 +1,36 @@
+[Unit]
+Description=skech engine: signed BTC-USD prices on :3102
+After=network-online.target
+Wants=network-online.target
+# A crash loop gives up after this many starts in ten minutes, rather than spin: `systemctl reset-failed` to go again.
+StartLimitIntervalSec=600
+StartLimitBurst=50
+
+[Service]
+# Its own user: it holds the oracle's key, and nothing else on the box needs to read it.
+User=skech-engine
+Group=skech-engine
+# Run from the repo root, where it finds the .env.local it reads (the box has none: its env is engine.env).
+WorkingDirectory=/opt/skech
+EnvironmentFile=/etc/skech/engine.env
+# Sentry reports only where this is set; a laptop has none (packages/engine/README.md).
+Environment=SENTRY_ENVIRONMENT=production
+ExecStart=/opt/skech/bin/engine
+# panic = "abort": a dead feed ends the process, and this brings it back.
+Restart=always
+RestartSec=2
+LimitNOFILE=65536
+# A leak ends here, on a 1 GB box, not in the kernel killing whatever is biggest. Check `systemctl status`'s Memory after a change.
+MemoryMax=300M
+
+# It writes nothing, and needs no privilege but to talk over the network.
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=read-only
+PrivateTmp=yes
+PrivateDevices=yes
+CapabilityBoundingSet=
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
+
+[Install]
+WantedBy=multi-user.target
