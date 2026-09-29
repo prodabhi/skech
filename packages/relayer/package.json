@@ -1,0 +1,29 @@
+{
+  "name": "@skech/relayer",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "bun --watch src/index.ts",
+    "start": "bun src/index.ts",
+    "build": "bun build --target bun --outdir dist src/index.ts src/field.worker.ts src/social/worker.ts",
+    "social": "bun src/social/standalone.ts",
+    "typecheck": "tsc --noEmit",
+    "test": "bun test"
+  },
+  "dependencies": {
+    "@noble/curves": "^1.9.7",
+    "@sentry/bun": "^11.1.0",
+    "@skech/contracts": "workspace:*",
+    "@skech/core": "workspace:*",
+    "@solana-program/address-lookup-table": "^0.15.0",
+    "@solana-program/compute-budget": "^0.19.0",
+    "@solana-program/token": "^0.17.0",
+    "@solana/kit": "^8.4.0",
+    "viem": "^2.56.8"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.4.2",
+    "typescript": "^5"
+  }
+}
