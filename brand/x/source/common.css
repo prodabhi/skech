@@ -1,0 +1,5 @@
+@font-face { font-family: Inter; font-weight: 400; src: url(../../../ui/landing/src/app/_fonts/Inter-400.ttf); }
+@font-face { font-family: Inter; font-weight: 600; src: url(../../../ui/landing/src/app/_fonts/Inter-600.ttf); }
+* { margin: 0; box-sizing: border-box; }
+html, body { width: 100%; height: 100%; overflow: hidden; }
+.mark { -webkit-mask: url(../../../ui/landing/public/assets/logo-mark-alpha.png) center / contain no-repeat; mask: url(../../../ui/landing/public/assets/logo-mark-alpha.png) center / contain no-repeat; }
