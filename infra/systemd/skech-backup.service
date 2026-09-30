@@ -1,0 +1,18 @@
+[Unit]
+Description=skech: copy the relayer's state files to /var/backups/skech-relayer
+# Run by skech-backup.timer.
+
+[Service]
+Type=oneshot
+# Root, so a relayer cannot reach its own backups: it reads the relayer's state and writes only the backups.
+ExecStart=/usr/local/sbin/skech-backup-relayer
+# SKECH_BACKUP_DIR, SKECH_BACKUP_KEEP, SKECH_BACKUP_S3, if set (infra/backup-relayer.sh).
+EnvironmentFile=-/etc/skech/backup.env
+NoNewPrivileges=true
+ProtectSystem=strict
+ReadWritePaths=/var/backups
+ProtectHome=read-only
+PrivateTmp=yes
+PrivateDevices=yes
+CapabilityBoundingSet=CAP_DAC_READ_SEARCH
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
