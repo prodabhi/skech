@@ -1,0 +1,30 @@
+[package]
+name = "skech"
+version = "0.1.0"
+description = "skech on Solana: draw ink ahead of the Bitcoin price, and the ink the price runs through pays"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib", "lib"]
+name = "skech"
+
+[features]
+# The instruction's name is not logged: nothing reads it, and every log costs compute.
+default = ["no-idl", "no-log-ix-name"]
+cpi = ["no-entrypoint"]
+no-entrypoint = []
+no-idl = []
+no-log-ix-name = []
+idl-build = ["anchor-lang/idl-build", "anchor-spl/idl-build"]
+anchor-debug = []
+custom-heap = []
+custom-panic = []
+
+[dependencies]
+anchor-lang = { version = "0.32.1", features = ["init-if-needed"] }
+bytemuck = { version = "1", features = ["derive", "min_const_generics"] }
+solana-sha256-hasher = "2"
+anchor-spl = { version = "0.32.1", default-features = false, features = ["token", "token_2022", "associated_token"] }
+
+[lints.rust]
+unexpected_cfgs = { level = "warn", check-cfg = ['cfg(target_os, values("solana"))'] }

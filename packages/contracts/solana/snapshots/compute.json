@@ -1,0 +1,18 @@
+{
+  "claim": 13780,
+  "holder_open": 6333,
+  "place_1": 34317,
+  "place_16": 66002,
+  "place_32": 99572,
+  "place_8": 49113,
+  "place_per_bump": 1500,
+  "post_and_settle_4_mixed": 143344,
+  "post_and_settle_4_mixed_open": 109908,
+  "post_and_settle_4_one_band": 65741,
+  "post_bar": 18856,
+  "redeem": 13325,
+  "settle_base": 12984,
+  "settle_bet": 9710,
+  "settle_decided": 799,
+  "settle_section": 845
+}

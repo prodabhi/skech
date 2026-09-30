@@ -1,0 +1,4112 @@
+{
+  "address": "2k9WY5YR357AGVVoBW6ouFHijEypTj8953fzSdD7HfRV",
+  "metadata": {
+    "name": "skech",
+    "version": "0.1.0",
+    "spec": "0.1.0",
+    "description": "skech on Solana: draw ink ahead of the Bitcoin price, and the ink the price runs through pays"
+  },
+  "instructions": [
+    {
+      "name": "accept_admin",
+      "discriminator": [
+        112,
+        42,
+        45,
+        90,
+        116,
+        181,
+        13,
+        170
+      ],
+      "accounts": [
+        {
+          "name": "new_admin",
+          "signer": true
+        },
+        {
+          "name": "game",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  97,
+                  109,
+                  101
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "claim",
+      "docs": [
+        "What the player's SKT has earned, into their balance."
+      ],
+      "discriminator": [
+        62,
+        198,
+        214,
+        193,
+        213,
+        159,
+        108,
+        210
+      ],
+      "accounts": [
+        {
+          "name": "authority",
+          "signer": true,
+          "relations": [
+            "player"
+          ]
+        },
+        {
+          "name": "game",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  97,
+                  109,
+                  101
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "rewards",
+          "docs": [
+            "Not re-derived from its seeds (1,500 CU): only `init_rewards` makes a `Rewards`, once, at its seeds, so the",
+            "one account with its owner and discriminator is the one."
+          ],
+          "writable": true
+        },
+        {
+          "name": "player",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  108,
+                  97,
+                  121,
+                  101,
+                  114
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "authority"
+              }
+            ]
+          }
+        },
+        {
+          "name": "holder",
+          "docs": [
+            "Not re-derived from its seeds either: a `Holder` is only ever made at its player's own address, so the one",
+            "that names this wallet is theirs."
+          ],
+          "writable": true
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "collect_fees",
+      "discriminator": [
+        164,
+        152,
+        207,
+        99,
+        30,
+        186,
+        19,
+        182
+      ],
+      "accounts": [
+        {
+          "name": "game",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  97,
+                  109,
+                  101
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "pool",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  111,
+                  111,
+                  108
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "vault",
+          "writable": true,
+          "relations": [
+            "game"
+          ]
+        },
+        {
+          "name": "treasury",
+          "writable": true,
+          "relations": [
+            "game"
+          ]
+        },
+        {
+          "name": "usdc_mint",
+          "relations": [
+            "game"
+          ]
+        },
+        {
+          "name": "token_program",
+          "relations": [
+            "game"
+          ]
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "deposit",
+      "discriminator": [
+        242,
+        35,
+        198,
+        137,
+        82,
+        225,
+        242,
+        182
+      ],
+      "accounts": [
+        {
+          "name": "payer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "authority",
+          "signer": true
+        },
+        {
+          "name": "game",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  97,
+                  109,
+                  101
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "player",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  108,
+                  97,
+                  121,
+                  101,
+                  114
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "authority"
+              }
+            ]
+          }
+        },
+        {
+          "name": "from",
+          "writable": true
+        },
+        {
+          "name": "vault",
+          "writable": true,
+          "relations": [
+            "game"
+          ]
+        },
+        {
+          "name": "usdc_mint",
+          "relations": [
+            "game"
+          ]
+        },
+        {
+          "name": "token_program",
+          "relations": [
+            "game"
+          ]
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "amount",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "expire",
+      "discriminator": [
+        243,
+        83,
+        205,
+        58,
+        57,
+        201,
+        247,
+        146
+      ],
+      "accounts": [
+        {
+          "name": "game",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  97,
+                  109,
+                  101
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "bars"
+        },
+        {
+          "name": "pool",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  111,
+                  111,
+                  108
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "rewards",
+          "docs": [
+            "SKT's `Rewards`, or, before `init_rewards` has made it, its empty address: see `load_rewards`."
+          ],
+          "writable": true
+        },
+        {
+          "name": "rent_receiver",
+          "writable": true
+        },
+        {
+          "name": "payer",
+          "docs": [
+            "Pays the rent of a player's `Holder` the first time a settlement mints SKT for them: whoever settles."
+          ],
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "market",
+          "type": "u8"
+        }
+      ]
+    },
+    {
+      "name": "init_market",
+      "discriminator": [
+        33,
+        253,
+        15,
+        116,
+        89,
+        25,
+        127,
+        236
+      ],
+      "accounts": [
+        {
+          "name": "admin",
+          "writable": true,
+          "signer": true,
+          "relations": [
+            "game"
+          ]
+        },
+        {
+          "name": "game",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  97,
+                  109,
+                  101
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "market",
+          "writable": true
+        },
+        {
+          "name": "bars",
+          "writable": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "id",
+          "type": "u8"
+        },
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "difficulty",
+          "type": "u8"
+        }
+      ]
+    },
+    {
+      "name": "init_rewards",
+      "docs": [
+        "Start SKT (`Rewards`), setting the game's terms with it. Once only, by the admin."
+      ],
+      "discriminator": [
+        24,
+        217,
+        207,
+        96,
+        28,
+        211,
+        144,
+        146
+      ],
+      "accounts": [
+        {
+          "name": "admin",
+          "writable": true,
+          "signer": true,
+          "relations": [
+            "game"
+          ]
+        },
+        {
+          "name": "game",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  97,
+                  109,
+                  101
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "rewards",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  114,
+                  101,
+                  119,
+                  97,
+                  114,
+                  100,
+                  115
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "config",
+          "type": {
+            "defined": {
+              "name": "Config"
+            }
+          }
+        },
+        {
+          "name": "rewards_config",
+          "type": {
+            "defined": {
+              "name": "RewardsConfig"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "initialize",
+      "docs": [
+        "Set the game up: only the program's upgrade authority, who becomes its admin. `cluster` names where it runs",
+        "(\"devnet\", \"mainnet-beta\", \"localnet\") and goes into every signed piece."
+      ],
+      "discriminator": [
+        175,
+        175,
+        109,
+        31,
+        13,
+        152,
+        155,
+        237
+      ],
+      "accounts": [
+        {
+          "name": "authority",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "game",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  97,
+                  109,
+                  101
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "pool",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  111,
+                  111,
+                  108
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "usdc_mint",
+          "docs": [
+            "SPL Token only: a Token-2022 mint's extensions (a transfer fee, a permanent delegate) could leave the vault",
+            "holding less than the balances, the pool and the fees it backs."
+          ]
+        },
+        {
+          "name": "vault",
+          "docs": [
+            "The game's associated token account. It may already exist: anyone can create another wallet's, and that",
+            "must not stop the game being set up."
+          ],
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "account",
+                "path": "game"
+              },
+              {
+                "kind": "account",
+                "path": "token_program"
+              },
+              {
+                "kind": "account",
+                "path": "usdc_mint"
+              }
+            ],
+            "program": {
+              "kind": "const",
+              "value": [
+                140,
+                151,
+                37,
+                143,
+                78,
+                36,
+                137,
+                241,
+                187,
+                61,
+                16,
+                41,
+                20,
+                142,
+                13,
+                131,
+                11,
+                90,
+                19,
+                153,
+                218,
+                255,
+                16,
+                132,
+                4,
+                142,
+                123,
+                216,
+                219,
+                233,
+                248,
+                89
+              ]
+            }
+          }
+        },
+        {
+          "name": "treasury"
+        },
+        {
+          "name": "program",
+          "address": "2k9WY5YR357AGVVoBW6ouFHijEypTj8953fzSdD7HfRV"
+        },
+        {
+          "name": "program_data"
+        },
+        {
+          "name": "token_program"
+        },
+        {
+          "name": "associated_token_program",
+          "address": "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "cluster",
+          "type": "string"
+        },
+        {
+          "name": "oracle",
+          "type": "pubkey"
+        },
+        {
+          "name": "iou_rate",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "place",
+      "docs": [
+        "Place one piece. `piece` must be the first argument: its bytes are what the session key signed."
+      ],
+      "discriminator": [
+        143,
+        53,
+        56,
+        40,
+        41,
+        16,
+        5,
+        75
+      ],
+      "accounts": [
+        {
+          "name": "payer",
+          "docs": [
+            "Pays the transaction and the bet's rent, and gets the rent back when the bet is closed."
+          ],
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "oracle",
+          "docs": [
+            "Attests the quote by signing. Usually the payer too."
+          ],
+          "signer": true,
+          "relations": [
+            "game"
+          ]
+        },
+        {
+          "name": "game",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  97,
+                  109,
+                  101
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "market"
+        },
+        {
+          "name": "bars"
+        },
+        {
+          "name": "pool",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  111,
+                  111,
+                  108
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "rewards",
+          "docs": [
+            "For the holders' share of the stake fee. Written by every placement, as the pool is: no new contention.",
+            "Not re-derived from its seeds (1,500 CU): only `init_rewards` makes a `Rewards`, once, at its seeds, so the",
+            "one account with its owner and discriminator is the one."
+          ],
+          "writable": true
+        },
+        {
+          "name": "player",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  108,
+                  97,
+                  121,
+                  101,
+                  114
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "piece.player"
+              }
+            ]
+          }
+        },
+        {
+          "name": "bet",
+          "docs": [
+            "The new bet, at seeds [BET_SEED, player, drawing, index]: created here only if the piece goes in."
+          ],
+          "writable": true
+        },
+        {
+          "name": "instructions",
+          "address": "Sysvar1nstructions1111111111111111111111111"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "piece",
+          "type": {
+            "defined": {
+              "name": "PieceMessage"
+            }
+          }
+        },
+        {
+          "name": "quote",
+          "type": {
+            "defined": {
+              "name": "QuoteArgs"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "post_bar",
+      "discriminator": [
+        126,
+        226,
+        63,
+        169,
+        86,
+        216,
+        167,
+        210
+      ],
+      "accounts": [
+        {
+          "name": "oracle",
+          "signer": true,
+          "relations": [
+            "game"
+          ]
+        },
+        {
+          "name": "game",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  97,
+                  109,
+                  101
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "market_account"
+        },
+        {
+          "name": "bars",
+          "writable": true
+        }
+      ],
+      "args": [
+        {
+          "name": "market",
+          "type": "u8"
+        },
+        {
+          "name": "bar",
+          "type": {
+            "defined": {
+              "name": "BarInput"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "post_bar_and_settle",
+      "discriminator": [
+        124,
+        167,
+        27,
+        224,
+        168,
+        50,
+        162,
+        170
+      ],
+      "accounts": [
+        {
+          "name": "oracle",
+          "signer": true,
+          "relations": [
+            "game"
+          ]
+        },
+        {
+          "name": "game",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  97,
+                  109,
+                  101
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "market_account"
+        },
+        {
+          "name": "bars",
+          "writable": true
+        },
+        {
+          "name": "pool",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  111,
+                  111,
+                  108
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "rewards",
+          "docs": [
+            "SKT's `Rewards`, or, before `init_rewards` has made it, its empty address: see `load_rewards`."
+          ],
+          "writable": true
+        },
+        {
+          "name": "rent_receiver",
+          "docs": [
+            "Gets back the rent of the bets closed here: only those it paid for are closed."
+          ],
+          "writable": true
+        },
+        {
+          "name": "payer",
+          "docs": [
+            "Pays the rent of a player's `Holder` the first time a settlement mints SKT for them. The oracle, usually."
+          ],
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "market",
+          "type": "u8"
+        },
+        {
+          "name": "bar",
+          "type": {
+            "defined": {
+              "name": "BarInput"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "propose_admin",
+      "discriminator": [
+        121,
+        214,
+        199,
+        212,
+        87,
+        39,
+        117,
+        234
+      ],
+      "accounts": [
+        {
+          "name": "admin",
+          "signer": true,
+          "relations": [
+            "game"
+          ]
+        },
+        {
+          "name": "game",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  97,
+                  109,
+                  101
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "args": [
+        {
+          "name": "admin",
+          "type": "pubkey"
+        }
+      ]
+    },
+    {
+      "name": "redeem",
+      "discriminator": [
+        184,
+        12,
+        86,
+        149,
+        70,
+        196,
+        97,
+        225
+      ],
+      "accounts": [
+        {
+          "name": "caller",
+          "docs": [
+            "Whoever sends it. If it is not the holder, they earn a cut of the growth, as on Monad."
+          ],
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "game",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  97,
+                  109,
+                  101
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "pool",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  111,
+                  111,
+                  108
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "holder",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  108,
+                  97,
+                  121,
+                  101,
+                  114
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "holder.authority",
+                "account": "Player"
+              }
+            ]
+          }
+        },
+        {
+          "name": "caller_player",
+          "docs": [
+            "The caller's own account, opened at their cost if need be, where their cut goes. Left out, they take no cut",
+            "and the holder has it all. Never the holder's: a holder redeeming their own takes no cut."
+          ],
+          "writable": true,
+          "optional": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  108,
+                  97,
+                  121,
+                  101,
+                  114
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "caller"
+              }
+            ]
+          }
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "shares",
+          "type": "u128"
+        }
+      ]
+    },
+    {
+      "name": "redeem_house",
+      "discriminator": [
+        143,
+        146,
+        67,
+        5,
+        57,
+        3,
+        254,
+        31
+      ],
+      "accounts": [
+        {
+          "name": "game",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  97,
+                  109,
+                  101
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "pool",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  111,
+                  111,
+                  108
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "revoke_session",
+      "discriminator": [
+        86,
+        92,
+        198,
+        120,
+        144,
+        2,
+        7,
+        194
+      ],
+      "accounts": [
+        {
+          "name": "authority",
+          "signer": true,
+          "relations": [
+            "player"
+          ]
+        },
+        {
+          "name": "player",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  108,
+                  97,
+                  121,
+                  101,
+                  114
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "authority"
+              }
+            ]
+          }
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "set_config",
+      "discriminator": [
+        108,
+        158,
+        154,
+        175,
+        212,
+        98,
+        52,
+        66
+      ],
+      "accounts": [
+        {
+          "name": "admin",
+          "signer": true,
+          "relations": [
+            "game"
+          ]
+        },
+        {
+          "name": "game",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  97,
+                  109,
+                  101
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "rewards",
+          "docs": [
+            "Read for SKT's split of the fees, which the new terms must leave room for. Its owner and discriminator make",
+            "it the one `Rewards` (see `Place`)."
+          ]
+        }
+      ],
+      "args": [
+        {
+          "name": "config",
+          "type": {
+            "defined": {
+              "name": "Config"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "set_iou_rate",
+      "discriminator": [
+        180,
+        95,
+        213,
+        183,
+        110,
+        69,
+        85,
+        189
+      ],
+      "accounts": [
+        {
+          "name": "admin",
+          "signer": true,
+          "relations": [
+            "game"
+          ]
+        },
+        {
+          "name": "game",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  97,
+                  109,
+                  101
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "pool",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  111,
+                  111,
+                  108
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "args": [
+        {
+          "name": "rate",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "set_market",
+      "discriminator": [
+        24,
+        133,
+        119,
+        187,
+        28,
+        115,
+        163,
+        81
+      ],
+      "accounts": [
+        {
+          "name": "admin",
+          "signer": true,
+          "relations": [
+            "game"
+          ]
+        },
+        {
+          "name": "game",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  97,
+                  109,
+                  101
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "market",
+          "writable": true
+        }
+      ],
+      "args": [
+        {
+          "name": "active",
+          "type": "bool"
+        },
+        {
+          "name": "difficulty",
+          "type": "u8"
+        }
+      ]
+    },
+    {
+      "name": "set_oracle",
+      "discriminator": [
+        186,
+        128,
+        81,
+        104,
+        74,
+        79,
+        18,
+        224
+      ],
+      "accounts": [
+        {
+          "name": "admin",
+          "signer": true,
+          "relations": [
+            "game"
+          ]
+        },
+        {
+          "name": "game",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  97,
+                  109,
+                  101
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "args": [
+        {
+          "name": "oracle",
+          "type": "pubkey"
+        }
+      ]
+    },
+    {
+      "name": "set_paused",
+      "discriminator": [
+        91,
+        60,
+        125,
+        192,
+        176,
+        225,
+        166,
+        218
+      ],
+      "accounts": [
+        {
+          "name": "admin",
+          "signer": true,
+          "relations": [
+            "game"
+          ]
+        },
+        {
+          "name": "game",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  97,
+                  109,
+                  101
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "args": [
+        {
+          "name": "paused",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "set_rewards_config",
+      "discriminator": [
+        113,
+        29,
+        223,
+        218,
+        217,
+        111,
+        85,
+        139
+      ],
+      "accounts": [
+        {
+          "name": "admin",
+          "signer": true,
+          "relations": [
+            "game"
+          ]
+        },
+        {
+          "name": "game",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  97,
+                  109,
+                  101
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "rewards",
+          "docs": [
+            "The one `Rewards`, by its owner and discriminator (see `Place`)."
+          ],
+          "writable": true
+        }
+      ],
+      "args": [
+        {
+          "name": "rewards_config",
+          "type": {
+            "defined": {
+              "name": "RewardsConfig"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "set_session",
+      "discriminator": [
+        156,
+        135,
+        126,
+        111,
+        184,
+        206,
+        194,
+        141
+      ],
+      "accounts": [
+        {
+          "name": "payer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "authority",
+          "signer": true
+        },
+        {
+          "name": "game",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  97,
+                  109,
+                  101
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "player",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  108,
+                  97,
+                  121,
+                  101,
+                  114
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "authority"
+              }
+            ]
+          }
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "key",
+          "type": "pubkey"
+        },
+        {
+          "name": "valid_until",
+          "type": "i64"
+        },
+        {
+          "name": "allowance",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "set_treasury",
+      "discriminator": [
+        57,
+        97,
+        196,
+        95,
+        195,
+        206,
+        106,
+        136
+      ],
+      "accounts": [
+        {
+          "name": "admin",
+          "signer": true,
+          "relations": [
+            "game"
+          ]
+        },
+        {
+          "name": "game",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  97,
+                  109,
+                  101
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "treasury"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "settle",
+      "discriminator": [
+        175,
+        42,
+        185,
+        87,
+        144,
+        131,
+        102,
+        212
+      ],
+      "accounts": [
+        {
+          "name": "game",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  97,
+                  109,
+                  101
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "bars"
+        },
+        {
+          "name": "pool",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  111,
+                  111,
+                  108
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "rewards",
+          "docs": [
+            "SKT's `Rewards`, or, before `init_rewards` has made it, its empty address: see `load_rewards`."
+          ],
+          "writable": true
+        },
+        {
+          "name": "rent_receiver",
+          "writable": true
+        },
+        {
+          "name": "payer",
+          "docs": [
+            "Pays the rent of a player's `Holder` the first time a settlement mints SKT for them: whoever settles."
+          ],
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "market",
+          "type": "u8"
+        }
+      ]
+    },
+    {
+      "name": "share_surplus",
+      "docs": [
+        "What the pool holds over its reserve and what live bets could pay, to SKT holders. Anyone may."
+      ],
+      "discriminator": [
+        177,
+        38,
+        112,
+        45,
+        149,
+        172,
+        224,
+        182
+      ],
+      "accounts": [
+        {
+          "name": "game",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  97,
+                  109,
+                  101
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "pool",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  111,
+                  111,
+                  108
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "rewards",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  114,
+                  101,
+                  119,
+                  97,
+                  114,
+                  100,
+                  115
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "sweep",
+      "discriminator": [
+        40,
+        23,
+        234,
+        175,
+        14,
+        61,
+        154,
+        177
+      ],
+      "accounts": [
+        {
+          "name": "game",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  97,
+                  109,
+                  101
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "player",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  108,
+                  97,
+                  121,
+                  101,
+                  114
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "player.authority",
+                "account": "Player"
+              }
+            ]
+          }
+        },
+        {
+          "name": "from",
+          "docs": [
+            "The player's own token account, on which they approved the game as delegate. Only their own tokens, into",
+            "their own balance: nothing else can be moved this way."
+          ],
+          "writable": true
+        },
+        {
+          "name": "vault",
+          "writable": true,
+          "relations": [
+            "game"
+          ]
+        },
+        {
+          "name": "usdc_mint",
+          "relations": [
+            "game"
+          ]
+        },
+        {
+          "name": "token_program",
+          "relations": [
+            "game"
+          ]
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "withdraw",
+      "discriminator": [
+        183,
+        18,
+        70,
+        156,
+        148,
+        109,
+        161,
+        34
+      ],
+      "accounts": [
+        {
+          "name": "authority",
+          "signer": true,
+          "relations": [
+            "player"
+          ]
+        },
+        {
+          "name": "game",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  97,
+                  109,
+                  101
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "player",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  108,
+                  97,
+                  121,
+                  101,
+                  114
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "authority"
+              }
+            ]
+          }
+        },
+        {
+          "name": "to",
+          "writable": true
+        },
+        {
+          "name": "vault",
+          "writable": true,
+          "relations": [
+            "game"
+          ]
+        },
+        {
+          "name": "usdc_mint",
+          "relations": [
+            "game"
+          ]
+        },
+        {
+          "name": "token_program",
+          "relations": [
+            "game"
+          ]
+        }
+      ],
+      "args": [
+        {
+          "name": "amount",
+          "type": "u64"
+        }
+      ]
+    }
+  ],
+  "accounts": [
+    {
+      "name": "Bars",
+      "discriminator": [
+        35,
+        183,
+        0,
+        217,
+        23,
+        243,
+        155,
+        5
+      ]
+    },
+    {
+      "name": "Game",
+      "discriminator": [
+        27,
+        90,
+        166,
+        125,
+        74,
+        100,
+        121,
+        18
+      ]
+    },
+    {
+      "name": "Holder",
+      "discriminator": [
+        37,
+        121,
+        1,
+        40,
+        55,
+        46,
+        199,
+        157
+      ]
+    },
+    {
+      "name": "Market",
+      "discriminator": [
+        219,
+        190,
+        213,
+        55,
+        0,
+        227,
+        198,
+        154
+      ]
+    },
+    {
+      "name": "Player",
+      "discriminator": [
+        205,
+        222,
+        112,
+        7,
+        165,
+        155,
+        206,
+        218
+      ]
+    },
+    {
+      "name": "Pool",
+      "discriminator": [
+        241,
+        154,
+        109,
+        4,
+        17,
+        177,
+        109,
+        188
+      ]
+    },
+    {
+      "name": "Rewards",
+      "discriminator": [
+        12,
+        223,
+        68,
+        101,
+        63,
+        33,
+        38,
+        101
+      ]
+    }
+  ],
+  "events": [
+    {
+      "name": "AdminProposed",
+      "discriminator": [
+        129,
+        249,
+        226,
+        227,
+        199,
+        82,
+        110,
+        243
+      ]
+    },
+    {
+      "name": "AdminSet",
+      "discriminator": [
+        157,
+        245,
+        205,
+        226,
+        118,
+        125,
+        183,
+        97
+      ]
+    },
+    {
+      "name": "BarPosted",
+      "discriminator": [
+        205,
+        222,
+        196,
+        244,
+        85,
+        62,
+        55,
+        66
+      ]
+    },
+    {
+      "name": "Claimed",
+      "discriminator": [
+        217,
+        192,
+        123,
+        72,
+        108,
+        150,
+        248,
+        33
+      ]
+    },
+    {
+      "name": "ConfigSet",
+      "discriminator": [
+        15,
+        104,
+        59,
+        16,
+        236,
+        241,
+        8,
+        6
+      ]
+    },
+    {
+      "name": "Deposited",
+      "discriminator": [
+        111,
+        141,
+        26,
+        45,
+        161,
+        35,
+        100,
+        57
+      ]
+    },
+    {
+      "name": "FeesCollected",
+      "discriminator": [
+        233,
+        23,
+        117,
+        225,
+        107,
+        178,
+        254,
+        8
+      ]
+    },
+    {
+      "name": "HolderAccrued",
+      "discriminator": [
+        137,
+        231,
+        250,
+        101,
+        27,
+        104,
+        206,
+        187
+      ]
+    },
+    {
+      "name": "IouRateSet",
+      "discriminator": [
+        252,
+        90,
+        54,
+        68,
+        6,
+        233,
+        252,
+        130
+      ]
+    },
+    {
+      "name": "MarketSet",
+      "discriminator": [
+        64,
+        19,
+        78,
+        233,
+        226,
+        142,
+        234,
+        83
+      ]
+    },
+    {
+      "name": "Minted",
+      "discriminator": [
+        174,
+        131,
+        21,
+        57,
+        88,
+        117,
+        114,
+        121
+      ]
+    },
+    {
+      "name": "OracleSet",
+      "discriminator": [
+        115,
+        135,
+        7,
+        243,
+        213,
+        60,
+        174,
+        119
+      ]
+    },
+    {
+      "name": "Owed",
+      "discriminator": [
+        156,
+        166,
+        181,
+        196,
+        145,
+        101,
+        94,
+        71
+      ]
+    },
+    {
+      "name": "PausedSet",
+      "discriminator": [
+        171,
+        125,
+        127,
+        156,
+        233,
+        81,
+        68,
+        66
+      ]
+    },
+    {
+      "name": "Placed",
+      "discriminator": [
+        182,
+        12,
+        15,
+        19,
+        155,
+        29,
+        175,
+        156
+      ]
+    },
+    {
+      "name": "Redeemed",
+      "discriminator": [
+        14,
+        29,
+        183,
+        71,
+        31,
+        165,
+        107,
+        38
+      ]
+    },
+    {
+      "name": "RewardsConfigSet",
+      "discriminator": [
+        76,
+        187,
+        3,
+        143,
+        69,
+        155,
+        144,
+        107
+      ]
+    },
+    {
+      "name": "SessionRevoked",
+      "discriminator": [
+        90,
+        48,
+        35,
+        234,
+        203,
+        192,
+        126,
+        211
+      ]
+    },
+    {
+      "name": "SessionSet",
+      "discriminator": [
+        217,
+        40,
+        191,
+        250,
+        153,
+        135,
+        184,
+        144
+      ]
+    },
+    {
+      "name": "Settled",
+      "discriminator": [
+        232,
+        210,
+        40,
+        17,
+        142,
+        124,
+        145,
+        238
+      ]
+    },
+    {
+      "name": "SurplusShared",
+      "discriminator": [
+        62,
+        121,
+        185,
+        91,
+        27,
+        30,
+        76,
+        124
+      ]
+    },
+    {
+      "name": "TreasurySet",
+      "discriminator": [
+        69,
+        231,
+        163,
+        135,
+        254,
+        194,
+        109,
+        166
+      ]
+    },
+    {
+      "name": "Withdrawn",
+      "discriminator": [
+        20,
+        89,
+        223,
+        198,
+        194,
+        124,
+        219,
+        13
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "Mismatch",
+      "msg": "Mismatch"
+    },
+    {
+      "code": 6001,
+      "name": "Replay",
+      "msg": "Replay"
+    },
+    {
+      "code": 6002,
+      "name": "Difficulty",
+      "msg": "Difficulty"
+    },
+    {
+      "code": 6003,
+      "name": "Late",
+      "msg": "Late"
+    },
+    {
+      "code": 6004,
+      "name": "StalePrice",
+      "msg": "StalePrice"
+    },
+    {
+      "code": 6005,
+      "name": "PerDot",
+      "msg": "PerDot"
+    },
+    {
+      "code": 6006,
+      "name": "Sections",
+      "msg": "Sections"
+    },
+    {
+      "code": 6007,
+      "name": "Session",
+      "msg": "Session"
+    },
+    {
+      "code": 6008,
+      "name": "SessionSig",
+      "msg": "SessionSig"
+    },
+    {
+      "code": 6009,
+      "name": "NotOffered",
+      "msg": "NotOffered"
+    },
+    {
+      "code": 6010,
+      "name": "Allowance",
+      "msg": "Allowance"
+    },
+    {
+      "code": 6011,
+      "name": "Balance",
+      "msg": "Balance"
+    },
+    {
+      "code": 6012,
+      "name": "Paused",
+      "msg": "The game is paused"
+    },
+    {
+      "code": 6013,
+      "name": "MarketInactive",
+      "msg": "The market is not active"
+    },
+    {
+      "code": 6014,
+      "name": "BadQuote",
+      "msg": "The quote is malformed"
+    },
+    {
+      "code": 6015,
+      "name": "Window",
+      "msg": "Outside the placing window"
+    },
+    {
+      "code": 6016,
+      "name": "NotOracle",
+      "msg": "Not the oracle"
+    },
+    {
+      "code": 6017,
+      "name": "NotAdmin",
+      "msg": "Not the admin"
+    },
+    {
+      "code": 6018,
+      "name": "BadBar",
+      "msg": "The bar is malformed or early"
+    },
+    {
+      "code": 6019,
+      "name": "BarConflict",
+      "msg": "A different bar is already posted for that second"
+    },
+    {
+      "code": 6020,
+      "name": "BarDiscontinuous",
+      "msg": "The bar does not follow on from the second before"
+    },
+    {
+      "code": 6021,
+      "name": "Insufficient",
+      "msg": "Not enough"
+    },
+    {
+      "code": 6022,
+      "name": "NothingToRedeem",
+      "msg": "Nothing to redeem"
+    },
+    {
+      "code": 6023,
+      "name": "BadConfig",
+      "msg": "Bad config"
+    },
+    {
+      "code": 6024,
+      "name": "BadDifficulty",
+      "msg": "Bad difficulty"
+    },
+    {
+      "code": 6025,
+      "name": "ZeroAmount",
+      "msg": "Zero amount"
+    },
+    {
+      "code": 6026,
+      "name": "BadSession",
+      "msg": "Bad session"
+    },
+    {
+      "code": 6027,
+      "name": "BadTokenAccount",
+      "msg": "Wrong token account"
+    },
+    {
+      "code": 6028,
+      "name": "BadSettleAccounts",
+      "msg": "Settle accounts must come in (bet, player, holder) triples"
+    },
+    {
+      "code": 6029,
+      "name": "NotUpgradeAuthority",
+      "msg": "Only the program's upgrade authority may initialize"
+    },
+    {
+      "code": 6030,
+      "name": "Overflow",
+      "msg": "Arithmetic overflow"
+    },
+    {
+      "code": 6031,
+      "name": "BarLate",
+      "msg": "The bar is too late to post"
+    },
+    {
+      "code": 6032,
+      "name": "NotSplToken",
+      "msg": "USDC must be an SPL Token mint"
+    },
+    {
+      "code": 6033,
+      "name": "OwnRedeem",
+      "msg": "A holder redeeming their own takes no cut: send no caller_player"
+    },
+    {
+      "code": 6034,
+      "name": "NotPendingAdmin",
+      "msg": "Not the proposed admin"
+    },
+    {
+      "code": 6035,
+      "name": "NothingToClaim",
+      "msg": "Nothing to claim"
+    },
+    {
+      "code": 6036,
+      "name": "MintScaleFixed",
+      "msg": "SKT's mint scale is fixed once anything has minted"
+    },
+    {
+      "code": 6037,
+      "name": "NoSurplus",
+      "msg": "No surplus to share: something is owed, the pool is under its reserve and what live bets could pay, there is no SKT, or SKT started too recently"
+    }
+  ],
+  "types": [
+    {
+      "name": "AdminProposed",
+      "docs": [
+        "`admin` may take over by `accept_admin`; the default key withdraws the proposal."
+      ],
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "admin",
+            "type": "pubkey"
+          }
+        ]
+      }
+    },
+    {
+      "name": "AdminSet",
+      "docs": [
+        "`admin` has taken over."
+      ],
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "admin",
+            "type": "pubkey"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Bar",
+      "docs": [
+        "One second of the price, 8 decimals: from the second before's close to this one's high, low and close."
+      ],
+      "serialization": "bytemuck",
+      "repr": {
+        "kind": "c"
+      },
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "second",
+            "docs": [
+              "The second it is, ms since the epoch on the exchange's clock; 0 is an empty slot."
+            ],
+            "type": "i64"
+          },
+          {
+            "name": "prev_close",
+            "type": "u64"
+          },
+          {
+            "name": "high",
+            "type": "u64"
+          },
+          {
+            "name": "low",
+            "type": "u64"
+          },
+          {
+            "name": "close",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "BarInput",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "second",
+            "type": "i64"
+          },
+          {
+            "name": "prev_close",
+            "type": "u64"
+          },
+          {
+            "name": "high",
+            "type": "u64"
+          },
+          {
+            "name": "low",
+            "type": "u64"
+          },
+          {
+            "name": "close",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "BarPosted",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "market",
+            "type": "u8"
+          },
+          {
+            "name": "second",
+            "type": "i64"
+          },
+          {
+            "name": "prev_close",
+            "type": "u64"
+          },
+          {
+            "name": "high",
+            "type": "u64"
+          },
+          {
+            "name": "low",
+            "type": "u64"
+          },
+          {
+            "name": "close",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Bars",
+      "docs": [
+        "The last `BAR_RING` seconds of a market's price, one slot per second. A slot is reused when its second comes",
+        "round again, and never by an older one: a second, once posted, is that bar for as long as anything can read it."
+      ],
+      "serialization": "bytemuck",
+      "repr": {
+        "kind": "c"
+      },
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "market",
+            "type": "u8"
+          },
+          {
+            "name": "_pad",
+            "type": {
+              "array": [
+                "u8",
+                7
+              ]
+            }
+          },
+          {
+            "name": "last",
+            "docs": [
+              "The latest second posted, ms."
+            ],
+            "type": "i64"
+          },
+          {
+            "name": "ring",
+            "type": {
+              "array": [
+                {
+                  "defined": {
+                    "name": "Bar"
+                  }
+                },
+                240
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "BetSection",
+      "docs": [
+        "A band of a bet as placed: `lo` to `hi` (8 decimals, on the grid), `second` seconds after it opens, staking",
+        "`stake` and paying `rung` (x100) if the price reaches it."
+      ],
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "second",
+            "type": "u8"
+          },
+          {
+            "name": "lo",
+            "type": "u64"
+          },
+          {
+            "name": "hi",
+            "type": "u64"
+          },
+          {
+            "name": "stake",
+            "type": "u64"
+          },
+          {
+            "name": "rung",
+            "type": "u16"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Claimed",
+      "docs": [
+        "`player` claimed `amount` USDC e6 of what their SKT earned, into their balance."
+      ],
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "player",
+            "type": "pubkey"
+          },
+          {
+            "name": "amount",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Config",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "fee_bps",
+            "docs": [
+              "Of every stake, as it is placed, to the house."
+            ],
+            "type": "u16"
+          },
+          {
+            "name": "profit_fee_bps",
+            "docs": [
+              "Of every hit's profit, to the house."
+            ],
+            "type": "u16"
+          },
+          {
+            "name": "sweep_bps",
+            "docs": [
+              "Of an IOU's growth, to whoever redeems it for someone else."
+            ],
+            "type": "u16"
+          },
+          {
+            "name": "late_ms",
+            "docs": [
+              "How late after its opening second the oracle may have received a piece, ms."
+            ],
+            "type": "u32"
+          },
+          {
+            "name": "place_grace_ms",
+            "docs": [
+              "How far from its opening second a placement may land, and how early a second may be posted, ms."
+            ],
+            "type": "u32"
+          },
+          {
+            "name": "max_price_age_ms",
+            "docs": [
+              "How old the price a player saw may be when the oracle received the piece, ms."
+            ],
+            "type": "u32"
+          },
+          {
+            "name": "min_per_dot",
+            "docs": [
+              "What a dot may cost, USDC e6."
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "max_per_dot",
+            "type": "u64"
+          },
+          {
+            "name": "max_piece_stake",
+            "docs": [
+              "The most one piece may stake, USDC e6."
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "min_redeem",
+            "docs": [
+              "The least a partial IOU redemption may be worth, USDC e6."
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "max_session_secs",
+            "docs": [
+              "How far ahead a session may be set to expire, seconds."
+            ],
+            "type": "i64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ConfigSet",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "config",
+            "type": {
+              "defined": {
+                "name": "Config"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "Deposited",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "player",
+            "type": "pubkey"
+          },
+          {
+            "name": "amount",
+            "type": "u64"
+          },
+          {
+            "name": "swept",
+            "docs": [
+              "Swept from the wallet on its standing approval, rather than sent by it."
+            ],
+            "type": "bool"
+          }
+        ]
+      }
+    },
+    {
+      "name": "FeesCollected",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "amount",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Game",
+      "docs": [
+        "The game: who runs it, what it trades in, and its terms. Its PDA owns the vault."
+      ],
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "admin",
+            "type": "pubkey"
+          },
+          {
+            "name": "pending_admin",
+            "docs": [
+              "Set by `propose_admin`, takes over on `accept_admin`: an admin is never handed to a key that cannot sign."
+            ],
+            "type": "pubkey"
+          },
+          {
+            "name": "oracle",
+            "docs": [
+              "Signs every placement (its quote) and every bar."
+            ],
+            "type": "pubkey"
+          },
+          {
+            "name": "usdc_mint",
+            "type": "pubkey"
+          },
+          {
+            "name": "token_program",
+            "docs": [
+              "The token program the mint is under: SPL Token (`initialize` takes no other)."
+            ],
+            "type": "pubkey"
+          },
+          {
+            "name": "vault",
+            "docs": [
+              "Every player's USDC, the pool and the fees: the game PDA's associated token account."
+            ],
+            "type": "pubkey"
+          },
+          {
+            "name": "treasury",
+            "docs": [
+              "Where collected fees go: a token account of the treasury (a multisig on mainnet)."
+            ],
+            "type": "pubkey"
+          },
+          {
+            "name": "domain",
+            "docs": [
+              "What every piece a session key signs starts with: sha256(\"skech/v1\" || program id || cluster), so a",
+              "signature for devnet never places on mainnet, or on another deployment."
+            ],
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "paused",
+            "type": "bool"
+          },
+          {
+            "name": "config",
+            "type": {
+              "defined": {
+                "name": "Config"
+              }
+            }
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Holder",
+      "docs": [
+        "A player's SKT: their shares (always staked; their SKT now is the shares over today's weight), what it has",
+        "earned, and the basis it was minted on. Keyed by their wallet; opened by the first settlement that mints for them,",
+        "so nobody who never loses costs its rent."
+      ],
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "player",
+            "type": "pubkey"
+          },
+          {
+            "name": "shares",
+            "docs": [
+              "Shares, in era `era`'s units."
+            ],
+            "type": "u128"
+          },
+          {
+            "name": "era",
+            "type": "u32"
+          },
+          {
+            "name": "acc_at",
+            "docs": [
+              "`Rewards::acc` (of era `era`) when what these shares had earned was last counted into `unclaimed`."
+            ],
+            "type": "u128"
+          },
+          {
+            "name": "unclaimed",
+            "docs": [
+              "USDC e6 earned and not yet claimed."
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "claimed",
+            "type": "u64"
+          },
+          {
+            "name": "basis",
+            "docs": [
+              "Every basis their SKT was minted on, USDC e6: the odds-weighted loss of each band of theirs that missed."
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "minted",
+            "docs": [
+              "Every SKT minted to them, as each mint was worth when it was minted."
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "name": "_reserved",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "HolderAccrued",
+      "docs": [
+        "The holders' share of a fee (or of the pool's surplus), `amount` USDC e6, shared among `total_shares`: `acc` is",
+        "what each share has earned this era, `era`, times 1e24."
+      ],
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "amount",
+            "type": "u64"
+          },
+          {
+            "name": "acc",
+            "type": "u128"
+          },
+          {
+            "name": "total_shares",
+            "type": "u128"
+          },
+          {
+            "name": "era",
+            "type": "u32"
+          }
+        ]
+      }
+    },
+    {
+      "name": "IouRateSet",
+      "docs": [
+        "What is owed grows by `rate` a second from now on, x1e18."
+      ],
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "rate",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Market",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "id",
+            "type": "u8"
+          },
+          {
+            "name": "active",
+            "docs": [
+              "Open to new pieces. Closed, its bars are still posted and its bets still settled."
+            ],
+            "type": "bool"
+          },
+          {
+            "name": "difficulty",
+            "docs": [
+              "50 to 100: how hard the game is here. Pieces placed from now on pay by it."
+            ],
+            "type": "u8"
+          },
+          {
+            "name": "name",
+            "docs": [
+              "What the engine calls it: \"BTC-USD\"."
+            ],
+            "type": "string"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "MarketSet",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "market",
+            "type": "u8"
+          },
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "active",
+            "type": "bool"
+          },
+          {
+            "name": "difficulty",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Minted",
+      "docs": [
+        "A settlement's misses minted `skt` (e6) to `player`, as `shares` at today's weight, on `basis` (USDC e6): `rate` SKT",
+        "per dollar of basis, x1e6. `capped`: SKT the curve gave that the wallet's cap kept from minting."
+      ],
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "player",
+            "type": "pubkey"
+          },
+          {
+            "name": "skt",
+            "type": "u64"
+          },
+          {
+            "name": "shares",
+            "type": "u128"
+          },
+          {
+            "name": "capped",
+            "type": "u64"
+          },
+          {
+            "name": "rate",
+            "type": "u64"
+          },
+          {
+            "name": "basis",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "OracleSet",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "oracle",
+            "type": "pubkey"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Owed",
+      "docs": [
+        "`to` is owed `value` as IOU shares; the house when `to` is the default key."
+      ],
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "to",
+            "type": "pubkey"
+          },
+          {
+            "name": "value",
+            "type": "u64"
+          },
+          {
+            "name": "shares",
+            "type": "u128"
+          }
+        ]
+      }
+    },
+    {
+      "name": "PausedSet",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "paused",
+            "type": "bool"
+          }
+        ]
+      }
+    },
+    {
+      "name": "PieceMessage",
+      "docs": [
+        "What a player's session key signs: a piece of a drawing, bet as it is drawn."
+      ],
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "domain",
+            "docs": [
+              "`Game.domain`: this deployment on this cluster."
+            ],
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "player",
+            "docs": [
+              "The player's wallet."
+            ],
+            "type": "pubkey"
+          },
+          {
+            "name": "drawing",
+            "docs": [
+              "The drawing this piece is part of, and its number within it: together they name the bet."
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "index",
+            "type": "u32"
+          },
+          {
+            "name": "market",
+            "type": "u8"
+          },
+          {
+            "name": "difficulty",
+            "docs": [
+              "The difficulty the player was shown. If the market's has changed since, the piece is refused."
+            ],
+            "type": "u8"
+          },
+          {
+            "name": "open_at",
+            "docs": [
+              "The second it opens on, ms. Its bands are 1 to 30 seconds after it."
+            ],
+            "type": "i64"
+          },
+          {
+            "name": "per_dot",
+            "docs": [
+              "What one dot costs, USDC e6."
+            ],
+            "type": "u32"
+          },
+          {
+            "name": "unit",
+            "docs": [
+              "The price grid the bands sit on, 8 decimals: bands are judged one unit wider each way."
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "price_seen",
+            "docs": [
+              "The price on the player's screen when they drew, and its time, as the engine signed it (checked by the oracle)."
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "price_time",
+            "type": "i64"
+          },
+          {
+            "name": "stroke_hash",
+            "docs": [
+              "sha256 of the stroke's points. The stroke itself stays with the relayer: it is too big for a transaction."
+            ],
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "sections",
+            "type": {
+              "vec": {
+                "defined": {
+                  "name": "SectionArg"
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "Placed",
+      "docs": [
+        "A piece went in. `refunded` is the stake of bands not offered, which never left the balance."
+      ],
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "bet",
+            "type": "pubkey"
+          },
+          {
+            "name": "player",
+            "type": "pubkey"
+          },
+          {
+            "name": "drawing",
+            "type": "u64"
+          },
+          {
+            "name": "index",
+            "type": "u32"
+          },
+          {
+            "name": "market",
+            "type": "u8"
+          },
+          {
+            "name": "open_at",
+            "type": "i64"
+          },
+          {
+            "name": "per_dot",
+            "type": "u64"
+          },
+          {
+            "name": "unit",
+            "type": "u64"
+          },
+          {
+            "name": "staked",
+            "type": "u64"
+          },
+          {
+            "name": "fee",
+            "type": "u64"
+          },
+          {
+            "name": "refunded",
+            "type": "u64"
+          },
+          {
+            "name": "price_seen",
+            "type": "u64"
+          },
+          {
+            "name": "price_time",
+            "type": "i64"
+          },
+          {
+            "name": "stroke_hash",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "sections",
+            "type": {
+              "vec": {
+                "defined": {
+                  "name": "BetSection"
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "Player",
+      "docs": [
+        "A player: their balance in the game, their session and what they are owed. Keyed by their wallet."
+      ],
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "authority",
+            "type": "pubkey"
+          },
+          {
+            "name": "balance",
+            "docs": [
+              "USDC e6, theirs to play with or take out."
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "session",
+            "type": {
+              "defined": {
+                "name": "Session"
+              }
+            }
+          },
+          {
+            "name": "iou_shares",
+            "docs": [
+              "IOU shares they hold, and what they were owed when those were issued."
+            ],
+            "type": "u128"
+          },
+          {
+            "name": "iou_basis",
+            "type": "u64"
+          },
+          {
+            "name": "rent_payer",
+            "docs": [
+              "Who paid this account's rent; it goes back to them if the account is ever closed."
+            ],
+            "type": "pubkey"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Pool",
+      "docs": [
+        "The money that is not anyone's balance: what backs live stakes and pays hits, and the house's fees."
+      ],
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "pool",
+            "docs": [
+              "USDC backing live stakes and paying hits, e6."
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "fees",
+            "docs": [
+              "Fees taken and not yet collected, e6."
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "iou_index_at",
+            "docs": [
+              "An IOU share's value at `iou_time_at`, x1e18, rising by `iou_rate` every second."
+            ],
+            "type": "u128"
+          },
+          {
+            "name": "iou_rate",
+            "type": "u64"
+          },
+          {
+            "name": "iou_time_at",
+            "type": "i64"
+          },
+          {
+            "name": "iou_shares",
+            "docs": [
+              "Every share outstanding, the house's included."
+            ],
+            "type": "u128"
+          },
+          {
+            "name": "house_shares",
+            "docs": [
+              "What the house was owed in fees the pool could not pay at once. No longer added to: the house's cut is taken",
+              "only from what the pool has left. Kept, for what an earlier version issued, and for the account's layout."
+            ],
+            "type": "u128"
+          },
+          {
+            "name": "house_basis",
+            "type": "u64"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "QuoteArgs",
+      "docs": [
+        "What the oracle attests about a piece, by signing the transaction that carries it: the market on its opening",
+        "second and each band's chance, measured off chain on thousands of real price paths."
+      ],
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "price",
+            "docs": [
+              "The price the second before `open_at` closed at, 8 decimals."
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "momentum",
+            "docs": [
+              "The last three seconds' move in volatilities, x1e6."
+            ],
+            "type": "i64"
+          },
+          {
+            "name": "received_at",
+            "docs": [
+              "When the oracle received the piece, ms."
+            ],
+            "type": "i64"
+          },
+          {
+            "name": "chances",
+            "docs": [
+              "Each band's chance, in billionths, in the piece's order."
+            ],
+            "type": {
+              "vec": "u32"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "Redeemed",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "holder",
+            "type": "pubkey"
+          },
+          {
+            "name": "by",
+            "type": "pubkey"
+          },
+          {
+            "name": "shares",
+            "type": "u128"
+          },
+          {
+            "name": "value",
+            "type": "u64"
+          },
+          {
+            "name": "cut",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Rewards",
+      "docs": [
+        "SKT's global state: the shares, the holders' accumulator and the USDC set aside for them, the tracked gain the mint",
+        "curve reads, the decay's clock, and what live bets could pay. Every SKT stays staked on the `Holder` it was minted to:",
+        "there is no token to move."
+      ],
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "config",
+            "type": {
+              "defined": {
+                "name": "RewardsConfig"
+              }
+            }
+          },
+          {
+            "name": "supply",
+            "docs": [
+              "SKT minted, ever, as each mint was worth when it was minted (millionths): the record, not what is held now."
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "total_shares",
+            "docs": [
+              "Every holder's shares, in this era's units: each SKT minted at time t adds 2^((t − era start) / half-life)."
+            ],
+            "type": "u128"
+          },
+          {
+            "name": "acc",
+            "docs": [
+              "USDC e6 each share has earned this era, times `ACC_SCALE`. Back to 0 at each era's start."
+            ],
+            "type": "u128"
+          },
+          {
+            "name": "holder_funds",
+            "docs": [
+              "USDC e6 in the vault that is the holders': accrued and not yet claimed, the accumulator's rounding dust with it."
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "accrued_total",
+            "docs": [
+              "Every holder share ever accrued, and every claim paid out: `holder_funds` is the one less the other."
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "claimed_total",
+            "type": "u64"
+          },
+          {
+            "name": "gain",
+            "docs": [
+              "The tracked gain, USDC e6: every basis SKT has been minted on since it began, which is what players have lost",
+              "to the game in expectation. The mint curve reads it."
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "era",
+            "docs": [
+              "The era: shares and `acc` are in its units."
+            ],
+            "type": "u32"
+          },
+          {
+            "name": "era_ends",
+            "docs": [
+              "`acc` at the end of each of the last ERAS_KEPT eras, at era % ERAS_KEPT."
+            ],
+            "type": {
+              "array": [
+                "u128",
+                8
+              ]
+            }
+          },
+          {
+            "name": "anchor_log2",
+            "docs": [
+              "A share's weight at `anchor_time`, as its log2 times 2^32: under ERA_HALVINGS · 2^32 once caught up."
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "anchor_time",
+            "type": "i64"
+          },
+          {
+            "name": "liability",
+            "docs": [
+              "The most every live bet placed since SKT started could pay, gross, every band hitting: what the pool keeps,",
+              "with the reserve, before any surplus is shared."
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "swept_total",
+            "docs": [
+              "Pool surplus shared with holders, ever."
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "started_at",
+            "docs": [
+              "When SKT started: no surplus is shared until every bet placed before then, whose liability is not counted, is",
+              "decided or given back."
+            ],
+            "type": "i64"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "name": "_reserved",
+            "docs": [
+              "Room for what comes later, without a realloc."
+            ],
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "RewardsConfig",
+      "docs": [
+        "SKT's terms, set beside `Config`: `Config` lives in `Game`, whose layout stays as it is on chain."
+      ],
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "holder_fee_bps",
+            "docs": [
+              "Of every stake, to SKT holders: part of `Config::fee_bps`, never more."
+            ],
+            "type": "u16"
+          },
+          {
+            "name": "holder_profit_fee_bps",
+            "docs": [
+              "Of every hit's profit, to SKT holders: part of `Config::profit_fee_bps`, never more."
+            ],
+            "type": "u16"
+          },
+          {
+            "name": "mint_scale",
+            "docs": [
+              "`S` in the mint curve, USDC e6: at tracked gain G a dollar of basis mints 100 · (S / (S + G))² SKT. Fixed once",
+              "anything has minted."
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "half_life_secs",
+            "docs": [
+              "SKT's half-life, seconds: a balance halves every this long, so a player keeps their share only by playing on."
+            ],
+            "type": "u32"
+          },
+          {
+            "name": "wallet_cap_bps",
+            "docs": [
+              "No mint takes a wallet past this share of all shares, bps (10,000: no cap)…"
+            ],
+            "type": "u16"
+          },
+          {
+            "name": "cap_floor",
+            "docs": [
+              "…or past that share of this much SKT (e6), whichever is more: so the first players mint while there is little."
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "surplus_reserve",
+            "docs": [
+              "USDC e6 the pool keeps, over what every live bet could pay, before any of its surplus is shared with holders."
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "surplus_holder_bps",
+            "docs": [
+              "Of the pool's surplus, to SKT holders, bps; the rest to the treasury."
+            ],
+            "type": "u16"
+          }
+        ]
+      }
+    },
+    {
+      "name": "RewardsConfigSet",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "config",
+            "type": {
+              "defined": {
+                "name": "RewardsConfig"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "SectionArg",
+      "docs": [
+        "A band, as signed: `lo` and `hi` are counted in grid units (so they sit on the grid by construction), `stake` in",
+        "USDC e6. 11 bytes."
+      ],
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "second",
+            "docs": [
+              "Seconds after the piece opens, 1 to 30."
+            ],
+            "type": "u8"
+          },
+          {
+            "name": "lo",
+            "docs": [
+              "The band's bottom, in units of `unit` from zero."
+            ],
+            "type": "u32"
+          },
+          {
+            "name": "width",
+            "docs": [
+              "Its height, in units."
+            ],
+            "type": "u16"
+          },
+          {
+            "name": "stake",
+            "type": "u32"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Session",
+      "docs": [
+        "A player's session key: an Ed25519 key their app keeps, which may place pieces for them, up to an allowance,",
+        "until it expires. It can never withdraw."
+      ],
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "key",
+            "type": "pubkey"
+          },
+          {
+            "name": "valid_until",
+            "docs": [
+              "Unix seconds, by the chain's clock."
+            ],
+            "type": "i64"
+          },
+          {
+            "name": "allowance",
+            "docs": [
+              "USDC e6 the session may still stake."
+            ],
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "SessionRevoked",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "player",
+            "type": "pubkey"
+          }
+        ]
+      }
+    },
+    {
+      "name": "SessionSet",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "player",
+            "type": "pubkey"
+          },
+          {
+            "name": "key",
+            "type": "pubkey"
+          },
+          {
+            "name": "valid_until",
+            "type": "i64"
+          },
+          {
+            "name": "allowance",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Settled",
+      "docs": [
+        "Bands decided: `paid` USDC into the balance, `owed` as IOU."
+      ],
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "bet",
+            "type": "pubkey"
+          },
+          {
+            "name": "player",
+            "type": "pubkey"
+          },
+          {
+            "name": "hit_mask",
+            "type": "u32"
+          },
+          {
+            "name": "miss_mask",
+            "type": "u32"
+          },
+          {
+            "name": "paid",
+            "type": "u64"
+          },
+          {
+            "name": "owed",
+            "type": "u64"
+          },
+          {
+            "name": "closed",
+            "docs": [
+              "Every band decided: the bet is closed."
+            ],
+            "type": "bool"
+          },
+          {
+            "name": "expired_mask",
+            "docs": [
+              "Bands whose second can no longer be posted, given back by `expire`, and what they gave back (in `paid` and",
+              "`owed` with the rest)."
+            ],
+            "type": "u32"
+          },
+          {
+            "name": "refunded",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "SurplusShared",
+      "docs": [
+        "What the pool held over the reserve and what every live bet could pay: `amount` USDC e6 shared with holders,",
+        "`treasury` to the treasury (its 25% and the cap floor's part of the holders'); `kept` stays in the pool."
+      ],
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "amount",
+            "type": "u64"
+          },
+          {
+            "name": "treasury",
+            "type": "u64"
+          },
+          {
+            "name": "kept",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "TreasurySet",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "treasury",
+            "type": "pubkey"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Withdrawn",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "player",
+            "type": "pubkey"
+          },
+          {
+            "name": "to",
+            "type": "pubkey"
+          },
+          {
+            "name": "amount",
+            "type": "u64"
+          }
+        ]
+      }
+    }
+  ]
+}
