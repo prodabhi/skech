@@ -1,0 +1,3311 @@
+[
+  {
+    "type": "constructor",
+    "inputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "BAR_TYPEHASH",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "DEFAULT_ADMIN_ROLE",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "EXPIRE_AFTER_MS",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint64",
+        "internalType": "uint64"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "HORIZON",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint8",
+        "internalType": "uint8"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "MAX_FEE_BPS",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint16",
+        "internalType": "uint16"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "MAX_LATE_MS",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint32",
+        "internalType": "uint32"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "MAX_MIN_REDEEM",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint64",
+        "internalType": "uint64"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "MAX_PER_DOT",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint64",
+        "internalType": "uint64"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "MAX_PIECE_STAKE",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint64",
+        "internalType": "uint64"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "MAX_PLACE_GRACE_MS",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint32",
+        "internalType": "uint32"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "MAX_PRICE_AGE_MS",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint32",
+        "internalType": "uint32"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "MAX_PROFIT_FEE_BPS",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint16",
+        "internalType": "uint16"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "MAX_SECTIONS",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint8",
+        "internalType": "uint8"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "MAX_SWEEP_BPS",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint16",
+        "internalType": "uint16"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "MIN_DIFFICULTY",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint8",
+        "internalType": "uint8"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "MIN_PLACE_GRACE_MS",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint32",
+        "internalType": "uint32"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "MIN_UNITS_IN_PRICE",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "PAUSER_ROLE",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "PIECE_TYPEHASH",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "PRICE_TYPEHASH",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "QUOTE_TYPEHASH",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "REVOKE_TYPEHASH",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "SECOND_MS",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint64",
+        "internalType": "uint64"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "SECTION_TYPEHASH",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "SESSION_TYPEHASH",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "UPGRADER_ROLE",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "UPGRADE_INTERFACE_VERSION",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "string",
+        "internalType": "string"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "WITHDRAW_TYPEHASH",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "balanceOf",
+    "inputs": [
+      {
+        "name": "player",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint64",
+        "internalType": "uint64"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "barAt",
+    "inputs": [
+      {
+        "name": "market",
+        "type": "uint8",
+        "internalType": "uint8"
+      },
+      {
+        "name": "second",
+        "type": "uint64",
+        "internalType": "uint64"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "prevClose",
+        "type": "uint64",
+        "internalType": "uint64"
+      },
+      {
+        "name": "high",
+        "type": "uint64",
+        "internalType": "uint64"
+      },
+      {
+        "name": "low",
+        "type": "uint64",
+        "internalType": "uint64"
+      },
+      {
+        "name": "close",
+        "type": "uint64",
+        "internalType": "uint64"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "barDigest",
+    "inputs": [
+      {
+        "name": "bar",
+        "type": "tuple",
+        "internalType": "struct SkechGame.Bar",
+        "components": [
+          {
+            "name": "market",
+            "type": "uint8",
+            "internalType": "uint8"
+          },
+          {
+            "name": "second",
+            "type": "uint64",
+            "internalType": "uint64"
+          },
+          {
+            "name": "prevClose",
+            "type": "uint64",
+            "internalType": "uint64"
+          },
+          {
+            "name": "high",
+            "type": "uint64",
+            "internalType": "uint64"
+          },
+          {
+            "name": "low",
+            "type": "uint64",
+            "internalType": "uint64"
+          },
+          {
+            "name": "close",
+            "type": "uint64",
+            "internalType": "uint64"
+          }
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "betIdOf",
+    "inputs": [
+      {
+        "name": "player",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "drawing",
+        "type": "uint64",
+        "internalType": "uint64"
+      },
+      {
+        "name": "index",
+        "type": "uint32",
+        "internalType": "uint32"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      }
+    ],
+    "stateMutability": "pure"
+  },
+  {
+    "type": "function",
+    "name": "betOf",
+    "inputs": [
+      {
+        "name": "betId",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "v",
+        "type": "tuple",
+        "internalType": "struct SkechGame.BetView",
+        "components": [
+          {
+            "name": "player",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "market",
+            "type": "uint8",
+            "internalType": "uint8"
+          },
+          {
+            "name": "difficulty",
+            "type": "uint8",
+            "internalType": "uint8"
+          },
+          {
+            "name": "openAt",
+            "type": "uint64",
+            "internalType": "uint64"
+          },
+          {
+            "name": "perDot",
+            "type": "uint64",
+            "internalType": "uint64"
+          },
+          {
+            "name": "unit",
+            "type": "uint64",
+            "internalType": "uint64"
+          },
+          {
+            "name": "stake",
+            "type": "uint64",
+            "internalType": "uint64"
+          },
+          {
+            "name": "liveMask",
+            "type": "uint32",
+            "internalType": "uint32"
+          },
+          {
+            "name": "hitMask",
+            "type": "uint32",
+            "internalType": "uint32"
+          },
+          {
+            "name": "sections",
+            "type": "tuple[]",
+            "internalType": "struct SkechGame.Section[]",
+            "components": [
+              {
+                "name": "second",
+                "type": "uint8",
+                "internalType": "uint8"
+              },
+              {
+                "name": "lo",
+                "type": "uint64",
+                "internalType": "uint64"
+              },
+              {
+                "name": "hi",
+                "type": "uint64",
+                "internalType": "uint64"
+              },
+              {
+                "name": "stake",
+                "type": "uint64",
+                "internalType": "uint64"
+              }
+            ]
+          },
+          {
+            "name": "rungs",
+            "type": "uint16[]",
+            "internalType": "uint16[]"
+          }
+        ]
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "collectFees",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "amount",
+        "type": "uint64",
+        "internalType": "uint64"
+      }
+    ],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "config",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "tuple",
+        "internalType": "struct SkechGame.Config",
+        "components": [
+          {
+            "name": "feeBps",
+            "type": "uint16",
+            "internalType": "uint16"
+          },
+          {
+            "name": "profitFeeBps",
+            "type": "uint16",
+            "internalType": "uint16"
+          },
+          {
+            "name": "sweepBps",
+            "type": "uint16",
+            "internalType": "uint16"
+          },
+          {
+            "name": "lateMs",
+            "type": "uint32",
+            "internalType": "uint32"
+          },
+          {
+            "name": "placeGraceMs",
+            "type": "uint32",
+            "internalType": "uint32"
+          },
+          {
+            "name": "maxPriceAgeMs",
+            "type": "uint32",
+            "internalType": "uint32"
+          },
+          {
+            "name": "minPerDot",
+            "type": "uint64",
+            "internalType": "uint64"
+          },
+          {
+            "name": "maxPerDot",
+            "type": "uint64",
+            "internalType": "uint64"
+          },
+          {
+            "name": "maxPieceStake",
+            "type": "uint64",
+            "internalType": "uint64"
+          },
+          {
+            "name": "minRedeem",
+            "type": "uint64",
+            "internalType": "uint64"
+          }
+        ]
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "deposit",
+    "inputs": [
+      {
+        "name": "amount",
+        "type": "uint64",
+        "internalType": "uint64"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "depositFor",
+    "inputs": [
+      {
+        "name": "player",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "amount",
+        "type": "uint64",
+        "internalType": "uint64"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "depositWithAuthorization",
+    "inputs": [
+      {
+        "name": "owner",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "amount",
+        "type": "uint64",
+        "internalType": "uint64"
+      },
+      {
+        "name": "validAfter",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "validBefore",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "nonce",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      },
+      {
+        "name": "signature",
+        "type": "bytes",
+        "internalType": "bytes"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "depositWithPermit",
+    "inputs": [
+      {
+        "name": "owner",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "amount",
+        "type": "uint64",
+        "internalType": "uint64"
+      },
+      {
+        "name": "deadline",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "v",
+        "type": "uint8",
+        "internalType": "uint8"
+      },
+      {
+        "name": "r",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      },
+      {
+        "name": "s",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "difficultyOf",
+    "inputs": [
+      {
+        "name": "market",
+        "type": "uint8",
+        "internalType": "uint8"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint8",
+        "internalType": "uint8"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "eip712Domain",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "fields",
+        "type": "bytes1",
+        "internalType": "bytes1"
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "internalType": "string"
+      },
+      {
+        "name": "version",
+        "type": "string",
+        "internalType": "string"
+      },
+      {
+        "name": "chainId",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "verifyingContract",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "salt",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      },
+      {
+        "name": "extensions",
+        "type": "uint256[]",
+        "internalType": "uint256[]"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "expire",
+    "inputs": [
+      {
+        "name": "betIds",
+        "type": "bytes32[]",
+        "internalType": "bytes32[]"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "fees",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint64",
+        "internalType": "uint64"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "getRoleAdmin",
+    "inputs": [
+      {
+        "name": "role",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "grantRole",
+    "inputs": [
+      {
+        "name": "role",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      },
+      {
+        "name": "account",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "hasRole",
+    "inputs": [
+      {
+        "name": "role",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      },
+      {
+        "name": "account",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool",
+        "internalType": "bool"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "hashPiece",
+    "inputs": [
+      {
+        "name": "p",
+        "type": "tuple",
+        "internalType": "struct SkechGame.Piece",
+        "components": [
+          {
+            "name": "player",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "drawing",
+            "type": "uint64",
+            "internalType": "uint64"
+          },
+          {
+            "name": "index",
+            "type": "uint32",
+            "internalType": "uint32"
+          },
+          {
+            "name": "market",
+            "type": "uint8",
+            "internalType": "uint8"
+          },
+          {
+            "name": "difficulty",
+            "type": "uint8",
+            "internalType": "uint8"
+          },
+          {
+            "name": "openAt",
+            "type": "uint64",
+            "internalType": "uint64"
+          },
+          {
+            "name": "perDot",
+            "type": "uint64",
+            "internalType": "uint64"
+          },
+          {
+            "name": "unit",
+            "type": "uint64",
+            "internalType": "uint64"
+          },
+          {
+            "name": "priceSeen",
+            "type": "uint64",
+            "internalType": "uint64"
+          },
+          {
+            "name": "priceTime",
+            "type": "uint64",
+            "internalType": "uint64"
+          },
+          {
+            "name": "sections",
+            "type": "tuple[]",
+            "internalType": "struct SkechGame.Section[]",
+            "components": [
+              {
+                "name": "second",
+                "type": "uint8",
+                "internalType": "uint8"
+              },
+              {
+                "name": "lo",
+                "type": "uint64",
+                "internalType": "uint64"
+              },
+              {
+                "name": "hi",
+                "type": "uint64",
+                "internalType": "uint64"
+              },
+              {
+                "name": "stake",
+                "type": "uint64",
+                "internalType": "uint64"
+              }
+            ]
+          },
+          {
+            "name": "strokeHash",
+            "type": "bytes32",
+            "internalType": "bytes32"
+          }
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      }
+    ],
+    "stateMutability": "pure"
+  },
+  {
+    "type": "function",
+    "name": "initialize",
+    "inputs": [
+      {
+        "name": "admin",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "oracle_",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "usdc_",
+        "type": "address",
+        "internalType": "contract IERC20"
+      },
+      {
+        "name": "iou_",
+        "type": "address",
+        "internalType": "contract ISkechIOU"
+      },
+      {
+        "name": "revenue_",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "initializeV2",
+    "inputs": [
+      {
+        "name": "owedNow",
+        "type": "uint64",
+        "internalType": "uint64"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "iou",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "address",
+        "internalType": "contract ISkechIOU"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "marketOf",
+    "inputs": [
+      {
+        "name": "id",
+        "type": "uint8",
+        "internalType": "uint8"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "tuple",
+        "internalType": "struct SkechGame.Market",
+        "components": [
+          {
+            "name": "active",
+            "type": "bool",
+            "internalType": "bool"
+          },
+          {
+            "name": "difficulty",
+            "type": "uint8",
+            "internalType": "uint8"
+          },
+          {
+            "name": "nameHash",
+            "type": "bytes32",
+            "internalType": "bytes32"
+          }
+        ]
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "nonces",
+    "inputs": [
+      {
+        "name": "owner",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "oracle",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "owed",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint64",
+        "internalType": "uint64"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "pause",
+    "inputs": [],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "paused",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool",
+        "internalType": "bool"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "pieceDigest",
+    "inputs": [
+      {
+        "name": "p",
+        "type": "tuple",
+        "internalType": "struct SkechGame.Piece",
+        "components": [
+          {
+            "name": "player",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "drawing",
+            "type": "uint64",
+            "internalType": "uint64"
+          },
+          {
+            "name": "index",
+            "type": "uint32",
+            "internalType": "uint32"
+          },
+          {
+            "name": "market",
+            "type": "uint8",
+            "internalType": "uint8"
+          },
+          {
+            "name": "difficulty",
+            "type": "uint8",
+            "internalType": "uint8"
+          },
+          {
+            "name": "openAt",
+            "type": "uint64",
+            "internalType": "uint64"
+          },
+          {
+            "name": "perDot",
+            "type": "uint64",
+            "internalType": "uint64"
+          },
+          {
+            "name": "unit",
+            "type": "uint64",
+            "internalType": "uint64"
+          },
+          {
+            "name": "priceSeen",
+            "type": "uint64",
+            "internalType": "uint64"
+          },
+          {
+            "name": "priceTime",
+            "type": "uint64",
+            "internalType": "uint64"
+          },
+          {
+            "name": "sections",
+            "type": "tuple[]",
+            "internalType": "struct SkechGame.Section[]",
+            "components": [
+              {
+                "name": "second",
+                "type": "uint8",
+                "internalType": "uint8"
+              },
+              {
+                "name": "lo",
+                "type": "uint64",
+                "internalType": "uint64"
+              },
+              {
+                "name": "hi",
+                "type": "uint64",
+                "internalType": "uint64"
+              },
+              {
+                "name": "stake",
+                "type": "uint64",
+                "internalType": "uint64"
+              }
+            ]
+          },
+          {
+            "name": "strokeHash",
+            "type": "bytes32",
+            "internalType": "bytes32"
+          }
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "place",
+    "inputs": [
+      {
+        "name": "placements",
+        "type": "tuple[]",
+        "internalType": "struct SkechGame.Placement[]",
+        "components": [
+          {
+            "name": "piece",
+            "type": "tuple",
+            "internalType": "struct SkechGame.Piece",
+            "components": [
+              {
+                "name": "player",
+                "type": "address",
+                "internalType": "address"
+              },
+              {
+                "name": "drawing",
+                "type": "uint64",
+                "internalType": "uint64"
+              },
+              {
+                "name": "index",
+                "type": "uint32",
+                "internalType": "uint32"
+              },
+              {
+                "name": "market",
+                "type": "uint8",
+                "internalType": "uint8"
+              },
+              {
+                "name": "difficulty",
+                "type": "uint8",
+                "internalType": "uint8"
+              },
+              {
+                "name": "openAt",
+                "type": "uint64",
+                "internalType": "uint64"
+              },
+              {
+                "name": "perDot",
+                "type": "uint64",
+                "internalType": "uint64"
+              },
+              {
+                "name": "unit",
+                "type": "uint64",
+                "internalType": "uint64"
+              },
+              {
+                "name": "priceSeen",
+                "type": "uint64",
+                "internalType": "uint64"
+              },
+              {
+                "name": "priceTime",
+                "type": "uint64",
+                "internalType": "uint64"
+              },
+              {
+                "name": "sections",
+                "type": "tuple[]",
+                "internalType": "struct SkechGame.Section[]",
+                "components": [
+                  {
+                    "name": "second",
+                    "type": "uint8",
+                    "internalType": "uint8"
+                  },
+                  {
+                    "name": "lo",
+                    "type": "uint64",
+                    "internalType": "uint64"
+                  },
+                  {
+                    "name": "hi",
+                    "type": "uint64",
+                    "internalType": "uint64"
+                  },
+                  {
+                    "name": "stake",
+                    "type": "uint64",
+                    "internalType": "uint64"
+                  }
+                ]
+              },
+              {
+                "name": "strokeHash",
+                "type": "bytes32",
+                "internalType": "bytes32"
+              }
+            ]
+          },
+          {
+            "name": "sessionSig",
+            "type": "bytes",
+            "internalType": "bytes"
+          },
+          {
+            "name": "priceSig",
+            "type": "bytes",
+            "internalType": "bytes"
+          },
+          {
+            "name": "stroke",
+            "type": "bytes",
+            "internalType": "bytes"
+          }
+        ]
+      },
+      {
+        "name": "quote",
+        "type": "tuple",
+        "internalType": "struct SkechGame.Quote",
+        "components": [
+          {
+            "name": "market",
+            "type": "uint8",
+            "internalType": "uint8"
+          },
+          {
+            "name": "openAt",
+            "type": "uint64",
+            "internalType": "uint64"
+          },
+          {
+            "name": "unit",
+            "type": "uint64",
+            "internalType": "uint64"
+          },
+          {
+            "name": "price",
+            "type": "uint64",
+            "internalType": "uint64"
+          },
+          {
+            "name": "momentum",
+            "type": "int64",
+            "internalType": "int64"
+          },
+          {
+            "name": "receivedAt",
+            "type": "uint64[]",
+            "internalType": "uint64[]"
+          },
+          {
+            "name": "chances",
+            "type": "uint32[]",
+            "internalType": "uint32[]"
+          }
+        ]
+      },
+      {
+        "name": "quoteSig",
+        "type": "bytes",
+        "internalType": "bytes"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "pool",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint64",
+        "internalType": "uint64"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "postBar",
+    "inputs": [
+      {
+        "name": "bar",
+        "type": "tuple",
+        "internalType": "struct SkechGame.Bar",
+        "components": [
+          {
+            "name": "market",
+            "type": "uint8",
+            "internalType": "uint8"
+          },
+          {
+            "name": "second",
+            "type": "uint64",
+            "internalType": "uint64"
+          },
+          {
+            "name": "prevClose",
+            "type": "uint64",
+            "internalType": "uint64"
+          },
+          {
+            "name": "high",
+            "type": "uint64",
+            "internalType": "uint64"
+          },
+          {
+            "name": "low",
+            "type": "uint64",
+            "internalType": "uint64"
+          },
+          {
+            "name": "close",
+            "type": "uint64",
+            "internalType": "uint64"
+          }
+        ]
+      },
+      {
+        "name": "sig",
+        "type": "bytes",
+        "internalType": "bytes"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "postBarAndSettle",
+    "inputs": [
+      {
+        "name": "bar",
+        "type": "tuple",
+        "internalType": "struct SkechGame.Bar",
+        "components": [
+          {
+            "name": "market",
+            "type": "uint8",
+            "internalType": "uint8"
+          },
+          {
+            "name": "second",
+            "type": "uint64",
+            "internalType": "uint64"
+          },
+          {
+            "name": "prevClose",
+            "type": "uint64",
+            "internalType": "uint64"
+          },
+          {
+            "name": "high",
+            "type": "uint64",
+            "internalType": "uint64"
+          },
+          {
+            "name": "low",
+            "type": "uint64",
+            "internalType": "uint64"
+          },
+          {
+            "name": "close",
+            "type": "uint64",
+            "internalType": "uint64"
+          }
+        ]
+      },
+      {
+        "name": "sig",
+        "type": "bytes",
+        "internalType": "bytes"
+      },
+      {
+        "name": "betIds",
+        "type": "bytes32[]",
+        "internalType": "bytes32[]"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "postBarsAndSettle",
+    "inputs": [
+      {
+        "name": "bars",
+        "type": "tuple[]",
+        "internalType": "struct SkechGame.Bar[]",
+        "components": [
+          {
+            "name": "market",
+            "type": "uint8",
+            "internalType": "uint8"
+          },
+          {
+            "name": "second",
+            "type": "uint64",
+            "internalType": "uint64"
+          },
+          {
+            "name": "prevClose",
+            "type": "uint64",
+            "internalType": "uint64"
+          },
+          {
+            "name": "high",
+            "type": "uint64",
+            "internalType": "uint64"
+          },
+          {
+            "name": "low",
+            "type": "uint64",
+            "internalType": "uint64"
+          },
+          {
+            "name": "close",
+            "type": "uint64",
+            "internalType": "uint64"
+          }
+        ]
+      },
+      {
+        "name": "sigs",
+        "type": "bytes[]",
+        "internalType": "bytes[]"
+      },
+      {
+        "name": "betIds",
+        "type": "bytes32[]",
+        "internalType": "bytes32[]"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "priceDigest",
+    "inputs": [
+      {
+        "name": "market",
+        "type": "string",
+        "internalType": "string"
+      },
+      {
+        "name": "price",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "time",
+        "type": "uint64",
+        "internalType": "uint64"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "proxiableUUID",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "quoteDigest",
+    "inputs": [
+      {
+        "name": "quote",
+        "type": "tuple",
+        "internalType": "struct SkechGame.Quote",
+        "components": [
+          {
+            "name": "market",
+            "type": "uint8",
+            "internalType": "uint8"
+          },
+          {
+            "name": "openAt",
+            "type": "uint64",
+            "internalType": "uint64"
+          },
+          {
+            "name": "unit",
+            "type": "uint64",
+            "internalType": "uint64"
+          },
+          {
+            "name": "price",
+            "type": "uint64",
+            "internalType": "uint64"
+          },
+          {
+            "name": "momentum",
+            "type": "int64",
+            "internalType": "int64"
+          },
+          {
+            "name": "receivedAt",
+            "type": "uint64[]",
+            "internalType": "uint64[]"
+          },
+          {
+            "name": "chances",
+            "type": "uint32[]",
+            "internalType": "uint32[]"
+          }
+        ]
+      },
+      {
+        "name": "pieces",
+        "type": "bytes32[]",
+        "internalType": "bytes32[]"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "redeem",
+    "inputs": [
+      {
+        "name": "holder",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "shares",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "registerSession",
+    "inputs": [
+      {
+        "name": "player",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "kind",
+        "type": "uint8",
+        "internalType": "uint8"
+      },
+      {
+        "name": "key",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "x",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      },
+      {
+        "name": "y",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      },
+      {
+        "name": "validUntil",
+        "type": "uint64",
+        "internalType": "uint64"
+      },
+      {
+        "name": "allowance",
+        "type": "uint64",
+        "internalType": "uint64"
+      },
+      {
+        "name": "deadline",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "sig",
+        "type": "bytes",
+        "internalType": "bytes"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "renounceRole",
+    "inputs": [
+      {
+        "name": "role",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      },
+      {
+        "name": "callerConfirmation",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "revenue",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "revokeDigest",
+    "inputs": [
+      {
+        "name": "player",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "deadline",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "revokeRole",
+    "inputs": [
+      {
+        "name": "role",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      },
+      {
+        "name": "account",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "revokeSession",
+    "inputs": [],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "revokeSessionBySig",
+    "inputs": [
+      {
+        "name": "player",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "deadline",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "sig",
+        "type": "bytes",
+        "internalType": "bytes"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "rungFor",
+    "inputs": [
+      {
+        "name": "market",
+        "type": "uint8",
+        "internalType": "uint8"
+      },
+      {
+        "name": "chanceE9",
+        "type": "uint32",
+        "internalType": "uint32"
+      },
+      {
+        "name": "withIt",
+        "type": "bool",
+        "internalType": "bool"
+      },
+      {
+        "name": "momentumE6",
+        "type": "int64",
+        "internalType": "int64"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint16",
+        "internalType": "uint16"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "sessionDigest",
+    "inputs": [
+      {
+        "name": "player",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "kind",
+        "type": "uint8",
+        "internalType": "uint8"
+      },
+      {
+        "name": "key",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "x",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      },
+      {
+        "name": "y",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      },
+      {
+        "name": "validUntil",
+        "type": "uint64",
+        "internalType": "uint64"
+      },
+      {
+        "name": "allowance",
+        "type": "uint64",
+        "internalType": "uint64"
+      },
+      {
+        "name": "deadline",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "sessionOf",
+    "inputs": [
+      {
+        "name": "player",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "tuple",
+        "internalType": "struct SkechGame.Session",
+        "components": [
+          {
+            "name": "key",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "validUntil",
+            "type": "uint40",
+            "internalType": "uint40"
+          },
+          {
+            "name": "allowance",
+            "type": "uint56",
+            "internalType": "uint56"
+          },
+          {
+            "name": "x",
+            "type": "bytes32",
+            "internalType": "bytes32"
+          },
+          {
+            "name": "y",
+            "type": "bytes32",
+            "internalType": "bytes32"
+          }
+        ]
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "setConfig",
+    "inputs": [
+      {
+        "name": "config_",
+        "type": "tuple",
+        "internalType": "struct SkechGame.Config",
+        "components": [
+          {
+            "name": "feeBps",
+            "type": "uint16",
+            "internalType": "uint16"
+          },
+          {
+            "name": "profitFeeBps",
+            "type": "uint16",
+            "internalType": "uint16"
+          },
+          {
+            "name": "sweepBps",
+            "type": "uint16",
+            "internalType": "uint16"
+          },
+          {
+            "name": "lateMs",
+            "type": "uint32",
+            "internalType": "uint32"
+          },
+          {
+            "name": "placeGraceMs",
+            "type": "uint32",
+            "internalType": "uint32"
+          },
+          {
+            "name": "maxPriceAgeMs",
+            "type": "uint32",
+            "internalType": "uint32"
+          },
+          {
+            "name": "minPerDot",
+            "type": "uint64",
+            "internalType": "uint64"
+          },
+          {
+            "name": "maxPerDot",
+            "type": "uint64",
+            "internalType": "uint64"
+          },
+          {
+            "name": "maxPieceStake",
+            "type": "uint64",
+            "internalType": "uint64"
+          },
+          {
+            "name": "minRedeem",
+            "type": "uint64",
+            "internalType": "uint64"
+          }
+        ]
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "setDifficulty",
+    "inputs": [
+      {
+        "name": "market",
+        "type": "uint8",
+        "internalType": "uint8"
+      },
+      {
+        "name": "difficulty",
+        "type": "uint8",
+        "internalType": "uint8"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "setMarket",
+    "inputs": [
+      {
+        "name": "id",
+        "type": "uint8",
+        "internalType": "uint8"
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "internalType": "string"
+      },
+      {
+        "name": "active",
+        "type": "bool",
+        "internalType": "bool"
+      },
+      {
+        "name": "difficulty",
+        "type": "uint8",
+        "internalType": "uint8"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "setOracle",
+    "inputs": [
+      {
+        "name": "oracle_",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "settle",
+    "inputs": [
+      {
+        "name": "betIds",
+        "type": "bytes32[]",
+        "internalType": "bytes32[]"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "supportsInterface",
+    "inputs": [
+      {
+        "name": "interfaceId",
+        "type": "bytes4",
+        "internalType": "bytes4"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool",
+        "internalType": "bool"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "unpause",
+    "inputs": [],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "upgradeToAndCall",
+    "inputs": [
+      {
+        "name": "newImplementation",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "data",
+        "type": "bytes",
+        "internalType": "bytes"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "payable"
+  },
+  {
+    "type": "function",
+    "name": "usdc",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "address",
+        "internalType": "contract IERC20"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "wasRefused",
+    "inputs": [
+      {
+        "name": "betId",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool",
+        "internalType": "bool"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "withdraw",
+    "inputs": [
+      {
+        "name": "amount",
+        "type": "uint64",
+        "internalType": "uint64"
+      },
+      {
+        "name": "to",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "withdrawBySig",
+    "inputs": [
+      {
+        "name": "player",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "amount",
+        "type": "uint64",
+        "internalType": "uint64"
+      },
+      {
+        "name": "to",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "deadline",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "sig",
+        "type": "bytes",
+        "internalType": "bytes"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "withdrawDigest",
+    "inputs": [
+      {
+        "name": "player",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "amount",
+        "type": "uint64",
+        "internalType": "uint64"
+      },
+      {
+        "name": "to",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "deadline",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "event",
+    "name": "BarPosted",
+    "inputs": [
+      {
+        "name": "market",
+        "type": "uint8",
+        "indexed": true,
+        "internalType": "uint8"
+      },
+      {
+        "name": "second",
+        "type": "uint64",
+        "indexed": true,
+        "internalType": "uint64"
+      },
+      {
+        "name": "prevClose",
+        "type": "uint64",
+        "indexed": false,
+        "internalType": "uint64"
+      },
+      {
+        "name": "high",
+        "type": "uint64",
+        "indexed": false,
+        "internalType": "uint64"
+      },
+      {
+        "name": "low",
+        "type": "uint64",
+        "indexed": false,
+        "internalType": "uint64"
+      },
+      {
+        "name": "close",
+        "type": "uint64",
+        "indexed": false,
+        "internalType": "uint64"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "ConfigSet",
+    "inputs": [
+      {
+        "name": "config",
+        "type": "tuple",
+        "indexed": false,
+        "internalType": "struct SkechGame.Config",
+        "components": [
+          {
+            "name": "feeBps",
+            "type": "uint16",
+            "internalType": "uint16"
+          },
+          {
+            "name": "profitFeeBps",
+            "type": "uint16",
+            "internalType": "uint16"
+          },
+          {
+            "name": "sweepBps",
+            "type": "uint16",
+            "internalType": "uint16"
+          },
+          {
+            "name": "lateMs",
+            "type": "uint32",
+            "internalType": "uint32"
+          },
+          {
+            "name": "placeGraceMs",
+            "type": "uint32",
+            "internalType": "uint32"
+          },
+          {
+            "name": "maxPriceAgeMs",
+            "type": "uint32",
+            "internalType": "uint32"
+          },
+          {
+            "name": "minPerDot",
+            "type": "uint64",
+            "internalType": "uint64"
+          },
+          {
+            "name": "maxPerDot",
+            "type": "uint64",
+            "internalType": "uint64"
+          },
+          {
+            "name": "maxPieceStake",
+            "type": "uint64",
+            "internalType": "uint64"
+          },
+          {
+            "name": "minRedeem",
+            "type": "uint64",
+            "internalType": "uint64"
+          }
+        ]
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "Deposited",
+    "inputs": [
+      {
+        "name": "player",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "from",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "amount",
+        "type": "uint64",
+        "indexed": false,
+        "internalType": "uint64"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "DifficultySet",
+    "inputs": [
+      {
+        "name": "market",
+        "type": "uint8",
+        "indexed": true,
+        "internalType": "uint8"
+      },
+      {
+        "name": "difficulty",
+        "type": "uint8",
+        "indexed": false,
+        "internalType": "uint8"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "EIP712DomainChanged",
+    "inputs": [],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "FeesCollected",
+    "inputs": [
+      {
+        "name": "amount",
+        "type": "uint64",
+        "indexed": false,
+        "internalType": "uint64"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "Initialized",
+    "inputs": [
+      {
+        "name": "version",
+        "type": "uint64",
+        "indexed": false,
+        "internalType": "uint64"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "MarketSet",
+    "inputs": [
+      {
+        "name": "market",
+        "type": "uint8",
+        "indexed": true,
+        "internalType": "uint8"
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "indexed": false,
+        "internalType": "string"
+      },
+      {
+        "name": "active",
+        "type": "bool",
+        "indexed": false,
+        "internalType": "bool"
+      },
+      {
+        "name": "difficulty",
+        "type": "uint8",
+        "indexed": false,
+        "internalType": "uint8"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "OracleSet",
+    "inputs": [
+      {
+        "name": "oracle",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "Owed",
+    "inputs": [
+      {
+        "name": "to",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "value",
+        "type": "uint64",
+        "indexed": false,
+        "internalType": "uint64"
+      },
+      {
+        "name": "shares",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "Paused",
+    "inputs": [
+      {
+        "name": "account",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "Placed",
+    "inputs": [
+      {
+        "name": "betId",
+        "type": "bytes32",
+        "indexed": true,
+        "internalType": "bytes32"
+      },
+      {
+        "name": "player",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "market",
+        "type": "uint8",
+        "indexed": false,
+        "internalType": "uint8"
+      },
+      {
+        "name": "openAt",
+        "type": "uint64",
+        "indexed": false,
+        "internalType": "uint64"
+      },
+      {
+        "name": "perDot",
+        "type": "uint64",
+        "indexed": false,
+        "internalType": "uint64"
+      },
+      {
+        "name": "unit",
+        "type": "uint64",
+        "indexed": false,
+        "internalType": "uint64"
+      },
+      {
+        "name": "staked",
+        "type": "uint64",
+        "indexed": false,
+        "internalType": "uint64"
+      },
+      {
+        "name": "fee",
+        "type": "uint64",
+        "indexed": false,
+        "internalType": "uint64"
+      },
+      {
+        "name": "refunded",
+        "type": "uint64",
+        "indexed": false,
+        "internalType": "uint64"
+      },
+      {
+        "name": "priceSeen",
+        "type": "uint64",
+        "indexed": false,
+        "internalType": "uint64"
+      },
+      {
+        "name": "priceTime",
+        "type": "uint64",
+        "indexed": false,
+        "internalType": "uint64"
+      },
+      {
+        "name": "sections",
+        "type": "uint256[]",
+        "indexed": false,
+        "internalType": "uint256[]"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "Redeemed",
+    "inputs": [
+      {
+        "name": "holder",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "by",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "shares",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "value",
+        "type": "uint64",
+        "indexed": false,
+        "internalType": "uint64"
+      },
+      {
+        "name": "cut",
+        "type": "uint64",
+        "indexed": false,
+        "internalType": "uint64"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "Refunded",
+    "inputs": [
+      {
+        "name": "betId",
+        "type": "bytes32",
+        "indexed": true,
+        "internalType": "bytes32"
+      },
+      {
+        "name": "player",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "mask",
+        "type": "uint32",
+        "indexed": false,
+        "internalType": "uint32"
+      },
+      {
+        "name": "paid",
+        "type": "uint64",
+        "indexed": false,
+        "internalType": "uint64"
+      },
+      {
+        "name": "owed",
+        "type": "uint64",
+        "indexed": false,
+        "internalType": "uint64"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "Refused",
+    "inputs": [
+      {
+        "name": "betId",
+        "type": "bytes32",
+        "indexed": true,
+        "internalType": "bytes32"
+      },
+      {
+        "name": "player",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "drawing",
+        "type": "uint64",
+        "indexed": false,
+        "internalType": "uint64"
+      },
+      {
+        "name": "index",
+        "type": "uint32",
+        "indexed": false,
+        "internalType": "uint32"
+      },
+      {
+        "name": "why",
+        "type": "uint8",
+        "indexed": false,
+        "internalType": "enum SkechGame.Refusal"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "RoleAdminChanged",
+    "inputs": [
+      {
+        "name": "role",
+        "type": "bytes32",
+        "indexed": true,
+        "internalType": "bytes32"
+      },
+      {
+        "name": "previousAdminRole",
+        "type": "bytes32",
+        "indexed": true,
+        "internalType": "bytes32"
+      },
+      {
+        "name": "newAdminRole",
+        "type": "bytes32",
+        "indexed": true,
+        "internalType": "bytes32"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "RoleGranted",
+    "inputs": [
+      {
+        "name": "role",
+        "type": "bytes32",
+        "indexed": true,
+        "internalType": "bytes32"
+      },
+      {
+        "name": "account",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "sender",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "RoleRevoked",
+    "inputs": [
+      {
+        "name": "role",
+        "type": "bytes32",
+        "indexed": true,
+        "internalType": "bytes32"
+      },
+      {
+        "name": "account",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "sender",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "SessionRevoked",
+    "inputs": [
+      {
+        "name": "player",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "SessionSet",
+    "inputs": [
+      {
+        "name": "player",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "kind",
+        "type": "uint8",
+        "indexed": false,
+        "internalType": "uint8"
+      },
+      {
+        "name": "key",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      },
+      {
+        "name": "x",
+        "type": "bytes32",
+        "indexed": false,
+        "internalType": "bytes32"
+      },
+      {
+        "name": "y",
+        "type": "bytes32",
+        "indexed": false,
+        "internalType": "bytes32"
+      },
+      {
+        "name": "validUntil",
+        "type": "uint64",
+        "indexed": false,
+        "internalType": "uint64"
+      },
+      {
+        "name": "allowance",
+        "type": "uint64",
+        "indexed": false,
+        "internalType": "uint64"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "Settled",
+    "inputs": [
+      {
+        "name": "betId",
+        "type": "bytes32",
+        "indexed": true,
+        "internalType": "bytes32"
+      },
+      {
+        "name": "player",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "hitMask",
+        "type": "uint32",
+        "indexed": false,
+        "internalType": "uint32"
+      },
+      {
+        "name": "missMask",
+        "type": "uint32",
+        "indexed": false,
+        "internalType": "uint32"
+      },
+      {
+        "name": "paid",
+        "type": "uint64",
+        "indexed": false,
+        "internalType": "uint64"
+      },
+      {
+        "name": "owed",
+        "type": "uint64",
+        "indexed": false,
+        "internalType": "uint64"
+      },
+      {
+        "name": "fee",
+        "type": "uint64",
+        "indexed": false,
+        "internalType": "uint64"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "Stroke",
+    "inputs": [
+      {
+        "name": "betId",
+        "type": "bytes32",
+        "indexed": true,
+        "internalType": "bytes32"
+      },
+      {
+        "name": "points",
+        "type": "bytes",
+        "indexed": false,
+        "internalType": "bytes"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "Unpaused",
+    "inputs": [
+      {
+        "name": "account",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "Upgraded",
+    "inputs": [
+      {
+        "name": "implementation",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "Withdrawn",
+    "inputs": [
+      {
+        "name": "player",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "to",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "amount",
+        "type": "uint64",
+        "indexed": false,
+        "internalType": "uint64"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "error",
+    "name": "AccessControlBadConfirmation",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "AccessControlUnauthorizedAccount",
+    "inputs": [
+      {
+        "name": "account",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "neededRole",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "AddressEmptyCode",
+    "inputs": [
+      {
+        "name": "target",
+        "type": "address",
+        "internalType": "address"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "BadBar",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "BadConfig",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "BadDifficulty",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "BadQuote",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "BadSession",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "BadSignature",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "BarConflict",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "BarDiscontinuous",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "ECDSAInvalidSignature",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "ECDSAInvalidSignatureLength",
+    "inputs": [
+      {
+        "name": "length",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "ECDSAInvalidSignatureS",
+    "inputs": [
+      {
+        "name": "s",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "ERC1967InvalidImplementation",
+    "inputs": [
+      {
+        "name": "implementation",
+        "type": "address",
+        "internalType": "address"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "ERC1967NonPayable",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "EnforcedPause",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "ExpectedPause",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "Expired",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "FailedCall",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "Insufficient",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "InvalidAccountNonce",
+    "inputs": [
+      {
+        "name": "account",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "currentNonce",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "InvalidInitialization",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "MarketInactive",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "NotInitializing",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "NotOracle",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "NothingToRedeem",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "ReentrancyGuardReentrantCall",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "SafeCastOverflowedUintDowncast",
+    "inputs": [
+      {
+        "name": "bits",
+        "type": "uint8",
+        "internalType": "uint8"
+      },
+      {
+        "name": "value",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "SafeERC20FailedOperation",
+    "inputs": [
+      {
+        "name": "token",
+        "type": "address",
+        "internalType": "address"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "UUPSUnauthorizedCallContext",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "UUPSUnsupportedProxiableUUID",
+    "inputs": [
+      {
+        "name": "slot",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "Window",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "ZeroAddress",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "ZeroAmount",
+    "inputs": []
+  }
+]

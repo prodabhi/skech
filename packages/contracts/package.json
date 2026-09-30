@@ -1,0 +1,33 @@
+{
+  "name": "@skech/contracts",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "build": "cd evm && forge build && for c in SkechGame SkechIOU SkechRevenue; do forge inspect $c abi --json > abi/$c.json; done",
+    "test": "cd evm && forge test",
+    "test:check": "cd evm && FORGE_SNAPSHOT_CHECK=true forge test && bun layout.ts --check",
+    "layout": "bun evm/layout.ts",
+    "abi": "cd evm && forge build --silent && for c in SkechGame SkechIOU SkechRevenue; do forge inspect $c abi --json > abi/$c.json; done",
+    "solana:build": "cd solana && anchor build",
+    "solana:test": "cd solana && anchor build && cargo test -p tests",
+    "solana:snapshot": "cd solana && anchor build && SNAPSHOT=1 cargo test -p tests compute_units",
+    "solana:client": "bun solana/codama.ts",
+    "conformance": "bun conformance/generate.ts --check && bun solana/tests/vectors/ladder.ts --check && (cd evm && forge test --match-contract 'ConformanceCases|LadderVectorsTest') && (cd solana && cargo test -p tests conformance && cargo test -p tests ladder)",
+    "conformance:generate": "bun conformance/generate.ts && bun solana/tests/vectors/ladder.ts"
+  },
+  "devDependencies": {
+    "@codama/nodes-from-anchor": "^1.5.6",
+    "@codama/renderers-js": "^2.5.0",
+    "@openzeppelin/contracts": "5.6.1",
+    "@openzeppelin/contracts-upgradeable": "5.6.1",
+    "codama": "^1.11.0",
+    "forge-std": "github:foundry-rs/forge-std#v1.16.2"
+  },
+  "dependencies": {
+    "@solana-program/address-lookup-table": "^0.15.0",
+    "@solana-program/compute-budget": "^0.19.0",
+    "@solana-program/system": "^0.15.0",
+    "@solana-program/token": "^0.17.0",
+    "@solana/kit": "^8.4.0"
+  }
+}
