@@ -1,0 +1,14 @@
+{
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "strict": true,
+    "resolveJsonModule": true,
+    "paths": {
+      "@/*": ["./src/*"],
+      "@skech/core/*": ["../core/src/*"],
+      "@skech/contracts/*": ["../contracts/*"]
+    }
+  },
+  "include": ["**/*.ts", "**/*.tsx", "src/uniwind-types.d.ts", "../core/src/**/*.ts", "../contracts/solana/sdk.ts", "../contracts/solana/client/**/*.ts"],
+  "exclude": ["node_modules", "../core/src/**/*.test.ts", "../core/scripts"]
+}

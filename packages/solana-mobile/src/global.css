@@ -1,0 +1,55 @@
+@import 'tailwindcss';
+@import 'uniwind';
+
+/*
+  The skech app look, as on the web (ui/app/src/app/globals.css): plain white (or black) paper, the
+  phone's own system greys, one blue ink.
+*/
+@layer theme {
+  :root {
+    @variant light {
+      --color-background: #ffffff;
+      --color-foreground: #000000;
+      --color-card: #ffffff;
+      --color-popover: #ffffff;
+      --color-border: #e5e5ea;
+      --color-input: #e5e5ea;
+      --color-muted: #f2f2f7;
+      --color-muted-foreground: #6c6c70;
+      --color-secondary: #f2f2f7;
+      --color-accent: #e9e9ee;
+      --color-primary: #000000;
+      --color-primary-foreground: #ffffff;
+      --color-success: #34c759;
+      --color-success-foreground: #248a3d;
+      --color-destructive: #ff3b30;
+      --color-destructive-foreground: #d70015;
+      --color-faint: #aeaeb2;
+      --color-dock: #f2f2f7;
+      --color-raised: #ffffff;
+      --color-brand: #2e5bff;
+    }
+    @variant dark {
+      --color-background: #000000;
+      --color-foreground: #ffffff;
+      --color-card: #1c1c1e;
+      --color-popover: #1c1c1e;
+      --color-border: #38383a;
+      --color-input: #38383a;
+      --color-muted: #1c1c1e;
+      --color-muted-foreground: #98989f;
+      --color-secondary: #1c1c1e;
+      --color-accent: #2c2c2e;
+      --color-primary: #ffffff;
+      --color-primary-foreground: #000000;
+      --color-success: #30d158;
+      --color-success-foreground: #30d158;
+      --color-destructive: #ff453a;
+      --color-destructive-foreground: #ff453a;
+      --color-faint: #636366;
+      --color-dock: #0e0e10;
+      --color-raised: #1c1c1e;
+      --color-brand: #6f92ff;
+    }
+  }
+}

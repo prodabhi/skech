@@ -1,0 +1,126 @@
+{
+  "expo": {
+    "name": "skech",
+    "slug": "skech",
+    "scheme": "skech",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "automatic",
+    "icon": "./assets/icon.png",
+    "ios": {
+      "bundleIdentifier": "trade.skech.app",
+      "supportsTablet": false,
+      "infoPlist": {
+        "NSCameraUsageDescription": "To scan an address to withdraw to.",
+        "NSFaceIDUsageDescription": "To confirm withdrawals and protect your skech keys."
+      },
+      "associatedDomains": [
+        "applinks:www.skech.trade"
+      ]
+    },
+    "android": {
+      "package": "trade.skech.app",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#2A62DD"
+      },
+      "permissions": [
+        "android.permission.CAMERA",
+        "android.permission.VIBRATE",
+        "android.permission.INTERNET",
+        "android.permission.POST_NOTIFICATIONS",
+        "android.permission.USE_BIOMETRIC"
+      ],
+      "intentFilters": [
+        {
+          "action": "VIEW",
+          "autoVerify": true,
+          "data": [
+            {
+              "scheme": "https",
+              "host": "www.skech.trade",
+              "pathPrefix": "/app-link"
+            }
+          ],
+          "category": [
+            "BROWSABLE",
+            "DEFAULT"
+          ]
+        }
+      ],
+      "blockedPermissions": [
+        "android.permission.RECORD_AUDIO",
+        "android.permission.SYSTEM_ALERT_WINDOW",
+        "android.permission.READ_EXTERNAL_STORAGE",
+        "android.permission.WRITE_EXTERNAL_STORAGE",
+        "android.permission.FOREGROUND_SERVICE",
+        "android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK",
+        "android.permission.FOREGROUND_SERVICE_MICROPHONE"
+      ],
+      "versionCode": 2,
+      "allowBackup": false
+    },
+    "web": {
+      "output": "static"
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-secure-store",
+        {
+          "faceIDPermission": "To confirm withdrawals and protect your skech keys."
+        }
+      ],
+      "expo-web-browser",
+      "expo-asset",
+      "expo-font",
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "To scan an address to withdraw to.",
+          "recordAudioAndroid": false
+        }
+      ],
+      [
+        "expo-local-authentication",
+        {
+          "faceIDPermission": "To confirm withdrawals and protect your skech keys."
+        }
+      ],
+      "./plugins/with-release-signing",
+      "./plugins/with-gradle-properties",
+      "./plugins/with-unbundled-barcode",
+      "./plugins/with-english-only",
+      "./plugins/with-worklets-link",
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Choose a photo for your skech profile.",
+          "cameraPermission": "To scan an address to withdraw to.",
+          "microphonePermission": false
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": false
+    },
+    "runtimeVersion": {
+      "policy": "fingerprint"
+    },
+    "updates": {
+      "enabled": true,
+      "checkAutomatically": "ON_LOAD",
+      "fallbackToCacheTimeout": 0,
+      "requestHeaders": {
+        "expo-channel-name": "production"
+      },
+      "url": "https://u.expo.dev/f7f49019-e32e-4d54-bbd0-aa676d7f5d5e"
+    },
+    "owner": "swayams-team",
+    "extra": {
+      "eas": {
+        "projectId": "f7f49019-e32e-4d54-bbd0-aa676d7f5d5e"
+      }
+    }
+  }
+}
