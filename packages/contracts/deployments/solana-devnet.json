@@ -1,0 +1,17 @@
+{
+  "cluster": "devnet",
+  "program": "2k9WY5YR357AGVVoBW6ouFHijEypTj8953fzSdD7HfRV",
+  "game": "EQmnM7EP6ewPvjq81cCKmcKKzXFi5WGuciHfDtTCpyxF",
+  "pool": "D3Wx4TpowMGvY5sTFciXE8tpLeX7vKCx6M37oRZiRn1z",
+  "market": "FbyJZRkje5qwTvd7NnY4vt7s4kwS3qcam5ptXp56ffBi",
+  "bars": "5SKZusS96nXNJd5dg5CvemyikNJGaHYxx93k78Zhac46",
+  "rewards": "EkpMFYBA3CUnHk8y1H59bKPx6yYNUSPyssnKAj8Vvd71",
+  "vault": "9vfrt5fyF1gt4cvimvq8Z1qWmCQg41588FQznwVAJHWP",
+  "usdcMint": "4zMMC9srt5Ri5X14GAgXhaHii3GnPAEERYPJgZJDncDU",
+  "tokenProgram": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+  "treasury": "CfdwxkjtYH1ULBg3uEFAjqSLLxQGxUcn7tBY2kkvByaj",
+  "oracle": "3hNNKVAfS95A1Rqqss7xoRS8PZceQbKCS4HCfhDsGe9s",
+  "admin": "7Qfww9Lh2o6ZPQpB81JxnA7sVvHHHfAHgR38aARDNjng",
+  "lookupTable": "HvMYfLyvtbuKA1LHLSpUerfjbacQGNdadM2WZ5wrRzXX",
+  "slot": 509624723
+}
