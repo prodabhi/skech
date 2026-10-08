@@ -1,0 +1,10 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls", "delegate_permission/common.get_login_creds"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "trade.skech.app",
+      "sha256_cert_fingerprints": ["53:F3:8A:99:0B:A4:60:71:A9:D5:05:BA:F6:FE:CF:61:9A:2D:66:81:06:64:83:9E:18:3B:A1:F6:D6:F4:BA:3C"]
+    }
+  }
+]
