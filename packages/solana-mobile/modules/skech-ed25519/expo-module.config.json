@@ -1,0 +1,4 @@
+{
+  "platforms": ["android"],
+  "android": { "modules": ["trade.skech.ed25519.SkechEd25519Module"] }
+}

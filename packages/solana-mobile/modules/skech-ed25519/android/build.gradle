@@ -1,0 +1,15 @@
+plugins {
+  id 'com.android.library'
+  id 'expo-module-gradle-plugin'
+}
+
+group = 'trade.skech.ed25519'
+version = '0.1.0'
+
+android {
+  namespace "trade.skech.ed25519"
+  defaultConfig {
+    versionCode 1
+    versionName "0.1.0"
+  }
+}
