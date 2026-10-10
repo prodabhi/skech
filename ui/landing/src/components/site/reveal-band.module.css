@@ -1,0 +1,51 @@
+/* The payoff of the three chapters above: one finished line, at the width it deserves. */
+.band {
+  width: min(80rem, calc(100% - 3rem));
+  margin: 1.5rem auto 0;
+  padding: 3rem 2rem 0;
+  overflow: hidden;
+  border: 1px solid rgb(52 52 51 / 9%);
+  border-radius: 2rem;
+  background: #fbfaf9;
+}
+
+.copy {
+  max-width: 44rem;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.title {
+  max-width: 20ch;
+  margin-inline: auto;
+  font-size: clamp(2rem, 3.2vw, 3rem);
+  font-weight: 600;
+  line-height: 1.04;
+  letter-spacing: -0.055em;
+  text-wrap: balance;
+  color: var(--fg);
+}
+
+.lead {
+  margin-top: 1.25rem;
+  margin-inline: auto;
+  max-width: 44ch;
+}
+
+/* The art is 2:1 and carries its own margins, so it runs to the band's edges and keeps its whole shape. */
+.art {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 1.5rem auto -1px;
+}
+
+.darkArt { display: none; }
+:global(.dark) .lightArt { display: none; }
+:global(.dark) .darkArt { display: block; }
+
+@media (max-width: 47.999rem) {
+  .band { padding: 2rem 1.25rem 0; border-radius: 1.5rem; }
+  .lead { margin-top: 1rem; }
+  .art { margin-top: 1rem; }
+}
