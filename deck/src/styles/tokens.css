@@ -1,0 +1,51 @@
+/* skech — paper, warm ink and one ballpoint blue.
+   Values are the brand's own: the landing's light theme (ui/landing/src/app/globals.css)
+   and the X banner (brand/x/source/banner.html) in skech-trade/monorepo. */
+:root {
+  --bg: #fbfaf9;
+  --bg-grad-1: transparent;
+  --bg-grad-2: transparent;
+  --surface: #ffffff;
+  --surface-2: #f6f4ef;
+
+  --fg: #2b2b2b;
+  --fg-muted: #5f5c59;
+  --fg-faint: #736f6b;
+
+  --hair: #e9e6e1;
+  --hair-2: #f2f0ed;
+
+  --primary: #2b62de;
+  --accent: #2b62de;
+  --accent-ink: #ffffff;
+
+  --radius: 12px;
+  --radius-sm: 8px;
+  --radius-lg: 16px;
+
+  --shadow: 0 1px 6px rgb(0 0 0 / 4%), 0 0 24px rgb(0 0 0 / 5%);
+  --glow: none;
+
+  --font-head: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  --dur: 0.35s;
+  --ease: cubic-bezier(0.32, 0.72, 0, 1);
+  --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --grain: 0;
+  --vignette: transparent;
+
+  --gutter: clamp(28px, 6vw, 120px);
+  --gutter-y: clamp(40px, 8vh, 96px);
+
+  /* skech's own: ink that paid, ink that missed, the soft blue, the chart paper's dots */
+  --up: #15803d;
+  --up-mark: #16a34a;
+  --down: #c4291d;
+  --down-mark: #e5352b;
+  --brand-soft: #5b8cff;
+  --brand-dim: rgb(43 98 222 / 10%);
+  --grid-dot: #ded9d2;
+}
