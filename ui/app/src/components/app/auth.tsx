@@ -8,9 +8,9 @@ import type { Bridge } from "./privy";
  * Signing in.
  *
  * Privy embedded wallets: email, phone, Google or Apple, no extension to
- * install and no seed phrase to write down. The wallet is a Solana account
- * Privy makes at sign-in and keeps; it signs the relayer's transactions in
- * Privy's iframe without a prompt, so a session or a deposit is one tap.
+ * install and no seed phrase to write down. Privy creates an EVM wallet at
+ * sign-in; it signs the game's EIP-712 authorizations in Privy's iframe, so
+ * the Arc relayer can submit them and pay gas.
  *
  * With no app id configured the app runs signed out and everything else
  * still works, which is what the tests and screenshots use. Privy's hooks
@@ -35,7 +35,7 @@ export type Account = {
    */
   ready: boolean;
   signedIn: boolean;
-  /** The wallet's Solana address, base58, once there is one. */
+  /** The wallet's EVM address, once there is one. */
   address: string | null;
   /** Whatever they signed in with, for the greeting. */
   handle: string | null;
@@ -43,19 +43,23 @@ export type Account = {
   email: string | null;
   signOut: () => void;
   /**
-   * Sign a transaction the relayer built (base64), returning it signed (base64): a session, a deposit, a
-   * withdrawal. Published through this context like everything else, so a screen can ask for a signature
-   * without knowing whether Privy's provider is mounted.
-   */
-  signTransaction: (base64: string) => Promise<string>;
-  /** Several, in order. */
-  signTransactions: (base64s: string[]) => Promise<string[]>;
-  /**
-   * Sign words with the wallet's key, returning the Ed25519 signature (base64): the community's challenges, which
-   * say who is changing their profile or whom they follow. No prompt, as for a transaction.
+   * Sign words with the wallet for the community's challenge-response flow.
    */
   signMessage: (message: string) => Promise<string>;
+  /** Sign one of the game's gasless EIP-712 authorizations. */
+  signTypedData: (typedData: TypedDataToSign) => Promise<`0x${string}`>;
 };
+
+export type TypedDataToSign = {
+  domain: { name: string; version: string; chainId: number; verifyingContract: `0x${string}` };
+  types: Record<string, { name: string; type: string }[]>;
+  primaryType: string;
+  message: Record<string, unknown>;
+};
+
+/** Bigints as decimal strings, recursively: the wallet provider accepts JSON values. */
+export const plain = (v: unknown): unknown =>
+  typeof v === "bigint" ? v.toString() : Array.isArray(v) ? v.map(plain) : v && typeof v === "object" ? Object.fromEntries(Object.entries(v as Record<string, unknown>).map(([k, x]) => [k, plain(x)])) : v;
 
 const notSignedIn = async (): Promise<never> => {
   throw new Error("Not signed in");
@@ -64,7 +68,7 @@ const notSignedIn = async (): Promise<never> => {
 /** The longest the app waits for Privy to read a saved session before treating someone as signed out. */
 const READY_WITHIN_MS = 8000;
 
-const SIGNED_OUT: Account = { ready: true, signedIn: false, address: null, handle: null, email: null, signOut: () => undefined, signTransaction: notSignedIn, signTransactions: notSignedIn, signMessage: notSignedIn };
+const SIGNED_OUT: Account = { ready: true, signedIn: false, address: null, handle: null, email: null, signOut: () => undefined, signMessage: notSignedIn, signTypedData: notSignedIn };
 export const NOT_YET: Account = { ...SIGNED_OUT, ready: false };
 const Ctx = createContext<Account>(SIGNED_OUT);
 const SignInCtx = createContext<() => void>(() => undefined);
@@ -84,7 +88,7 @@ const noChange = () => () => undefined;
 function useTestAccount(): Account | null {
   // The server renders without it; the page takes it on hydrating.
   const as = useSyncExternalStore(noChange, () => (process.env.NODE_ENV === "production" ? null : new URLSearchParams(window.location.search).get("as")), () => null);
-  return useMemo(() => (as && /^[1-9A-HJ-NP-Za-km-z]{32,44}$/.test(as) ? { ...SIGNED_OUT, signedIn: true, address: as, handle: "Test player" } : null), [as]);
+  return useMemo(() => (as && /^0x[0-9a-fA-F]{40}$/.test(as) ? { ...SIGNED_OUT, signedIn: true, address: as, handle: "Test player" } : null), [as]);
 }
 
 function WithPrivy({ children }: { children: ReactNode }) {

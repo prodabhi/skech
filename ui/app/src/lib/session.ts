@@ -1,38 +1,31 @@
 "use client";
 
-import { getAddressDecoder } from "@solana/kit";
+import { bytesToHex, hexToBytes, type Hex } from "viem";
 
 /**
- * The session key: an Ed25519 key the browser makes and keeps, and will sign
- * with but never hand over. It lives in IndexedDB as a non-extractable
- * CryptoKey, so nothing on the page, not even this code, can read it out.
- * The game registers its public half against the player's wallet once, and
- * from then on every piece of ink is signed here, with no prompt. It can
- * place pieces, up to the allowance the wallet set, and never withdraw.
+ * The browser's gasless drawing key. It is a non-extractable P-256 key kept
+ * in IndexedDB; the EVM game records its public coordinates and accepts only
+ * piece signatures from it. It can stake up to the wallet-approved allowance
+ * but can never withdraw.
  *
- * Solana checks Ed25519 natively: the program's precompile verifies the
- * signature over the piece exactly as it sits in the transaction, as on the
- * phone (packages/solana-mobile/src/lib/session.ts).
- *
- * A browser whose WebCrypto has no Ed25519 (Chrome before 137, Samsung
- * Internet) gets the same key made in JavaScript, its secret in the same
- * store: readable by the page, which is the price of playing there at all.
+ * WebCrypto signs SHA-256(digest). SkechGame mirrors that for P-256 sessions
+ * before calling OpenZeppelin's verifier, so the signature is chain-portable
+ * and does not depend on an Arc-specific precompile.
  */
 
 const DB = "skech";
 const STORE = "keys";
-const NAME = "session:ed25519";
-/** The Monad game's key, from before: nothing checks it any more. */
-const OLD = "session:p256";
+const NAME = "session:p256";
+const OLD = "session:ed25519";
+/** P-256's order, used to normalize signatures to low-s. */
+const N = 0xffffffff00000000ffffffffffffffffbce6faada7179e84f3b9cac2fc632551n;
 
 export type SessionKey = {
-  /** Its public half, base58, as the game records it. */
-  address: string;
-  /** An Ed25519 signature over `message`, 64 bytes. */
-  sign: (message: Uint8Array) => Promise<Uint8Array>;
+  x: Hex;
+  y: Hex;
+  /** r || s, 64 bytes, low-s. */
+  sign: (digest: Hex) => Promise<Hex>;
 };
-
-type Stored = CryptoKeyPair | { secret: Uint8Array };
 
 function open(): Promise<IDBDatabase> {
   return new Promise((resolve, reject) => {
@@ -51,29 +44,22 @@ function tx<T>(db: IDBDatabase, mode: IDBTransactionMode, run: (store: IDBObject
   });
 }
 
-const base58 = (publicKey: Uint8Array) => getAddressDecoder().decode(publicKey);
-
-async function wrap(stored: Stored): Promise<SessionKey> {
-  if ("secret" in stored) {
-    const { ed25519 } = await import("@noble/curves/ed25519");
-    return { address: base58(ed25519.getPublicKey(stored.secret)), sign: async (message) => ed25519.sign(message, stored.secret) };
-  }
-  const raw = new Uint8Array(await crypto.subtle.exportKey("raw", stored.publicKey));
-  if (raw.length !== 32) throw new Error("Not an Ed25519 public key");
-  return { address: base58(raw), sign: async (message) => new Uint8Array(await crypto.subtle.sign("Ed25519", stored.privateKey, new Uint8Array(message))) };
+async function wrap(pair: CryptoKeyPair): Promise<SessionKey> {
+  const raw = new Uint8Array(await crypto.subtle.exportKey("raw", pair.publicKey));
+  if (raw.length !== 65 || raw[0] !== 4) throw new Error("Not a P-256 public key");
+  return {
+    x: bytesToHex(raw.slice(1, 33)),
+    y: bytesToHex(raw.slice(33, 65)),
+    sign: async (digest) => {
+      const sig = new Uint8Array(await crypto.subtle.sign({ name: "ECDSA", hash: "SHA-256" }, pair.privateKey, new Uint8Array(hexToBytes(digest))));
+      const r = sig.slice(0, 32);
+      let s = BigInt(bytesToHex(sig.slice(32, 64)));
+      if (s > N / 2n) s = N - s;
+      return bytesToHex(new Uint8Array([...r, ...hexToBytes(`0x${s.toString(16).padStart(64, "0")}`)]));
+    },
+  };
 }
 
-/** A new key: WebCrypto's where it can, else one made in JavaScript. */
-async function make(): Promise<Stored> {
-  try {
-    return (await crypto.subtle.generateKey("Ed25519", false, ["sign", "verify"])) as CryptoKeyPair;
-  } catch {
-    const { ed25519 } = await import("@noble/curves/ed25519");
-    return { secret: ed25519.utils.randomSecretKey() };
-  }
-}
-
-/** Whether this browser can hold a session key at all. */
 export const canHoldSession = () => typeof indexedDB !== "undefined" && typeof crypto !== "undefined" && !!crypto.subtle;
 
 let cached: Promise<SessionKey> | null = null;
@@ -83,13 +69,13 @@ export function sessionKey(): Promise<SessionKey> {
   cached ??= (async () => {
     const db = await open();
     try {
-      let stored = (await tx<Stored | undefined>(db, "readonly", (s) => s.get(NAME))) ?? null;
-      if (!stored) {
-        stored = await make();
-        await tx(db, "readwrite", (s) => s.put(stored, NAME));
+      let pair = (await tx<CryptoKeyPair | undefined>(db, "readonly", (s) => s.get(NAME))) ?? null;
+      if (!pair) {
+        pair = await crypto.subtle.generateKey({ name: "ECDSA", namedCurve: "P-256" }, false, ["sign"]);
+        await tx(db, "readwrite", (s) => s.put(pair, NAME));
         await tx(db, "readwrite", (s) => s.delete(OLD)).catch(() => undefined);
       }
-      return await wrap(stored);
+      return await wrap(pair);
     } finally {
       db.close();
     }
@@ -98,7 +84,7 @@ export function sessionKey(): Promise<SessionKey> {
   return cached;
 }
 
-/** Throw the key away: the next visit makes a new one, which needs registering again. */
+/** Throw the key away; the next visit creates one that must be registered. */
 export async function forgetSessionKey() {
   cached = null;
   const db = await open();

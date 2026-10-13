@@ -1,37 +1,34 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import type { Address, Hex } from "viem";
 import { jitter, RELAYER_URL, STEADY_MS } from "./endpoints";
 import { MIN_PIECE_STAKE_E6 } from "@skech/core/chain";
 
 /**
- * The Solana relayer: where the app sends what it draws, signed by the session key, and hears back what the
- * chain made of it; and where every transaction the wallet signs is built and sent, the relayer paying. One
- * socket, reopened when it drops; every message is JSON with the chain's numbers as strings and addresses in
- * base58. The phone speaks the same (packages/solana-mobile/src/lib/relayer.ts); the server is
- * packages/relayer/src/solana/server.ts.
+ * The Arc relayer: pieces and wallet authorizations go in, chain events and
+ * account state come back. Wallet actions are EIP-712 signatures, so the
+ * relayer can submit them and sponsor gas without holding a player's key.
  */
 
 export type Hello = {
   type: "hello";
-  chain: "solana";
-  cluster: "devnet" | "mainnet-beta" | "localnet";
+  chain: "evm";
+  chainId: number;
   label: string;
-  program: string;
-  game: string;
-  usdc: string;
-  lookupTable: string;
-  /** What every signed piece starts with: this deployment on this cluster, hex. */
-  domain: string;
-  oracle: string;
-  relayer: string;
+  game: Address;
+  iou: Address | null;
+  revenue?: Address | null;
+  usdc: Address;
+  oracle: Address | null;
+  relayer: Address;
   engineSigner: string | null;
   market: { id: number; name: string };
   difficulty: number | null;
   lateMs: number;
   units: string[] | null;
   /** The game's terms, fees included, as the program has them. */
-  terms: { minPerDot: string; maxPerDot: string; maxPieceStake: string; minPieceStake?: string; maxPriceAgeMs: number; feeBps: number; profitFeeBps: number; holderFeeBps?: number; holderProfitFeeBps?: number; sktHalfLifeSecs?: number; surplusHolderBps?: number } | null;
+  terms: { minPerDot: string; maxPerDot: string; maxPieceStake: string; minPieceStake?: string; maxPriceAgeMs: number; feeBps: number; profitFeeBps: number } | null;
   faucet: string | null;
   /** The relayer counts each player's transactions and answers `activity`. */
   activity?: boolean;
@@ -39,26 +36,21 @@ export type Hello = {
 /** The least one piece may stake, USDC e6: the relayer's figure, or the game's 1¢ until it has said. */
 export const leastPiece = (hello: Hello | null | undefined) => BigInt(hello?.terms?.minPieceStake ?? MIN_PIECE_STAKE_E6);
 export type Account = {
-  player: string;
+  player: Address;
   balance: string;
-  session: { key: string; validUntil: string; allowance: string } | null;
+  session: { key: Address; x: Hex; y: Hex; validUntil: string; allowance: string };
   owed: string;
-  /** USDC in the wallet itself, and how much of it the game may sweep in. */
-  wallet: { usdc: string; approved: string };
-  /** The player's SKT (e6) and the USDC (e6) it has earned that a claim would pay now; absent from an older relayer. */
-  skt?: { balance: string; claimable: string };
+  /** The next EIP-712 nonce; absent only while an older relayer starts. */
+  nonce?: string | null;
 };
 export type Band = { second: number; lo: string; hi: string; stake: string; rung: number };
-export type PlacedMsg = { type: "placed"; betId: string; player: string; drawing: string; index: number; openAt: string; staked: string; fee: string; refunded: string; sections: Band[]; tx: string };
-export type RefusedMsg = { type: "refused"; betId?: string; player: string; drawing: string; index: number; why: string; tx?: string };
+export type PlacedMsg = { type: "placed"; betId: Hex; player: Address; drawing: string; index: number; openAt: string; staked: string; fee: string; refunded: string; sections: Band[]; tx: Hex };
+export type RefusedMsg = { type: "refused"; betId?: Hex; player: Address; drawing: string; index: number; why: string; tx?: Hex };
 export type SettledMsg = { type: "settled"; betId: string; player: string; hitMask: number; missMask: number; /** Bands given their stake back: their second's bar was never posted. */ expiredMask?: number; paid: string; owed: string; closed: boolean; /** SKT e6 this bet's misses minted. */ minted?: string; tx: string };
 export type AckMsg = { type: "ack"; ok: boolean; betId?: string; why?: string; drawing?: string; index?: number };
 /** A player's transactions, counted by the relayer from their game account's signatures. `counting`: still reading the history. */
-export type ActivityMsg = { type: "activity"; player: string | null; txs: number; recent: { signature: string; time: number | null }[]; explorer?: string; counting: boolean; progress: number };
-/** What the wallet signs and the relayer pays for. */
-export type Kind = "session" | "deposit" | "withdraw" | "revoke" | "claim";
-export type BuiltMsg = { type: "built"; kind: string; id?: string; tx?: string; ok?: false; why?: string };
-export type SubmittedMsg = { type: "submitted"; id: string; kind?: string; ok: boolean; tx?: string; why?: string };
+export type ActivityMsg = { type: "activity"; player: Address | null; txs: number; recent: { signature: Hex; time: number | null }[]; explorer?: string; counting: boolean; progress: number };
+export type Done = { ok: boolean; why?: string; tx?: Hex; amount?: string };
 export type Incoming =
   | Hello
   | ({ type: "account" } & Account)
@@ -67,8 +59,9 @@ export type Incoming =
   | SettledMsg
   | AckMsg
   | ActivityMsg
-  | BuiltMsg
-  | SubmittedMsg
+  | ({ type: "session-set" } & Done)
+  | ({ type: "deposited" } & Done)
+  | ({ type: "withdrawn" } & Done)
   | { type: "owed"; value: string }
   | { type: "error"; why: string };
 
@@ -85,7 +78,7 @@ export class RelayerClient {
   private steady: ReturnType<typeof setTimeout> | undefined;
   hello: Hello | null = null;
   connected = false;
-  player: string | null = null;
+  player: Address | null = null;
 
   constructor(private readonly url = RELAYER_URL) {}
 
@@ -143,40 +136,8 @@ export class RelayerClient {
     });
   }
 
-  /**
-   * A transaction the wallet signs and the relayer pays for: built there, signed here by `sign` (Privy's embedded
-   * wallet, with no prompt), sent there. Its signature, or what went wrong.
-   */
-  async transact(kind: Kind, params: Record<string, unknown>, sign: (base64: string) => Promise<string>): Promise<{ ok: true; tx: string } | { ok: false; why: string }> {
-    return this.transactAll([{ kind, params }], async ([t]) => [await sign(t)]);
-  }
-
-  /** Several, signed together and sent in order. Stops at the first that fails. */
-  async transactAll(steps: { kind: Kind; params: Record<string, unknown> }[], signAll: (base64s: string[]) => Promise<string[]>): Promise<{ ok: true; tx: string } | { ok: false; why: string }> {
-    const built: BuiltMsg[] = [];
-    for (const { kind, params } of steps) {
-      const b = await this.request({ type: "build", kind, player: this.player, ...params }, (m): m is BuiltMsg => m.type === "built" && m.kind === kind, 15_000);
-      if (!b?.id || !b.tx) return fail(kind, "build", b?.why ?? "No answer");
-      built.push(b);
-    }
-    let signed: string[];
-    try {
-      signed = await signAll(built.map((b) => b.tx!));
-    } catch (e) {
-      return fail(steps.map((x) => x.kind).join("+"), "sign", String((e as Error).message ?? e) || "Not signed");
-    }
-    let last = "";
-    for (const [i, b] of built.entries()) {
-      const done = await this.request({ type: "submit", id: b.id, tx: signed[i] }, (m): m is SubmittedMsg => m.type === "submitted" && m.id === b.id, 60_000);
-      if (!done) return fail(steps[i].kind, "submit", "No answer");
-      if (!done.ok || !done.tx) return fail(steps[i].kind, "submit", done.why ?? "Not sent");
-      last = done.tx;
-    }
-    return { ok: true, tx: last };
-  }
-
   /** Follow one player's account and bets. */
-  watch(player: string | null) {
+  watch(player: Address | null) {
     this.player = player;
     if (player) this.send({ type: "watch", player });
   }
@@ -222,28 +183,21 @@ export class RelayerClient {
   }
 }
 
-/** A wallet transaction that did not go through, said in the console in development: the screen only has room for a line. */
-function fail(kind: string, at: "build" | "sign" | "submit", why: string): { ok: false; why: string } {
-  if (process.env.NODE_ENV !== "production") console.warn(`[relayer] ${kind} failed at ${at}: ${why}`);
-  return { ok: false, why };
-}
-
 /** The same account, to the micro-dollar and the key: the relayer sends it often (after payouts, on request), mostly unchanged. */
 const sameAccount = (a: Account | null, b: Account) =>
   !!a &&
-  a.player === b.player &&
+  a.player.toLowerCase() === b.player.toLowerCase() &&
   a.balance === b.balance &&
   a.owed === b.owed &&
-  a.wallet.usdc === b.wallet.usdc &&
-  a.wallet.approved === b.wallet.approved &&
-  a.skt?.balance === b.skt?.balance &&
-  a.skt?.claimable === b.skt?.claimable &&
-  (a.session?.key ?? null) === (b.session?.key ?? null) &&
-  (a.session?.validUntil ?? null) === (b.session?.validUntil ?? null) &&
-  (a.session?.allowance ?? null) === (b.session?.allowance ?? null);
+  (a.nonce ?? null) === (b.nonce ?? null) &&
+  a.session.key.toLowerCase() === b.session.key.toLowerCase() &&
+  a.session.x.toLowerCase() === b.session.x.toLowerCase() &&
+  a.session.y.toLowerCase() === b.session.y.toLowerCase() &&
+  a.session.validUntil === b.session.validUntil &&
+  a.session.allowance === b.session.allowance;
 
 /** One relayer for the page, following `player`. */
-export function useRelayer(player: string | null, enabled: boolean) {
+export function useRelayer(player: Address | null, enabled: boolean) {
   const [client] = useState(() => new RelayerClient());
   const [hello, setHello] = useState<Hello | null>(null);
   const [account, setAccount] = useState<Account | null>(null);
@@ -267,7 +221,6 @@ export function useRelayer(player: string | null, enabled: boolean) {
   useEffect(() => {
     if (enabled) client.watch(player);
   }, [client, player, enabled]);
-  // An account is only the player's while they are the player. Base58 is case-sensitive: the same address, exactly.
-  const own = player && account && account.player === player ? account : null;
+  const own = player && account && account.player.toLowerCase() === player.toLowerCase() ? account : null;
   return { client, hello, account: own, connected };
 }
